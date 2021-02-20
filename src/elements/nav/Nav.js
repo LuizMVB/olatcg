@@ -1,0 +1,33 @@
+import React from "react";
+import { Link } from 'react-router-dom';
+import './Nav.css';
+
+function Nav(){
+      
+    return(
+        <nav class="teal">
+            <div class="nav-wrapper">
+            <h6 class="brand-logo left">OLATCG</h6>
+            <ul id="nav-mobile" class="right hide-on-med-and-down nav-links">
+                <Link to="/">
+                    <li>
+                        home
+                    </li>
+                </Link>
+                <Link to="/tools">
+                    <li>
+                        tools
+                    </li>
+                </Link>
+                <Link to="/about">
+                    <li>
+                        about
+                    </li>
+                </Link>
+            </ul>
+            </div>
+        </nav>
+    );
+}
+
+export default Nav;
