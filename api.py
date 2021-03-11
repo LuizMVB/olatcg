@@ -1,9 +1,8 @@
-import time
-from flask import Flask
+from flask import Flask, Blueprint
+from view.seqAlignmentView import seqAlignmentView
+from view.homologySearchView import homologySearchView
 
 app = Flask(__name__)
 
-@app.route('/time')
-def get_current_time():
-    return {'time': time.time(),
-            'local': "RJ"}
+app.register_blueprint(seqAlignmentView)
+app.register_blueprint(homologySearchView)
