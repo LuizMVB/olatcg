@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import './App.css';
 
-function App() {
+function Testando() {
 
   const [currentTime, setCurrentTime] = useState(0);
 
@@ -20,4 +20,4 @@ function App() {
   );
 }
 
-export default App;
+export default Testando;

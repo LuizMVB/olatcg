@@ -5,10 +5,10 @@ import './Nav.css';
 function Nav(){
       
     return(
-        <nav class="teal">
-            <div class="nav-wrapper">
-            <h6 class="brand-logo left">OLATCG</h6>
-            <ul id="nav-mobile" class="right hide-on-med-and-down nav-links">
+        <nav className="teal">
+            <div className="nav-wrapper">
+            <h6 className="brand-logo left">OLATCG</h6>
+            <ul id="nav-mobile" className="right hide-on-med-and-down nav-links">
                 <Link to="/">
                     <li>
                         home
@@ -16,12 +16,12 @@ function Nav(){
                 </Link>
                 <Link to="/tools">
                     <li>
-                        tools
+                        ferramentas
                     </li>
                 </Link>
                 <Link to="/about">
                     <li>
-                        about
+                        conteúdo
                     </li>
                 </Link>
             </ul>
