@@ -1,3 +1,4 @@
+setuptools==56.0.0
 scikit-bio==0.5.6
 backcall==0.2.0
 CacheControl==0.12.6
