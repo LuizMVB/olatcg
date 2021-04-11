@@ -1,12 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import './App.css';
+import baseUrl from './services/baseUrl';
 
 function Testando() {
 
   const [currentTime, setCurrentTime] = useState(0);
 
   useEffect(() => {
-    fetch('/time').then(res => res.json()).then(data => { setCurrentTime(data.time);
+    fetch(baseUrl + '/time').then(res => res.json()).then(data => { setCurrentTime(data.time);
     });
   });
 
