@@ -71,10 +71,10 @@ def dnaLocalAlignSsw(seq1, seq2):
     
     response = {
         'seq1': str(seq1),
-        'aln1': str(tuple(msa)[0]),
-        'aln2': str(tuple(msa)[1]),
+        'aln1': str(msa[0]),
+        'aln2': str(msa[1]),
         'score': score,
-        'similarity': float('{:.2f}'.format(tuple(msa)[0].match_frequency(tuple(msa)[1], relative=True) * 100))
+        'similarity': float('{:.2f}'.format(msa[0].match_frequency(msa[1], relative=True) * 100))
     }
 
     return response
