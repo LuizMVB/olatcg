@@ -1,6 +1,6 @@
 from skbio.io import read
 from skbio import DNA
-from model.scikitBio import seqAlignment
+from model import seqAlignment
 import qiime_default_reference as qdr
 import random
 
@@ -12,8 +12,8 @@ def defineTaxSeqsFile(uploadedSeqsFile):
 #    uploadedSeqsFile.save('model/data/user/uploads/' + uploadedSeqsFile.filename)
 
 def compareWithDB(uploadedSeqsFile, seqsDb, taxDb):
-    reference_db = random.sample(loadRefSeqs(seqsDb, loadTaxData(taxDb)), k=50)
-    
+    reference_db = random.sample(loadRefSeqs(seqsDb, loadTaxData(taxDb)), k=1)
+
     seq = str(uploadedSeqsFile.readline()).strip("b'{\}rn")
     seqsInFile = []
 
@@ -28,10 +28,12 @@ def compareWithDB(uploadedSeqsFile, seqsDb, taxDb):
         for refSeq in reference_db:
             if alnObj == {}:
                 alnObj = seqAlignment.dnaLocalAlignSsw(seq, str(refSeq))
+                alnObj['taxonomy'] = refSeq.metadata['taxonomy']
             else:
                 alnObjTmp = seqAlignment.dnaLocalAlignSsw(seq, str(refSeq))
                 if alnObjTmp['similarity'] > alnObj['similarity']:
                     alnObj = alnObjTmp
+                    alnObj['taxonomy'] = refSeq.metadata['taxonomy']
         highSimilarityAlnObjs.append(alnObj)
         alnObj = {}
         alnObjTmp = {}
