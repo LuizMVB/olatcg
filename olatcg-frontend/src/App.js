@@ -14,18 +14,16 @@ function App(){
 
   return(
     <Router>
-      <div>
-        <Nav />
-        <Switch>
-          <Route path="/" exact component={Home} />
-          <Route path="/about" component={About} />
-          <Route path="/tools" component={Tools} />
-          <Route path="/homology-search" component={HomologySearch} />
-          <Route path="/global-alignment" component={GlobalAlignment} />
-          <Route path="/local-alignment" component={LocalAlignment} />
-        </Switch>
-        <Footer />
-      </div>
+      <Nav />
+      <Switch>
+        <Route path="/" exact component={Home} />
+        <Route path="/about" component={About} />
+        <Route path="/tools" component={Tools} />
+        <Route path="/homology-search" component={HomologySearch} />
+        <Route path="/global-alignment" component={GlobalAlignment} />
+        <Route path="/local-alignment" component={LocalAlignment} />
+      </Switch>
+      <Footer />
     </Router>
   );
 }

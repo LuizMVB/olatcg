@@ -7,6 +7,8 @@ import Settings from './static/img/settings.png';
 import CsdLogo from './static/img/csd_logo.jpeg';
 import CefetLogo from './static/img/cefet_logo.png';
 import UfzLogo from './static/img/ufz_logo.png';
+import FundacaoOsorioLogo from './static/img/fundacao_osorio_logo.png';
+import FiocruzLogo from './static/img/fiocruz_logo.jpg';
 
 function Home(){
     return(
@@ -76,8 +78,11 @@ function Home(){
                     <div className="col s4">
                         <img src={CsdLogo} alt="" width="300" height="300"/>
                     </div>
-                    <div className="col s12">
-                        <img src="https://cieecdnportal.s3.amazonaws.com/media/2018/09/logo-fiocruz.jpg" alt="" width="400" height="400"/>
+                    <div className="col s6">
+                        <img src={FiocruzLogo} alt="" width="400" height="400"/>
+                    </div>
+                    <div className="col s6">
+                        <img src={FundacaoOsorioLogo} alt="" width="400" height="400"/>
                     </div>
                 </div>
             </div>

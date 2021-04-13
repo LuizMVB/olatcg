@@ -29,6 +29,7 @@ function HomologySearch(){
                             <td>{data[key].aln2}</td>
                             <td>{data[key].score}</td>
                             <td>{data[key].similarity}</td>
+                            <td>{data[key].taxonomy}</td>
                           </tr>);
             }
         }
@@ -43,7 +44,7 @@ function HomologySearch(){
         .catch(() => console.log('lançando modal') /** lançamento de modal);*/
 
     return (
-        <div classNameName="HomologySearch">
+        <div className="HomologySearch">
             <div className="container-fluid">
                 <div className="row">
                     <h3 className="header center grey-text text-darken-3">Busca homóloga</h3>
@@ -63,6 +64,7 @@ function HomologySearch(){
                                     <th>Sequência B (alinhada)</th>
                                     <th>Score (pontuação)</th>
                                     <th>Similaridade aprox. (%)</th>
+                                    <th>taxonomia</th>
                                 </tr>
                             </thead>    
                             <tbody>

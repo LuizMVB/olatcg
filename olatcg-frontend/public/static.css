@@ -1,0 +1,10 @@
+th,td {
+    border-style: solid;
+    border-width: 5px;
+    border-color: #BCBCBC;
+    word-wrap: break-word;
+}
+table {
+    table-layout: fixed;
+    width: 100%;
+}

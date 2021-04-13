@@ -1,14 +1,15 @@
 import React, {useState} from 'react';
-import M from 'materialize-css';
+//import M from 'materialize-css';
+//import Select from '../../elements/select/Select';
 
 //const [alignedSeqs, setAlignedSeqs] = useState({});
 
 function GlobalAlignment() {
 
-    document.addEventListener('DOMContentLoaded', function() {
-        var elems = document.querySelectorAll('select');
-        var instances = M.FormSelect.init(elems, ['Escolha sua opção', 'Needleman-Wunsch', 'Heurística']);
-    });
+//    document.addEventListener('DOMContentLoaded', function() {
+//        var elems = document.querySelectorAll('select');
+//        var instances = M.FormSelect.init(elems, ['Escolha sua opção', 'Needleman-Wunsch', 'Heurística']);
+//    });
 
     const [inputSeq1, setInputSeq1] = useState();
 
@@ -64,7 +65,7 @@ function GlobalAlignment() {
                                 Aproveite para fazer alterações manuais e ver o quanto os resultados podem 
                                 mudam. Além disso, você pode selecionar o algoritmo que deseja utilizar para
                                 realizar o alinhamento e as penalidades de abertura e extesão no alinhamento. 
-                                Divirta-se! 
+                                Divirta-se!
                             </h6>
                         </div>
                         <br/>
@@ -78,13 +79,13 @@ function GlobalAlignment() {
                             <label for="seq1">Sequência B</label>
                         </div>
                         <div className="input-field col s6">
-                            <select onChange={event => setSelectSequenceType(event.target.value)}>
-                                <option value="" disabled selected>Escolha sua opção</option>
+                            <p>O que você quer alinhar?</p>
+                            <select className="browser-default" onChange={event => setSelectSequenceType(event.target.value)}>
+                                <option value="">Escolha sua opção</option>
                                 <option value="dna">DNA</option>
                                 <option value="rna">RNA</option>
                                 <option value="protein">Proteína</option>
                             </select>
-                            <label>O que você quer alinhar?</label>
                         </div>
                         <div className="col s12 center">
                             <br/>
@@ -95,26 +96,27 @@ function GlobalAlignment() {
                         </div>
                     </div>
                     {seqAlignmentObject && 
-                        <table className="centered highlight purple lighten-5">
-                                <thead>
-                                    <tr>
-                                        <th>Sequência A (alinhada)</th>
-                                        <th>Sequência B (alinhada)</th>
-                                        <th>Score (pontuação)</th>
-                                        <th>Similaridade aprox. (%)</th>
-                                    </tr>
-                                </thead>    
-                            <tbody>
-                                <tr>
-                                    <td>{seqAlignmentObject.aln1}</td>
-                                    <td>{seqAlignmentObject.aln2}</td>
-                                    <td>{seqAlignmentObject.score}</td>
-                                    <td>{seqAlignmentObject.similarity}</td>
-                                </tr>
-                            </tbody>
-                        </table>}
+                    <table className="centered highlight purple lighten-5">
+                        <thead>
+                            <tr>
+                                <th>Sequência A (alinhada)</th>
+                                <th>Sequência B (alinhada)</th>
+                                <th>Score (pontuação)</th>
+                                <th>Similaridade aprox. (%)</th>
+                            </tr>
+                        </thead>    
+                        <tbody>
+                            <tr>
+                                <td>{seqAlignmentObject.aln1}</td>
+                                <td>{seqAlignmentObject.aln2}</td>
+                                <td>{seqAlignmentObject.score}</td>
+                                <td>{seqAlignmentObject.similarity}</td>
+                            </tr>
+                        </tbody>
+                    </table>}
                 </div>
             </div>
+            <br/>
             <br/>
         </div>
     );
