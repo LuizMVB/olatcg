@@ -1,5 +1,5 @@
 from flask import Flask
-from model.scikitBio import seqAlignment
+from model import seqAlignment
 
 def dnaGlobalAlignment(seq1, seq2, gap_open_penalty, gap_extend_penalty):
     return seqAlignment.dnaAlign(seq1, seq2, float(gap_open_penalty), float(gap_extend_penalty))

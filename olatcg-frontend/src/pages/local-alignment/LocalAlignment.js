@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-//import M from 'materialize-css';
+import M from 'materialize-css';
+import baseUrl from '../../services/baseUrl';
 
 //const [alignedSeqs, setAlignedSeqs] = useState({});
 
@@ -31,17 +32,17 @@ function LocalAlignment() {
         setIsLoading(true);
         if(validateForm(inputSeq1, inputSeq2, selectSequenceType)){
             if(selectSequenceType === "dna") {
-                const data = fetch('/dnaGlobalAlignment/' + inputSeq1 + '/' + inputSeq2 + '/' + 5 + '/' + 2)
+                const data = fetch(baseUrl + '/dnaGlobalAlignment/' + inputSeq1 + '/' + inputSeq2 + '/' + 5 + '/' + 2)
                             .then(res => res.json())
                             .then(data => {setAlignmentObject(data); setIsLoading(false);});
             }
             else if(selectSequenceType === "rna") {
-                const data = fetch('/rnaGlobalAlignment/' + inputSeq1 + '/' + inputSeq2 + '/' + 5 + '/' + 2)
+                const data = fetch(baseUrl + '/rnaGlobalAlignment/' + inputSeq1 + '/' + inputSeq2 + '/' + 5 + '/' + 2)
                             .then(res => res.json())
                             .then(data => {setAlignmentObject(data); setIsLoading(false);});
             }
             else if(selectSequenceType === "protein") {
-                const data = fetch('/proteinGlobalAlignment/' + inputSeq1 + '/' + inputSeq2 + '/' + 8 + '/' + 16)
+                const data = fetch(baseUrl + '/proteinGlobalAlignment/' + inputSeq1 + '/' + inputSeq2 + '/' + 8 + '/' + 16)
                             .then(res => res.json())
                             .then(data => {setAlignmentObject(data); setIsLoading(false);})
             }
