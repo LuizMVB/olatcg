@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
+import baseUrl from '../../services/baseUrl';
 import './Home.css';
 
 
@@ -12,7 +13,7 @@ function Home() {
     }, []);
 
     const fecthItens = async() => {
-        const data = await fetch('/get_tools');
+        const data = await fetch(baseUrl + '/get_tools');
         const tools = await data.json();
         console.log(tools);
         setTools(tools);

@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import baseUrl from '../../services/baseUrl';
 import Table from './Table';
 
 
@@ -13,7 +14,7 @@ function HomologySearch(){
         data.append('uploaded_seqs_file', input.files[0]);
         data.append('inputSeqsFile', input.name);
 
-        fetch('/defineTaxSeqsFile', {
+        fetch(baseUrl + '/defineTaxSeqsFile', {
             method: 'POST',
             body: data
         }).then(res => res.json()).then(data => {setAlignmentObject(Object.values(data));console.log('ok');});
