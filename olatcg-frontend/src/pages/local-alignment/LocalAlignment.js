@@ -25,7 +25,7 @@ function LocalAlignment() {
 
     const [seqAlignmentObject, setAlignmentObject] = useState();
 
-    const [isLoading, setIsLoading] = useState(false);
+    //const [isLoading, setIsLoading] = useState(false);
 
     const getGlobalAlignment = (inputSeq1, inputSeq2, selectSequenceType) => {
         setAlignmentObject(undefined)
@@ -122,7 +122,8 @@ function LocalAlignment() {
                     </table>}
                 </div>
                 <div className="col s12 center">
-                    {isLoading && 
+                
+                    {/**isLoading && 
                     <div class="preloader-wrapper big active">
                         <div class="spinner-layer spinner-blue">
                             <div class="circle-clipper left">
@@ -135,7 +136,8 @@ function LocalAlignment() {
                                 </div>
                             </div>
                         </div>
-                    </div>}
+                    </div>*/}
+                    
                 </div>
             </div>
             <br/>
