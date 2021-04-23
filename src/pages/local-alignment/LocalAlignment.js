@@ -1,15 +1,7 @@
 import React, {useState} from 'react';
-import M from 'materialize-css';
 import baseUrl from '../../services/baseUrl';
 
-//const [alignedSeqs, setAlignedSeqs] = useState({});
-
 function LocalAlignment() {
-
-    //document.addEventListener('DOMContentLoaded', function() {
-    //    var elems = document.querySelectorAll('select');
-    //    var instances = M.FormSelect.init(elems, ['Escolha sua opção', 'Needleman-Wunsch', 'Heurística']);
-    //});
 
     const [inputSeq1, setInputSeq1] = useState();
 
@@ -17,34 +9,27 @@ function LocalAlignment() {
 
     const [selectSequenceType, setSelectSequenceType] = useState();
 
-    //const [inputGapOpenPenalty, setInputGapOpenPenalty] = useState();
-
-    //const [inputGapExtendPenalty, setInputGapExtendPenalty] = useState();
-
-    //const [selectModel, setSelectModel] = useState();
-
     const [seqAlignmentObject, setAlignmentObject] = useState();
 
-    const [isLoading, setIsLoading] = useState(false);
 
     const getGlobalAlignment = (inputSeq1, inputSeq2, selectSequenceType) => {
         setAlignmentObject(undefined)
         setIsLoading(true);
         if(validateForm(inputSeq1, inputSeq2, selectSequenceType)){
             if(selectSequenceType === "dna") {
-                const data = fetch(baseUrl + '/dnaGlobalAlignment/' + inputSeq1 + '/' + inputSeq2 + '/' + 5 + '/' + 2)
-                            .then(res => res.json())
-                            .then(data => {setAlignmentObject(data); setIsLoading(false);});
+                fetch(baseUrl + '/dnaGlobalAlignment/' + inputSeq1 + '/' + inputSeq2 + '/' + 5 + '/' + 2)
+                    .then(res => res.json())
+                    .then(data => {setAlignmentObject(data); setIsLoading(false);});
             }
             else if(selectSequenceType === "rna") {
-                const data = fetch(baseUrl + '/rnaGlobalAlignment/' + inputSeq1 + '/' + inputSeq2 + '/' + 5 + '/' + 2)
-                            .then(res => res.json())
-                            .then(data => {setAlignmentObject(data); setIsLoading(false);});
+                fetch(baseUrl + '/rnaGlobalAlignment/' + inputSeq1 + '/' + inputSeq2 + '/' + 5 + '/' + 2)
+                    .then(res => res.json())
+                    .then(data => {setAlignmentObject(data); setIsLoading(false);});
             }
             else if(selectSequenceType === "protein") {
-                const data = fetch(baseUrl + '/proteinGlobalAlignment/' + inputSeq1 + '/' + inputSeq2 + '/' + 8 + '/' + 16)
-                            .then(res => res.json())
-                            .then(data => {setAlignmentObject(data); setIsLoading(false);})
+                fetch(baseUrl + '/proteinGlobalAlignment/' + inputSeq1 + '/' + inputSeq2 + '/' + 8 + '/' + 16)
+                    .then(res => res.json())
+                    .then(data => {setAlignmentObject(data); setIsLoading(false);})
             }
         }
     };

@@ -1,15 +1,7 @@
 import React, {useState} from 'react';
-import M from 'materialize-css';
 import baseUrl from "../../services/baseUrl";
 
-//const [alignedSeqs, setAlignedSeqs] = useState({});
-
 function GlobalAlignment() {
-
-//    document.addEventListener('DOMContentLoaded', function() {
-//        var elems = document.querySelectorAll('select');
-//        var instances = M.FormSelect.init(elems, ['Escolha sua opção', 'Needleman-Wunsch', 'Heurística']);
-//    });
 
     const [inputSeq1, setInputSeq1] = useState();
 
@@ -17,30 +9,26 @@ function GlobalAlignment() {
 
     const [selectSequenceType, setSelectSequenceType] = useState();
 
-    //const [inputGapOpenPenalty, setInputGapOpenPenalty] = useState();
-
-    //const [inputGapExtendPenalty, setInputGapExtendPenalty] = useState();
-
-    //const [selectModel, setSelectModel] = useState();
-
     const [seqAlignmentObject, setAlignmentObject] = useState();
 
     const getGlobalAlignment = (inputSeq1, inputSeq2, selectSequenceType) => {
+        setAlignmentObject(undefined)
+        setIsLoading(true);
         if(validateForm(inputSeq1, inputSeq2, selectSequenceType)){
             if(selectSequenceType === "dna") {
-                const data = fetch(baseUrl + '/dnaGlobalAlignment/' + inputSeq1 + '/' + inputSeq2 + '/' + 5 + '/' + 2)
-                            .then(res => res.json())
-                            .then(data => setAlignmentObject(data));
+                fetch(baseUrl + '/dnaGlobalAlignment/' + inputSeq1 + '/' + inputSeq2 + '/' + 5 + '/' + 2)
+                    .then(res => res.json())
+                    .then(data => setAlignmentObject(data));
             }
             else if(selectSequenceType === "rna") {
-                const data = fetch(baseUrl + '/rnaGlobalAlignment/' + inputSeq1 + '/' + inputSeq2 + '/' + 5 + '/' + 2)
-                            .then(res => res.json())
-                            .then(data => setAlignmentObject(data));
+                fetch(baseUrl + '/rnaGlobalAlignment/' + inputSeq1 + '/' + inputSeq2 + '/' + 5 + '/' + 2)
+                    .then(res => res.json())
+                    .then(data => setAlignmentObject(data));
             }
             else if(selectSequenceType === "protein") {
-                const data = fetch(baseUrl + '/proteinGlobalAlignment/' + inputSeq1 + '/' + inputSeq2 + '/' + 8 + '/' + 16)
-                            .then(res => res.json())
-                            .then(data => setAlignmentObject(data));
+                fetch(baseUrl + '/proteinGlobalAlignment/' + inputSeq1 + '/' + inputSeq2 + '/' + 8 + '/' + 16)
+                    .then(res => res.json())
+                    .then(data => setAlignmentObject(data));
             }
         }
     };
@@ -95,27 +83,44 @@ function GlobalAlignment() {
                             <br/><br/>
                         </div>
                     </div>
-                    {seqAlignmentObject && 
-                    <table className="centered highlight purple lighten-5">
-                        <thead>
-                            <tr>
-                                <th>Sequência A (alinhada)</th>
-                                <th>Sequência B (alinhada)</th>
-                                <th>Score (pontuação)</th>
-                                <th>Similaridade aprox. (%)</th>
-                            </tr>
-                        </thead>    
-                        <tbody>
-                            <tr>
-                                <td>{seqAlignmentObject.aln1}</td>
-                                <td>{seqAlignmentObject.aln2}</td>
-                                <td>{seqAlignmentObject.score}</td>
-                                <td>{seqAlignmentObject.similarity}</td>
-                            </tr>
-                        </tbody>
-                    </table>}
+                    <div className="col s10 offset-s1"></div>
+                        {seqAlignmentObject && 
+                        <table className="centered highlight purple lighten-5">
+                            <thead>
+                                <tr>
+                                    <th>Sequência A (alinhada)</th>
+                                    <th>Sequência B (alinhada)</th>
+                                    <th>Score (pontuação)</th>
+                                    <th>Similaridade aprox. (%)</th>
+                                </tr>
+                            </thead>    
+                            <tbody>
+                                <tr>
+                                    <td>{seqAlignmentObject.aln1}</td>
+                                    <td>{seqAlignmentObject.aln2}</td>
+                                    <td>{seqAlignmentObject.score}</td>
+                                    <td>{seqAlignmentObject.similarity}</td>
+                                </tr>
+                            </tbody>
+                        </table>}
+                    </div>
+                    <div className="col s12 center">
+                        {isLoading && 
+                        <div class="preloader-wrapper big active">
+                            <div class="spinner-layer spinner-blue">
+                                <div class="circle-clipper left">
+                                    <div class="circle"></div>
+                                </div><div class="gap-patch">
+                                    <div class="circle"></div>
+                                </div>
+                                <div class="circle-clipper right">
+                                    <div class="circle">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>}
+                    </div>
                 </div>
-            </div>
             <br/>
             <br/>
         </div>
