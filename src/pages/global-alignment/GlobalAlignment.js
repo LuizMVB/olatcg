@@ -20,17 +20,17 @@ function GlobalAlignment() {
             if(selectSequenceType === "dna") {
                 fetch(baseUrl + '/dnaGlobalAlignment/' + inputSeq1 + '/' + inputSeq2 + '/' + 5 + '/' + 2)
                     .then(res => res.json())
-                    .then(data => setAlignmentObject(data));
+                    .then(data => {setAlignmentObject(data); setIsLoading(false);});
             }
             else if(selectSequenceType === "rna") {
                 fetch(baseUrl + '/rnaGlobalAlignment/' + inputSeq1 + '/' + inputSeq2 + '/' + 5 + '/' + 2)
                     .then(res => res.json())
-                    .then(data => setAlignmentObject(data));
+                    .then(data => {setAlignmentObject(data); setIsLoading(false);});
             }
             else if(selectSequenceType === "protein") {
                 fetch(baseUrl + '/proteinGlobalAlignment/' + inputSeq1 + '/' + inputSeq2 + '/' + 8 + '/' + 16)
                     .then(res => res.json())
-                    .then(data => setAlignmentObject(data));
+                    .then(data => {setAlignmentObject(data); setIsLoading(false);});
             }
         }
     };
