@@ -107,7 +107,6 @@ function LocalAlignment() {
                     </table>}
                 </div>
                 <div className="col s12 center">
-                
                     {isLoading && 
                     <div class="preloader-wrapper big active">
                         <div class="spinner-layer spinner-blue">
@@ -122,7 +121,6 @@ function LocalAlignment() {
                             </div>
                         </div>
                     </div>}
-                    
                 </div>
             </div>
             <br/>
