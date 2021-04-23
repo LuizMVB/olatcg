@@ -11,6 +11,7 @@ function LocalAlignment() {
 
     const [seqAlignmentObject, setAlignmentObject] = useState();
 
+    const [isLoading, setIsLoading] = useState();
 
     const getGlobalAlignment = (inputSeq1, inputSeq2, selectSequenceType) => {
         setAlignmentObject(undefined)
