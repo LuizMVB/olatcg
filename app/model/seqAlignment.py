@@ -1,7 +1,7 @@
 from skbio.alignment import local_pairwise_align, global_pairwise_align, local_pairwise_align_nucleotide, global_pairwise_align_nucleotide
 from skbio.alignment import local_pairwise_align_ssw
 from skbio import DNA, RNA, Protein
-from model.data.system.substitution_matrix import blosum50
+from app.model.data.system.substitution_matrix import blosum50
 
 def dnaAlign(seq1, seq2, gap_open_penalty, gap_extend_penalty, local=False):
     seq1 = seq1.upper()

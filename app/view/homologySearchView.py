@@ -1,5 +1,5 @@
 from flask import Blueprint
-from controller import homologySearchController
+from app.controller import homologySearchController
 from flask import request
 
 homologySearchView = Blueprint('homologySearchView', __name__)

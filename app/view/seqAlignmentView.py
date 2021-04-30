@@ -1,5 +1,5 @@
 from flask import Blueprint
-from controller import seqAlignmentController
+from app.controller import seqAlignmentController
 from flask import request
 
 seqAlignmentView = Blueprint('seqAlignmentView', __name__)

@@ -1,6 +1,6 @@
 from flask import Flask, Blueprint
-from view.seqAlignmentView import seqAlignmentView
-from view.homologySearchView import homologySearchView
+from app.view.seqAlignmentView import seqAlignmentView
+from app.view.homologySearchView import homologySearchView
 from flask_cors import CORS
 
 

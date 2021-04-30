@@ -1,6 +1,6 @@
 from skbio.io import read
 from skbio import DNA
-from model import seqAlignment
+from app.model import seqAlignment
 import qiime_default_reference as qdr
 import random
 
