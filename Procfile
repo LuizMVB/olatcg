@@ -1,1 +1,1 @@
-web:  pip install scikit-bio && gunicorn api:app
+web:  pip install scikit-bio && gunicorn run:app
