@@ -12,7 +12,7 @@ def defineTaxSeqsFile(uploadedSeqsFile):
 #    uploadedSeqsFile.save('model/data/user/uploads/' + uploadedSeqsFile.filename)
 
 def compareWithDB(uploadedSeqsFile, seqsDb, taxDb):
-    reference_db = random.sample(loadRefSeqs(seqsDb, loadTaxData(taxDb)), k=1)
+    reference_db = random.sample(loadRefSeqs(seqsDb, loadTaxData(taxDb)), k=10)
 
     seq = str(uploadedSeqsFile.readline()).strip("b'{\}rn")
     seqsInFile = []

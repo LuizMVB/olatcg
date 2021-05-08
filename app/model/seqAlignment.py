@@ -3,7 +3,10 @@ from skbio.alignment import local_pairwise_align_ssw
 from skbio import DNA, RNA, Protein
 from app.model.data.system.substitution_matrix import blosum50
 
+
+
 def dnaAlign(seq1, seq2, gap_open_penalty, gap_extend_penalty, local=False):
+    
     seq1 = seq1.upper()
     seq2 = seq2.upper()
     
@@ -23,6 +26,11 @@ def dnaAlign(seq1, seq2, gap_open_penalty, gap_extend_penalty, local=False):
 
     return response
 
+        
+
+        
+
+'''
 def rnaAlign(seq1, seq2, gap_open_penalty, gap_extend_penalty, local=False):
     seq1 = seq1.upper()
     seq2 = seq2.upper()
@@ -78,3 +86,4 @@ def dnaLocalAlignSsw(seq1, seq2):
     }
 
     return response
+    '''
