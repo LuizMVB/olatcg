@@ -13,22 +13,27 @@ function LocalAlignment() {
 
     const [isLoading, setIsLoading] = useState();
 
-    const getGlobalAlignment = (inputSeq1, inputSeq2, selectSequenceType) => {
+    const getLocalAlignment = (inputSeq1, inputSeq2, selectSequenceType) => {
         setAlignmentObject(undefined)
         setIsLoading(true);
         if(validateForm(inputSeq1, inputSeq2, selectSequenceType)){
+            let formData = new FormData();
+            formData.append('seq1', inputSeq1);
+            formData.append('seq2', inputSeq2);
+            formData.append('gap_open_penalty', 5);
+            formData.append('gap_extend_penalty', 2);
             if(selectSequenceType === "dna") {
-                fetch(baseUrl + '/dnaGlobalAlignment/' + inputSeq1 + '/' + inputSeq2 + '/' + 5 + '/' + 2)
+                fetch(baseUrl + '/dnaLocalAlignment', {method: 'POST', body: formData})
                     .then(res => res.json())
-                    .then(data => {setAlignmentObject(data); setIsLoading(false);});
+                    .then(data => {setAlignmentObject(data); setIsLoading(false); console.log(data)});
             }
             else if(selectSequenceType === "rna") {
-                fetch(baseUrl + '/rnaGlobalAlignment/' + inputSeq1 + '/' + inputSeq2 + '/' + 5 + '/' + 2)
+                fetch(baseUrl + '/rnaLocalAlignment', {method: 'POST', body: formData})
                     .then(res => res.json())
                     .then(data => {setAlignmentObject(data); setIsLoading(false);});
             }
             else if(selectSequenceType === "protein") {
-                fetch(baseUrl + '/proteinGlobalAlignment/' + inputSeq1 + '/' + inputSeq2 + '/' + 8 + '/' + 16)
+                fetch(baseUrl + '/proteinLocalAlignment', {method: 'POST', body: formData})
                     .then(res => res.json())
                     .then(data => {setAlignmentObject(data); setIsLoading(false);})
             }
@@ -80,7 +85,7 @@ function LocalAlignment() {
                     </div>
                     <div className="col s12 center">
                         <br/>
-                        <button className="btn waves-effect" type="submit" name="action" onClick={() => {getGlobalAlignment(inputSeq1, inputSeq2, selectSequenceType)}}>Alinhar
+                        <button className="btn waves-effect" type="submit" name="action" onClick={() => {getLocalAlignment(inputSeq1, inputSeq2, selectSequenceType)}}>Alinhar
                             <i className="material-icons right">send</i>
                         </button>
                         <br/><br/>

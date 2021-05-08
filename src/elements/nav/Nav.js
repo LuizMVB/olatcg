@@ -24,6 +24,11 @@ function Nav(){
                         conteúdo
                     </li>
                 </Link>
+                <Link to="/task-table">
+                    <li>
+                        table de processamento
+                    </li>
+                </Link>
             </ul>
             </div>
         </nav>

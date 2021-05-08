@@ -17,18 +17,23 @@ function GlobalAlignment() {
         setAlignmentObject(undefined)
         setIsLoading(true);
         if(validateForm(inputSeq1, inputSeq2, selectSequenceType)){
+            let formData = new FormData();
+            formData.append('seq1', inputSeq1);
+            formData.append('seq2', inputSeq2);
+            formData.append('gap_open_penalty', 5);
+            formData.append('gap_extend_penalty', 2);
             if(selectSequenceType === "dna") {
-                fetch(baseUrl + '/dnaGlobalAlignment/' + inputSeq1 + '/' + inputSeq2 + '/' + 5 + '/' + 2)
+                fetch(baseUrl + '/dnaGlobalAlignment', {method: 'POST', body: formData})
                     .then(res => res.json())
-                    .then(data => {setAlignmentObject(data); setIsLoading(false);});
+                    .then(data => {console.log(data); setAlignmentObject(data); setIsLoading(false);});
             }
             else if(selectSequenceType === "rna") {
-                fetch(baseUrl + '/rnaGlobalAlignment/' + inputSeq1 + '/' + inputSeq2 + '/' + 5 + '/' + 2)
+                fetch(baseUrl + '/rnaGlobalAlignment', {method: 'POST', body: formData})
                     .then(res => res.json())
                     .then(data => {setAlignmentObject(data); setIsLoading(false);});
             }
             else if(selectSequenceType === "protein") {
-                fetch(baseUrl + '/proteinGlobalAlignment/' + inputSeq1 + '/' + inputSeq2 + '/' + 8 + '/' + 16)
+                fetch(baseUrl + '/proteinGlobalAlignment', {method: 'POST', body: formData})
                     .then(res => res.json())
                     .then(data => {setAlignmentObject(data); setIsLoading(false);});
             }

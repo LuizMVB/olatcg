@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import baseUrl from '../../services/baseUrl';
-import Table from './Table';
 
 
 function HomologySearch(){
