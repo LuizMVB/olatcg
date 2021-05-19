@@ -1,4 +1,6 @@
 import React, {useState} from 'react';
+import { Link } from 'react-router-dom';
+import { Modal, Button, Icon } from 'react-materialize'
 import baseUrl from '../../services/baseUrl';
 
 function LocalAlignment() {
@@ -9,13 +11,9 @@ function LocalAlignment() {
 
     const [selectSequenceType, setSelectSequenceType] = useState();
 
-    const [seqAlignmentObject, setAlignmentObject] = useState();
-
-    const [isLoading, setIsLoading] = useState();
+    const [processId, setProcessId] = useState();
 
     const getLocalAlignment = (inputSeq1, inputSeq2, selectSequenceType) => {
-        setAlignmentObject(undefined)
-        setIsLoading(true);
         if(validateForm(inputSeq1, inputSeq2, selectSequenceType)){
             let formData = new FormData();
             formData.append('seq1', inputSeq1);
@@ -25,17 +23,17 @@ function LocalAlignment() {
             if(selectSequenceType === "dna") {
                 fetch(baseUrl + '/dnaLocalAlignment', {method: 'POST', body: formData})
                     .then(res => res.json())
-                    .then(data => {setAlignmentObject(data); setIsLoading(false); console.log(data)});
+                    .then(data => setProcessId(data.processId));
             }
             else if(selectSequenceType === "rna") {
                 fetch(baseUrl + '/rnaLocalAlignment', {method: 'POST', body: formData})
                     .then(res => res.json())
-                    .then(data => {setAlignmentObject(data); setIsLoading(false);});
+                    .then(data => setProcessId(data.processId));
             }
             else if(selectSequenceType === "protein") {
                 fetch(baseUrl + '/proteinLocalAlignment', {method: 'POST', body: formData})
                     .then(res => res.json())
-                    .then(data => {setAlignmentObject(data); setIsLoading(false);})
+                    .then(data => setProcessId(data.processId));
             }
         }
     };
@@ -65,12 +63,12 @@ function LocalAlignment() {
                     <br/>
                     <div className="input-field col s12">
                         <textarea className="materialize-textarea" onChange={event => setInputSeq1(event.target.value)}></textarea>
-                        <label for="seq1">Sequência A</label>
+                        <label htmlFor="seq1">Sequência A</label>
                     </div>
                     <br/>
                     <div className="input-field col s12">
                         <textarea id="seq1" className="materialize-textarea" onChange={event => setInputSeq2(event.target.value)}></textarea>
-                        <label for="seq1">Sequência B</label>
+                        <label htmlFor="seq1">Sequência B</label>
                     </div>
                     <div className="input-field col s6">
                         <div className="input-field col s6">
@@ -85,53 +83,22 @@ function LocalAlignment() {
                     </div>
                     <div className="col s12 center">
                         <br/>
-                        <button className="btn waves-effect" type="submit" name="action" onClick={() => {getLocalAlignment(inputSeq1, inputSeq2, selectSequenceType)}}>Alinhar
-                            <i className="material-icons right">send</i>
-                        </button>
-                        <br/><br/>
+                        <Modal
+                        header='Processamento Iniciado'
+                        trigger={<Button waves='light'>Alinhar<Icon right>insert_chart</Icon></Button>}
+                        onClick={() => {getLocalAlignment(inputSeq1, inputSeq2, selectSequenceType)}}>
+                            <p>Seu alinhamento está sendo realizado, seu id será exibido na tela</p>
+                        </Modal>
+                        <br/>
+                        <br/>
+                        {processId && <Link to="/task-table/align" params={{"processId" : processId}}><div class="col s4 center offset-s4 red lighten-5 hoverable"><h4>Ultimo ID: {processId}</h4></div></Link>}
                     </div>
-                </div>
-                <div className="col s10 offset-s1">
-                    {seqAlignmentObject && 
-                    <table className="centered highlight purple lighten-5">
-                        <thead>
-                            <tr>
-                                <th>Sequência A (alinhada)</th>
-                                <th>Sequência B (alinhada)</th>
-                                <th>Score (pontuação)</th>
-                                <th>Similaridade aprox. (%)</th>
-                            </tr>
-                        </thead>    
-                        <tbody>
-                            <tr>
-                                <td>{seqAlignmentObject.aln1}</td>
-                                <td>{seqAlignmentObject.aln2}</td>
-                                <td>{seqAlignmentObject.score}</td>
-                                <td>{seqAlignmentObject.similarity}</td>
-                            </tr>
-                        </tbody>
-                    </table>}
-                </div>
-                <div className="col s12 center">
-                    {/**isLoading && 
-                    <div class="preloader-wrapper big active">
-                        <div class="spinner-layer spinner-blue">
-                            <div class="circle-clipper left">
-                                <div class="circle"></div>
-                            </div><div class="gap-patch">
-                                <div class="circle"></div>
-                            </div>
-                            <div class="circle-clipper right">
-                                <div class="circle">
-                                </div>
-                            </div>
-                        </div>
-                    </div>*/}
                 </div>
             </div>
             <br/>
             <br/>
         </div>
+        
     );
 }
 

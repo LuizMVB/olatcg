@@ -36,7 +36,7 @@ function Home(){
                         </h6>
                     </div>
                     <div className="col s8">
-                        <iframe title="olatcg video" width="760" height="415" src="https://www.youtube.com/embed/iavKNmdjT_c?start=2910" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <iframe title="olatcg video" width="760" height="415" src="https://www.youtube.com/embed/iavKNmdjT_c?start=2910" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
                     </div>
                 </div>
             </div>

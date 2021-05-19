@@ -3,16 +3,19 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import TaskTableSelection from '../../elements/task-table-selection/TaskTableSelection';
 import TaskTableAlign from '../task-table-align/TaskTableAlign';
 import TaskTableHomologySearch from '../task-table-homology-search/TaskTableHomologySearch';
-import baseUrl from '../../services/baseUrl';
 
 function TaskTable() {
+
+    if(window.location.pathname === "/task-table") {
+        window.location.pathname = "/task-table/align";
+    }
+
     return (
         <div className="container-fluid">
             <div className="row">
-                <Router>
-                  <TaskTableSelection/>
+            <Router>
+                <TaskTableSelection />
                     <Switch>
-                        <Route path="/task-table" exact component={TaskTableAlign}/>
                         <Route path="/task-table/align" component={TaskTableAlign} />
                         <Route path="/task-table/homology-search" component={TaskTableHomologySearch} />
                     </Switch>

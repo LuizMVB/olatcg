@@ -26,7 +26,7 @@ function Nav(){
                 </Link>
                 <Link to="/task-table">
                     <li>
-                        table de processamento
+                        fila de processamento
                     </li>
                 </Link>
             </ul>

@@ -10,6 +10,7 @@ import HomologySearch from './pages/homology-search/HomologySearch';
 import GlobalAlignment from './pages/global-alignment/GlobalAlignment';
 import LocalAlignment from './pages/local-alignment/LocalAlignment';
 import TaskTable from './pages/task-table/TaskTable';
+import TaskTableHomologySearch from './pages/task-table-homology-search/TaskTableHomologySearch';
 
 function App(){
 
@@ -24,7 +25,7 @@ function App(){
         <Route path="/global-alignment" component={GlobalAlignment} />
         <Route path="/local-alignment" component={LocalAlignment} />
         <Route path="/task-table" exact component={TaskTable} />
-        <Route path="/task-table/align" exact component={TaskTable} />
+        <Route path="/task-table/align" component={TaskTable} />
         <Route path="/task-table/homology-search" component={TaskTable} />
       </Switch>
       <Footer />
