@@ -2,24 +2,27 @@ from skbio.io import read
 from skbio import DNA
 from app.model import seqAlignment
 import qiime_default_reference as qdr
-import random
+from app.model.dataBase import create, update
+import threading
+from app.model.data import refs
+import os
 
-def defineTaxSeqsFile(uploadedSeqsFile):
-#    uploadSeqsFile(uploadedSeqsFile)
-    return compareWithDB(uploadedSeqsFile, qdr.get_reference_sequences(), qdr.get_reference_taxonomy())
+tableName = "HomologySearch"
+tableNameOutput = "HomologySearchOutput"
 
-#def uploadSeqsFile(uploadedSeqsFile):
-#    uploadedSeqsFile.save('model/data/user/uploads/' + uploadedSeqsFile.filename)
+def defineTaxSeqsFile(homologySearchId, uploadedSeqsFilePath):
+    return compareWithDB(homologySearchId, uploadedSeqsFilePath, refs.get_reference_sequences(), refs.get_reference_taxonomy())
 
-def compareWithDB(uploadedSeqsFile, seqsDb, taxDb):
-    reference_db = random.sample(loadRefSeqs(seqsDb, loadTaxData(taxDb)), k=10)
+def compareWithDB(homologySearchId, uploadedSeqsFilePath, seqsDb, taxDb):
+    reference_db = loadRefSeqs(seqsDb, loadTaxData(taxDb))
 
-    seq = str(uploadedSeqsFile.readline()).strip("b'{\}rn")
+    uploadedSeqsFile = open(uploadedSeqsFilePath, 'r')
+
+    seq = str(uploadedSeqsFile.readline()).strip("\n")
     seqsInFile = []
-
     while seq:
         seqsInFile.append(seq)
-        seq = str(uploadedSeqsFile.readline()).strip("b'{\}rn")
+        seq = str(uploadedSeqsFile.readline()).strip("\n")
     
     highSimilarityAlnObjs = []
     alnObj = {}
@@ -37,13 +40,30 @@ def compareWithDB(uploadedSeqsFile, seqsDb, taxDb):
         highSimilarityAlnObjs.append(alnObj)
         alnObj = {}
         alnObjTmp = {}
-
     ids = range(len(highSimilarityAlnObjs))
 
     response = dict(zip(ids, highSimilarityAlnObjs))
 
-    return response
+    columns = {}
+    
+    for id in ids:
+        columns = {
+            'aln1': response[id]['aln1'],
+            'aln2': response[id]['aln2'],
+            'score': response[id]['score'],
+            'similarity': response[id]['similarity'],
+            'taxonomy': response[id]['taxonomy'],
+            'homologySearchId': homologySearchId
+        }
+        msg, status = create(tableNameOutput, columns)
+    msg, status = update(tableName, {'isLoaded': 'TRUE'}, conditions='id=' + str(homologySearchId))
+    
+    print("Status returned for the Thread {0}: {1} - {2}".format(
+        threading.current_thread().name, status, msg))
 
+    if os.path.exists(uploadedSeqsFilePath):
+        os.remove(uploadedSeqsFilePath)
+    
 def loadTaxData(taxDb):
     reference_taxonomy = {}
     for e in open(taxDb):

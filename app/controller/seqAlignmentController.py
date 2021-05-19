@@ -1,22 +1,26 @@
-from flask import Flask
-from app.model import seqAlignment
+from app.schedule import seqAlignmentScheduler
 
-'''
+
 def dnaGlobalAlignment(seq1, seq2, gap_open_penalty, gap_extend_penalty):
-    return seqAlignment.dnaAlign(seq1, seq2, float(gap_open_penalty), float(gap_extend_penalty))
-'''
+    msg, status = seqAlignmentScheduler.dnaGlobalAlignment(seq1, seq2, float(gap_open_penalty), float(gap_extend_penalty))
+    return msg, status
+
 def dnaLocalAlignment(seq1, seq2, gap_open_penalty, gap_extend_penalty):
-    return seqAlignment.dnaAlign(seq1, seq2, float(gap_open_penalty), float(gap_extend_penalty), True)
-'''
+    msg, status = seqAlignmentScheduler.dnaLocalAlignment(seq1, seq2, gap_open_penalty, gap_extend_penalty)
+    return msg, status
+
 def rnaGlobalAlignment(seq1, seq2, gap_open_penalty, gap_extend_penalty):
-    return seqAlignment.rnaAlign(seq1, seq2, float(gap_open_penalty), float(gap_extend_penalty))
+    msg, status = seqAlignmentScheduler.rnaGlobalAlignment(seq1, seq2, float(gap_open_penalty), float(gap_extend_penalty))
+    return msg, status
 
 def rnaLocalAlignment(seq1, seq2, gap_open_penalty, gap_extend_penalty):
-    return seqAlignment.rnaAlign(seq1, seq2, float(gap_open_penalty), float(gap_extend_penalty), True)
+    msg, status = seqAlignmentScheduler.rnaLocalAlignment(seq1, seq2, gap_open_penalty, gap_extend_penalty)
+    return msg, status
 
 def proteinGlobalAlignment(seq1, seq2, gap_open_penalty, gap_extend_penalty):
-    return seqAlignment.proteinAlign(seq1, seq2, float(gap_open_penalty), float(gap_extend_penalty))
+    msg, status = seqAlignmentScheduler.proteinGlobalAlignment(seq1, seq2, float(gap_open_penalty), float(gap_extend_penalty))
+    return msg, status
 
 def proteinLocalAlignment(seq1, seq2, gap_open_penalty, gap_extend_penalty):
-    return seqAlignment.proteinAlign(seq1, seq2, float(gap_open_penalty), float(gap_extend_penalty), True)
-'''
+    msg, status = seqAlignmentScheduler.proteinLocalAlignment(seq1, seq2, gap_open_penalty, gap_extend_penalty)
+    return msg, status

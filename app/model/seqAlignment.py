@@ -1,9 +1,7 @@
 from skbio.alignment import local_pairwise_align, global_pairwise_align, local_pairwise_align_nucleotide, global_pairwise_align_nucleotide
 from skbio.alignment import local_pairwise_align_ssw
 from skbio import DNA, RNA, Protein
-from app.model.data.system.substitution_matrix import blosum50
-
-
+from app.model.data.substitution_matrices.substitution_matrix import blosum50
 
 def dnaAlign(seq1, seq2, gap_open_penalty, gap_extend_penalty, local=False):
     
@@ -11,11 +9,11 @@ def dnaAlign(seq1, seq2, gap_open_penalty, gap_extend_penalty, local=False):
     seq2 = seq2.upper()
     
     if local:
-        aln, score, _ = local_pairwise_align_nucleotide(DNA(seq1), DNA(seq2), gap_open_penalty, 
-        gap_extend_penalty)
+        aln, score, _ = local_pairwise_align(DNA(seq1), DNA(seq2), gap_open_penalty, 
+        gap_extend_penalty, substitution_matrix=blosum50)
     else:
         aln, score, _ = global_pairwise_align_nucleotide(DNA(seq1), DNA(seq2), gap_open_penalty, 
-            gap_extend_penalty)
+            gap_extend_penalty, blosum50, substitution_matrix=blosum50)
     
     response = {
         'aln1': str(aln[0]),
@@ -26,11 +24,6 @@ def dnaAlign(seq1, seq2, gap_open_penalty, gap_extend_penalty, local=False):
 
     return response
 
-        
-
-        
-
-'''
 def rnaAlign(seq1, seq2, gap_open_penalty, gap_extend_penalty, local=False):
     seq1 = seq1.upper()
     seq2 = seq2.upper()
@@ -71,6 +64,7 @@ def proteinAlign(seq1, seq2, gap_open_penalty, gap_extend_penalty, local=False):
 
     return response
 
+
 def dnaLocalAlignSsw(seq1, seq2):
     seq1 = seq1.upper()
     seq2 = seq2.upper()
@@ -86,4 +80,3 @@ def dnaLocalAlignSsw(seq1, seq2):
     }
 
     return response
-    '''

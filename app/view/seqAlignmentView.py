@@ -1,12 +1,10 @@
 from flask import Blueprint
 from app.controller import seqAlignmentController
-from app.schedule import seqAlignmentScheduler
 from flask import request
 import threading
 
 seqAlignmentView = Blueprint('seqAlignmentView', __name__)
 
-'''
 @seqAlignmentView.route('/dnaGlobalAlignment', methods=['POST'])
 def dnaGlobalAlignment():
     seq1 = request.form['seq1']
@@ -14,7 +12,6 @@ def dnaGlobalAlignment():
     gap_open_penalty = request.form['gap_open_penalty']
     gap_extend_penalty = request.form['gap_extend_penalty']
     return seqAlignmentController.dnaGlobalAlignment(seq1, seq2, gap_open_penalty, gap_extend_penalty)
-'''
 
 @seqAlignmentView.route('/dnaLocalAlignment', methods=['POST'])
 def dnaLocalAlignment():
@@ -22,11 +19,11 @@ def dnaLocalAlignment():
     seq2 = request.form['seq2']
     gap_open_penalty = request.form['gap_open_penalty']
     gap_extend_penalty = request.form['gap_extend_penalty']
-    threading.Thread(target=seqAlignmentScheduler.dnaLocalAlignment, args=(seq1, seq2, gap_open_penalty, gap_extend_penalty)).start()
-    return {"message": "Acepted"}, 202
+    msg, status = seqAlignmentController.dnaLocalAlignment(seq1, seq2, gap_open_penalty, gap_open_penalty)
+    id = msg['processId']
+    return {"Message": msg['Message'] + " and added to Thread to process dna Local Alignment", "processId": id}, status
 
 
-'''
 @seqAlignmentView.route('/rnaGlobalAlignment', methods=['POST'])
 def rnaGlobalAlignment():
     seq1 = request.form['seq1']
@@ -58,4 +55,3 @@ def proteinLocalAlignment():
     gap_open_penalty = request.form['gap_open_penalty']
     gap_extend_penalty = request.form['gap_extend_penalty']
     return seqAlignmentController.proteinLocalAlignment(seq1, seq2, gap_open_penalty, gap_extend_penalty)
-'''

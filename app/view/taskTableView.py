@@ -9,6 +9,10 @@ taskTableView = Blueprint('taskTableView', __name__)
 def getAlignTable():
     return taskTableController.getAlignTable()
 
-#@taskTableView.route('/getHomologySearchTable')
-#def getHomologySearchTable():
-#    return taskTableController.getHomologySearchTable()
+@taskTableView.route('/getHomologySearchTable')
+def getHomologySearchTable():
+    return taskTableController.getHomologySearchTable()
+
+@taskTableView.route('/getHomologySearchOutputTable/<homologySearchId>')
+def getHomologySearchOutputTable(homologySearchId):
+    return taskTableController.getHomologySearchOutputTable(homologySearchId)

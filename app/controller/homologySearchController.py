@@ -1,6 +1,6 @@
-from flask import Flask
-from app.model import seqAlignment
+from app.schedule import homologySearchSchedule
 from app.model import homologySearch
 
 def defineTaxSeqsFile(uploadedSeqsFile):
-    return homologySearch.defineTaxSeqsFile(uploadedSeqsFile)
+    msg, status = homologySearchSchedule.defineTaxSeqsFile(uploadedSeqsFile)
+    return msg, status
