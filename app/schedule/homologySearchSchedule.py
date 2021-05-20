@@ -4,14 +4,20 @@ from app.model.dataBase import create, update;
 import os
 
 tableName = "HomologySearch"
-tableNameOutput = "HomologySearchOutput"
-uploads_dir = "app/model/data/user_data"
 
 def defineTaxSeqsFile(uploadedSeqsFile):
     msg, status = create(tableName, {}, default_values=True)
-    uploadedSeqsFile.save(os.path.join(uploads_dir, msg['processId'] + '.txt'))
-    threading.Thread(target=processHomologySearch, args=(msg['processId'], os.path.join(uploads_dir, msg['processId'] + '.txt'))).start()
+    seqsInFile = create_line_by_line_list(uploadedSeqsFile)
+    threading.Thread(target=processHomologySearch, args=(msg['processId'], seqsInFile)).start()
     return msg, status
 
-def processHomologySearch(homologySearchId, uploadedSeqsFilePath):
-    homologySearch.defineTaxSeqsFile(homologySearchId, uploadedSeqsFilePath)
+def create_line_by_line_list(uploadedSeqsFile):
+    seq = str(uploadedSeqsFile.readline()).strip("b'{\}rn")
+    seqsInFile = []
+    while seq:
+        seqsInFile.append(seq)
+        seq = str(uploadedSeqsFile.readline()).strip("b'{\}rn")
+    return seqsInFile
+
+def processHomologySearch(homologySearchId, seqsInFile):
+    homologySearch.defineTaxSeqsFile(homologySearchId, seqsInFile)

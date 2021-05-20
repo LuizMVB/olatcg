@@ -3,26 +3,17 @@ from skbio import DNA
 from app.model import seqAlignment
 import qiime_default_reference as qdr
 from app.model.dataBase import create, update
-import threading
 from app.model.data import refs
-import os
+import threading
 
 tableName = "HomologySearch"
 tableNameOutput = "HomologySearchOutput"
 
-def defineTaxSeqsFile(homologySearchId, uploadedSeqsFilePath):
-    return compareWithDB(homologySearchId, uploadedSeqsFilePath, refs.get_reference_sequences(), refs.get_reference_taxonomy())
+def defineTaxSeqsFile(homologySearchId, seqsInFile):
+    return compareWithDB(homologySearchId, seqsInFile, refs.get_reference_sequences(), refs.get_reference_taxonomy())
 
-def compareWithDB(homologySearchId, uploadedSeqsFilePath, seqsDb, taxDb):
+def compareWithDB(homologySearchId, seqsInFile, seqsDb, taxDb):
     reference_db = loadRefSeqs(seqsDb, loadTaxData(taxDb))
-
-    uploadedSeqsFile = open(uploadedSeqsFilePath, 'r')
-
-    seq = str(uploadedSeqsFile.readline()).strip("\n")
-    seqsInFile = []
-    while seq:
-        seqsInFile.append(seq)
-        seq = str(uploadedSeqsFile.readline()).strip("\n")
     
     highSimilarityAlnObjs = []
     alnObj = {}
@@ -60,9 +51,6 @@ def compareWithDB(homologySearchId, uploadedSeqsFilePath, seqsDb, taxDb):
     
     print("Status returned for the Thread {0}: {1} - {2}".format(
         threading.current_thread().name, status, msg))
-
-    if os.path.exists(uploadedSeqsFilePath):
-        os.remove(uploadedSeqsFilePath)
     
 def loadTaxData(taxDb):
     reference_taxonomy = {}
