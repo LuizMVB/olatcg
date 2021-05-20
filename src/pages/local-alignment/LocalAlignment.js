@@ -91,7 +91,7 @@ function LocalAlignment() {
                         </Modal>
                         <br/>
                         <br/>
-                        {processId && <Link to="/task-table/align" params={{"processId" : processId}}><div class="col s4 center offset-s4 red lighten-5 hoverable"><h4>Ultimo ID: {processId}</h4></div></Link>}
+                        {processId && <Link to="/task-table" params={{"processId" : processId}}><div class="col s4 center offset-s4 red lighten-5 hoverable"><h4>Ultimo ID: {processId}</h4></div></Link>}
                     </div>
                 </div>
             </div>

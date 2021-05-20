@@ -30,7 +30,7 @@ function TaskTableAlign() {
                         <tr key={index}>
                             <td>{data[0]}</td>
                             <td>{data[6] ? data[6] : '-'}</td>
-                            <td>{data[5] !== "FALSE" && <button class="waves-effect waves-light btn" onClick={() => {setItemSelected(data)}}>Veja o Resultado</button> || <span>Carregando...</span>}</td>
+                            <td>{data[5] !== "FALSE" ? <button class="waves-effect waves-light btn" onClick={() => {setItemSelected(data)}}>Veja o Resultado</button> : <span>Carregando...</span>}</td>
                         </tr>
                     ))}
                 </tbody>
