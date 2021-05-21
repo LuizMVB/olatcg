@@ -39,7 +39,7 @@ function TaskTableHomologySearch() {
                     {homologySearchData.map((data, index) => (
                         <tr key={index}>
                             <td>{data[0]}</td>
-                            <td>{data[1] !== "FALSE" ? <button class="waves-effect waves-light btn" onClick={() => {getHomologySearchOutputData(data[0])}}>Veja o Resultado</button> : <span>Carregando...</span>}</td>
+                            <td>{data[1] ? <button class="waves-effect waves-light btn" onClick={() => {getHomologySearchOutputData(data[0])}}>Veja o Resultado</button> : <span>Carregando...</span>}</td>
                         </tr>
                     ))}
                 </tbody>
