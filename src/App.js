@@ -10,7 +10,6 @@ import HomologySearch from './pages/homology-search/HomologySearch';
 import GlobalAlignment from './pages/global-alignment/GlobalAlignment';
 import LocalAlignment from './pages/local-alignment/LocalAlignment';
 import TaskTable from './pages/task-table/TaskTable';
-import TaskTableHomologySearch from './pages/task-table-homology-search/TaskTableHomologySearch';
 
 function App(){
 
