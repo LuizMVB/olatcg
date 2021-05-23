@@ -123,6 +123,84 @@ function About(){
                         compreensão, desde a estrutura molecular do DNA até os mecanismos envolvidos na transmissão
                         das características hereditárias.
                     </h6>
+                    <h3 className="header grey-text text-darken-3">Conceitos-chave no Entendimento da Bioinformática</h3>
+                    <h6 className="grey-text">
+                        <b>Algoritmo:</b> sequência lógica de instruções necessárias para executar uma tarefa.
+                    </h6>
+                    <h6 className="grey-text">
+                        <b>Alinhamento:</b> método de organização de sequências ou estruturas biológicas para
+                        evidenciar regiões similares e dissimilares. Estes métodos estão geralmente atrelados
+                        a inferências funcionais ou evolutivas.
+                    </h6>
+                    <h6 className="grey-text">
+                        <b>Alinhamento Múltiplo:</b> alinhamento que envolve mais de duas sequências ou estruturas.
+                    </h6>
+                    <h6 className="grey-text">
+                        <b>Alinhamento Simples:</b> alinhamento que envolve apenas duas sequências ou estruturas.
+                    </h6>
+                    <h6 className="grey-text">
+                        <b>Ancestral:</b> organismo ou sequência que originou novo(s) organismo(s) ou sequência(s). Em alguns
+                        casos pode ser considerado o mesmo que primitivo.
+                    </h6>
+                    <h6 className="grey-text">
+                        <b>Aproximação dos vizinhos:</b> neighbor joining (NJ), método de inferência filogenética
+                        quantitativo baseado em distância genética.
+                    </h6>
+                    <h6 className="grey-text">
+                        <b>Biologia de sistemas:</b> área da bioinformática que estuda sistemas moleculares complexos e como
+                        as moléculas interagem entre si.
+                    </h6>
+                    <h6 className="grey-text">
+                        <b>BLAST:</b> Basic Local Alignment Search Tool (Ferramenta de Busca por Alinhamento Local
+                        Básico), empregado para buscar sequências em bancos de dados com base em
+                        sua similaridade.
+                    </h6>
+                    <h6 className="grey-text">
+                        <b>Clado:</b> grupo formado por um ancestral e todos seus descendentes, um ramo único em
+                        uma árvore filogenética.
+                    </h6>
+                    <h6 className="grey-text">
+                        <b>Grupos irmãos:</b> clados que dividem um ancestral comum.
+                    </h6>
+                    <h6 className="grey-text">
+                        <b>Homologia:</b> é um termo essencialmente qualitativo que denota uma ancestralidade comum de
+                        determinada sequência.
+                    </h6>
+                    <h6 className="grey-text">
+                        <b>HSP:</b> pares de segmentos de alta pontuação (high-scoring segment pairs), zonas de
+                        similaridade entre sequências identificadas pelo BLAST.
+                    </h6>
+                    <h6 className="grey-text">
+                        <b>Identidade:</b> Porcentagem de caracteres similares entre duas sequências (excluindo-se as
+                        lacunas).
+                    </h6>
+                    <h6 className="grey-text">
+                        <b>Indels:</b> identifica inserções e deleções de caracteres ao longo do processo evolutivo.
+                    </h6>
+                    <h6 className="grey-text">
+                        <b>Lacunas (ou gaps):</b> regiões identificadas por hifens que representam a inserção/deleção de
+                        caracteres ao longo do processo evolutivo.
+                    </h6>
+                    <h6 className="grey-text">
+                        <b>Matches:</b> regiões que apresentam caracteres idênticos entre diferentes sequências.
+                    </h6>
+                    <h6 className="grey-text">
+                        <b>Mismatches:</b> regiões que apresentam caracteres não idênticos entre diferentes sequências.
+                    </h6>
+                    <h6 className="grey-text">
+                        <b>Sistemática:</b> estudo da diversificação das formas vivas e suas relações ao longo do tempo.
+                    </h6>
+                    <h6 className="grey-text">
+                        <b>Taxonomia:</b> estudo que busca agrupar os organismos com base em suas características e
+                        nomear os grupos obtidos, classificandoos em alguma escala.
+                    </h6>
+                    <h6 className="grey-text">
+                        <b>Taxon:</b> grupo (de qualquer nível hierárquico) proposto pela taxonomia.
+                    </h6>
+                    <h6 className="grey-text">    
+                        <b>Tradução:</b> tradução (in silico) de uma sequência de mRNA em sua possível sequência proteica
+                        correspondente.
+                    </h6>
                 </div>
             </div>
         </div>
