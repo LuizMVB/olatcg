@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import baseUrl from '../../services/baseUrl';
+import Loading from '../../elements/loading/Loading';
 
 function TaskTableAlign() {
 
@@ -8,14 +9,19 @@ function TaskTableAlign() {
 
     useEffect(() => {
         // Runs after the first render() lifecycle
-        fetch(baseUrl + '/getAlignTable')
-        .then(res => res.json())
-        .then(data => 
-            {setAlignData(data);});
+        setTimeout(() => {
+            fetch(baseUrl + '/getAlignTable')
+            .then(res => res.json())
+            .then(data => 
+                {setAlignData(data);});
+        }, 5000);
       }, []);
     
     return (
         <div className="col s10 offset-s1">
+            {!alignData &&
+                <Loading />
+            }
             {!itemSelected && alignData && 
             <table className="centered highlight purple lighten-5">
                 <thead>

@@ -4,11 +4,9 @@ function About(){
     return (
         <div className="container-fluid">
             <div className="row">
-                <div className="col s12">
-                <h3 className="header center grey-text text-darken-3">OLATCG: uma ferramenta para você</h3>
-                </div>
-                <div className="col s8 offset-s2">
-                    <h3 className="header grey-text text-darken-3">O que é?</h3>
+                <div className="col s9">
+                    <h2 className="header grey-text text-darken-3">OLATCG: uma ferramenta para você</h2>
+                    <h3 className="header grey-text text-darken-3" id="title1">O que é?</h3>
                     <h6 className="grey-text">
                         O OLActg é uma plataforma criada com o intuito de apresentar algumas ferramentas da
                         Bioinformática na educação Básica, principalmente no ensino de Biologia em turmas de ensino
@@ -50,7 +48,7 @@ function About(){
                         fim de viabilizar a utilização da Informática em outros campos da área da saúde, bem como o
                         desenvolvimento de técnicas aplicadas.
                     </h6>
-                    <h3 className="header grey-text text-darken-3">Mas qual seria a definição para Bioinformática?</h3>
+                    <h3 id="title2" className="header grey-text text-darken-3">Mas qual seria a definição para Bioinformática?</h3>
                     <h6 className="grey-text">
                         Existem algumas diferentes definições, ela pode ser entendida como um campo de saber interdisciplinar que visa investigar e
                         desenvolver sistemas que colaborem com a compreensão do fluxo de informações, desde os
@@ -67,7 +65,7 @@ function About(){
                         informações biológicas. É uma tentativa de simplificar e resolver problemas biológicos
                         complexos que lança mão de sistemas e ferramentas de computação (PRATTA, 2018).
                     </h6>
-                    <h3 className="header grey-text text-darken-3">O projeto genoma humana</h3>
+                    <h3 id="title3" className="header grey-text text-darken-3">O projeto genoma humana</h3>
                     <h6 className="grey-text">
                         O Projeto Genoma Humano (PGH) teve início em 1990 e, devido a sua magnitude e
                         complexidade à época, durou mais de 10 anos para sua conclusão, sendo também um dos
@@ -78,7 +76,7 @@ function About(){
                         (FARAH, 2007). O PGH deu início a uma série de projetos que envolviam o sequenciamento de
                         plantas, mamíferos, invertebrados, fungos, bactérias, vírus, entre outros (VENTER, 2010).
                     </h6>
-                    <h3 className="header grey-text text-darken-3">E hoje em dia?</h3>
+                    <h3 id="title4" className="header grey-text text-darken-3">E hoje em dia?</h3>
                     <h6 className="grey-text" name="hoje">
                         Atualmente, muitas espécies já possuem seus genomas sequenciados, e este número
                         continua a crescer. Nesse sentido, a área da Bioinformática produz e explora um grande volume
@@ -123,7 +121,7 @@ function About(){
                         compreensão, desde a estrutura molecular do DNA até os mecanismos envolvidos na transmissão
                         das características hereditárias.
                     </h6>
-                    <h3 className="header grey-text text-darken-3">Conceitos-chave no Entendimento da Bioinformática</h3>
+                    <h3 id="title5" className="header grey-text text-darken-3">Conceitos-chave no Entendimento da Bioinformática</h3>
                     <h6 className="grey-text">
                         <b>Algoritmo:</b> sequência lógica de instruções necessárias para executar uma tarefa.
                     </h6>
@@ -201,6 +199,20 @@ function About(){
                         <b>Tradução:</b> tradução (in silico) de uma sequência de mRNA em sua possível sequência proteica
                         correspondente.
                     </h6>
+                </div>
+                <br/><br/><br/>
+                <div className="col s3 purple lighten-4">
+                <h3 className="header center">Tópicos</h3>
+                    <div className="card-panel purple lighten-5">
+                        <h5 className="header grey-text text-darken-3" href="#part1">OLATCG: uma ferramenta para você</h5>
+                        <ol>
+                            <li><a href="#title1">O que é?</a></li>
+                            <li><a href="#title2">Mas qual seria a definição para Bioinformática?</a></li>
+                            <li><a href="#title3">O projeto genoma humano</a></li>
+                            <li><a href="#title4">E hoje em dia?</a></li>
+                            <li><a href="#title5">Conceitos-chave no Entendimento da Bioinformática</a></li>
+                        </ol>
+                    </div>
                 </div>
             </div>
         </div>
