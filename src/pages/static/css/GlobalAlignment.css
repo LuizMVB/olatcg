@@ -1,0 +1,42 @@
+.tooltip button {
+    top: 35px;
+    height: 25px;
+    width: 25px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip .tooltiptext {
+    border-radius: 10%;
+    visibility: hidden;
+    width: 150px;
+    padding: 5px;
+    background-color: #000000be;
+    color: #fff;
+    text-align: center;
+    left: 25px;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+
+.GlobalAlignment .tooltip .tooltiptext {
+    left: 37px;
+}
+
+.LocalAlignment .tooltip .tooltiptext {
+    left: 37px;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}

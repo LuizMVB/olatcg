@@ -1,4 +1,5 @@
 import React from 'react';
+import '../../static/css/About.css';
 
 function About(){
     return (
@@ -201,17 +202,19 @@ function About(){
                     </h6>
                 </div>
                 <br/><br/><br/>
-                <div className="col s3 purple lighten-4">
-                <h3 className="header center">Tópicos</h3>
-                    <div className="card-panel purple lighten-5">
-                        <h5 className="header grey-text text-darken-3" href="#part1">OLATCG: uma ferramenta para você</h5>
-                        <ol>
-                            <li><a href="#title1">O que é?</a></li>
-                            <li><a href="#title2">Mas qual seria a definição para Bioinformática?</a></li>
-                            <li><a href="#title3">O projeto genoma humano</a></li>
-                            <li><a href="#title4">E hoje em dia?</a></li>
-                            <li><a href="#title5">Conceitos-chave no Entendimento da Bioinformática</a></li>
-                        </ol>
+                <div className="sidebar">
+                    <div className="col s3 purple lighten-4">
+                        <h3 className="header center">Tópicos</h3>
+                        <div className="card-panel purple lighten-5">
+                            <h5 className="header grey-text text-darken-3 " href="#part1">OLATCG: uma ferramenta para você</h5>
+                            <ol>
+                                <li><a href="#title1">O que é?</a></li>
+                                <li><a href="#title2">Mas qual seria a definição para Bioinformática?</a></li>
+                                <li><a href="#title3">O projeto genoma humano</a></li>
+                                <li><a href="#title4">E hoje em dia?</a></li>
+                                <li><a href="#title5">Conceitos-chave no Entendimento da Bioinformática</a></li>
+                            </ol>
+                        </div>
                     </div>
                 </div>
             </div>

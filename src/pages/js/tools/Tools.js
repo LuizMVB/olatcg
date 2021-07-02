@@ -1,7 +1,7 @@
 import React from 'react';
-import LocalAlignment from './static/img/localAlignment.png';
-import GlobalAlignment from './static/img/globalAlignment.png';
-import HomologySearch from './static/img/homologySearch.png';
+import LocalAlignment from '../../static/images/localAlignment.png';
+import GlobalAlignment from '../../static/images/globalAlignment.png';
+import HomologySearch from '../../static/images/homologySearch.png';
 import { Link } from 'react-router-dom';
 
 function Tools(){

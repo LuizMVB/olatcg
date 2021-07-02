@@ -1,15 +1,15 @@
 import React from 'react';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
-import './App.css';
-import Nav from './elements/nav/Nav';
-import Footer from './elements/footer/Footer';
-import Home from './pages/home/Home';
-import About from './pages/about/About';
-import Tools from './pages/tools/Tools';
-import HomologySearch from './pages/homology-search/HomologySearch';
-import GlobalAlignment from './pages/global-alignment/GlobalAlignment';
-import LocalAlignment from './pages/local-alignment/LocalAlignment';
-import TaskTable from './pages/task-table/TaskTable';
+import '../../static/css/About.css';
+import Nav from '../page-elements/nav/Nav';
+import Footer from '../page-elements/footer/Footer';
+import Home from '../home/Home';
+import About from '../about/About';
+import Tools from '../tools/Tools';
+import HomologySearch from '../homology-search/HomologySearch';
+import GlobalAlignment from '../alignment/GlobalAlignment';
+import LocalAlignment from '../alignment/LocalAlignment';
+import TaskTable from '../task-table/TaskTable';
 
 function App(){
 

@@ -1,14 +1,14 @@
 import React from 'react';
-import './static/css/Home.css';
+import '../../static/css/Home.css';
 import { Link } from 'react-router-dom';
-import Logo from './static/img/logo.png';
-import Book from './static/img/book.png';
-import Settings from './static/img/settings.png';
-import CsdLogo from './static/img/csd_logo.jpeg';
-import CefetLogo from './static/img/cefet_logo.png';
-import UfzLogo from './static/img/ufz_logo.png';
-import FundacaoOsorioLogo from './static/img/fundacao_osorio_logo.png';
-import FiocruzLogo from './static/img/fiocruz_logo.jpg';
+import Logo from '../../static/images/logo.png';
+import Book from '../../static/images/book.png';
+import Settings from '../../static/images/settings.png';
+import CsdLogo from '../../static/images/csd_logo.jpeg';
+import CefetLogo from '../../static/images/cefet_logo.png';
+import UfzLogo from '../../static/images/ufz_logo.png';
+import FundacaoOsorioLogo from '../../static/images/fundacao_osorio_logo.png';
+import FiocruzLogo from '../../static/images/fiocruz_logo.jpg';
 
 function Home(){
     return(
@@ -28,15 +28,10 @@ function Home(){
                 </div>
                 <div className="row">
                     <h1 className="header center grey-text text-darken-3">O que é olatcg?</h1>
-                    <br/>
-                    <div className="col s4">
-                        <h6 className="grey-text">
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem 
-                        </h6>
-                    </div>
-                    <div className="col s8">
-                        <iframe title="olatcg video" width="760" height="415" src="https://www.youtube.com/embed/iavKNmdjT_c?start=2910" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                    <div className="col s12">
+                        <h4 className="grey-text text-darken-2">
+                        O OLAtcg é uma plataforma didática que tem por objetivo apresentar ferramentas de Bioinformática que proporcionem aos visitantes uma experiência significativa e, consequentemente um aprendizado transformador sobre o tema. A Bioinformática é um campo fértil de pesquisa que analisa e interpreta dados biológicos. Ela visa investigar e desenvolver sistemas que colaborem com a compreensão do fluxo de informações, desde os genes até estruturas moleculares e sua consequente influência nas enfermidades, saúde e estudos ambientais.
+                        </h4>
                     </div>
                 </div>
             </div>

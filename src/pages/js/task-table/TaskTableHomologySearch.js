@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import baseUrl from '../../services/baseUrl';
-import Loading from '../../elements/loading/Loading';
+import baseUrl from '../../../services/baseUrl';
+import Loading from '../page-elements/loading/Loading';
 
 function TaskTableHomologySearch() {
 

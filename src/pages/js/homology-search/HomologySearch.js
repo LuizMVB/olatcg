@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import { Modal, Button, Icon } from 'react-materialize';
 import { Link } from 'react-router-dom';
-import baseUrl from '../../services/baseUrl';
+import baseUrl from '../../../services/baseUrl';
+import '../../static/css/HomologySearch.css';
 
 
 function HomologySearch(){
@@ -21,6 +22,19 @@ function HomologySearch(){
 
     }
 
+    const dowloadExampleFile = () => {
+        var element = document.createElement('a');
+        element.setAttribute('href', 'src/pages/homology-search/static/example_file.txt');
+        element.setAttribute('download', '');
+
+        element.style.display = 'none';
+        document.body.appendChild(element);
+
+        element.click();
+
+        document.body.removeChild(element);
+    };
+
     return (
         <div className="HomologySearch">
             <div className="container-fluid">
@@ -28,6 +42,10 @@ function HomologySearch(){
                     <h3 className="header center grey-text text-darken-3">Busca homóloga</h3>
                     <div className="col s12 center">
                         <p className="grey-text text-darken-3">Faça upload das tabelas geradas em outras iterações aqui: </p>
+                        <div className="tooltip">
+                            <button className="btn-floating amber"><i className="material-icons grey-text text-darken-3">help_outline</i></button>
+                            <span class="tooltiptext">Aqui você deve usar como entrada um arquivo .txt, cada linha deve representar uma sequência VÁLIDA (sem caracteres que não fazem parte dela (Ex.: somente "A", "T", "C", "G" caso DNA)).<br/>Você pode encontrar um exemplo <u onClick={() => {dowloadExampleFile()}}>aqui</u></span>
+                        </div>
                         <button className="btn purple lighten-2"><input name="inputSeqsFile" className="file-path validate" type="file" placeholder="Upload one or more files" onChange={event => setInputSeqsFile(event.target)}/></button>
                         <br/><br/>
                         <div className="col s12 center">

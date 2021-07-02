@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import TaskTableSelection from '../../elements/task-table-selection/TaskTableSelection';
-import TaskTableAlign from '../task-table-align/TaskTableAlign';
-import TaskTableHomologySearch from '../task-table-homology-search/TaskTableHomologySearch';
+import TaskTableSelection from '../page-elements/task-table-selection/TaskTableSelection';
+import TaskTableAlign from '../task-table/TaskTableAlign'
+import TaskTableHomologySearch from '../task-table/TaskTableHomologySearch';
 
 function TaskTable() {
 
