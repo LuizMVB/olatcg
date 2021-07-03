@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import { Modal, Button, Icon } from 'react-materialize'
 import { Link } from 'react-router-dom';
-import baseUrl from "../../../services/baseUrl";
-import '../../static/css/GlobalAlignment.css';
+import Toolkit from '../../../infra/Toolkit';
+import '../../../../static/css/GlobalAlignment.css';
 
 function GlobalAlignment() {
 
@@ -22,17 +22,17 @@ function GlobalAlignment() {
             formData.append('gap_open_penalty', 5);
             formData.append('gap_extend_penalty', 2);
             if(selectSequenceType === "dna") {
-                fetch(baseUrl + '/dnaGlobalAlignment', {method: 'POST', body: formData})
+                fetch(Toolkit.Routes.DNA_GLOBAL_ALN, {method: 'POST', body: formData})
                     .then(res => res.json())
                     .then(data => setProcessId(data.processId));           
             }
             else if(selectSequenceType === "rna") {
-                fetch(baseUrl + '/rnaGlobalAlignment', {method: 'POST', body: formData})
+                fetch(Toolkit.Routes.RNA_GLOBAL_ALN, {method: 'POST', body: formData})
                     .then(res => res.json())
                     .then(data => setProcessId(data.processId));            
             }
             else if(selectSequenceType === "protein") {
-                fetch(baseUrl + '/proteinGlobalAlignment', {method: 'POST', body: formData})
+                fetch(Toolkit.Routes.PTN_GLOBAL_ALN, {method: 'POST', body: formData})
                     .then(res => res.json())
                     .then(data => setProcessId(data.processId));           
             }

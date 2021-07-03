@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import { Modal, Button, Icon } from 'react-materialize';
 import { Link } from 'react-router-dom';
-import baseUrl from '../../../services/baseUrl';
-import '../../static/css/HomologySearch.css';
+import Toolkit from '../../../infra/Toolkit';
+import '../../../../static/css/HomologySearch.css';
 
 
 function HomologySearch(){
@@ -14,7 +14,7 @@ function HomologySearch(){
     const uploadSeqsFile = (input) => {
         var data = new FormData();
         data.append('uploaded_seqs_file', input.files[0]);
-        fetch(baseUrl + '/defineTaxSeqsFile', {
+        fetch(Toolkit.Routes.DEFINE_SEQ_FILE, {
             method: 'POST',
             body: data
         }).then(res => res.json())

@@ -1,8 +1,7 @@
 import React from 'react';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
-import '../../static/css/About.css';
-import Nav from '../page-elements/nav/Nav';
-import Footer from '../page-elements/footer/Footer';
+import Nav from '../../page-elements/nav/Nav';
+import Footer from '../../page-elements/footer/Footer';
 import Home from '../home/Home';
 import About from '../about/About';
 import Tools from '../tools/Tools';

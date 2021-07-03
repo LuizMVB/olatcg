@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import baseUrl from '../../../services/baseUrl';
-import Loading from '../page-elements/loading/Loading';
+import Toolkit from '../../../infra/Toolkit';
+import Loading from '../../page-elements/loading/Loading';
 
 function TaskTableHomologySearch() {
 
@@ -12,7 +12,7 @@ function TaskTableHomologySearch() {
         // Runs after the first render() lifecycle
         setTimeout(() =>
         {
-        fetch(baseUrl + '/getHomologySearchTable')
+        fetch(Toolkit.Routes.GET_HOMOLOGY_SEARCH_TABLE)
         .then(res => res.json())
         .then(data => 
             {setHomologySearchData(data);});
@@ -23,7 +23,7 @@ function TaskTableHomologySearch() {
         setItemSelected(true);
         setTimeout(() =>
         {
-        fetch(baseUrl + '/getHomologySearchOutputTable/' + id)
+        fetch(Toolkit.Routes.GET_HOMOLOGY_SEARCH_OUTPUT_TABLE + '/' + id)
         .then(res => res.json())
         .then(data =>
             {

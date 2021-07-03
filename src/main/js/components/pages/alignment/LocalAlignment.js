@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import { Modal, Button, Icon } from 'react-materialize'
-import baseUrl from '../../../services/baseUrl';
+import '../../../infra/Toolkit';
+import Toolkit from '../../../infra/Toolkit';
 
 function LocalAlignment() {
 
@@ -21,17 +22,17 @@ function LocalAlignment() {
             formData.append('gap_open_penalty', 5);
             formData.append('gap_extend_penalty', 2);
             if(selectSequenceType === "dna") {
-                fetch(baseUrl + '/dnaLocalAlignment', {method: 'POST', body: formData})
+                fetch(Toolkit.Routes.DNA_LOCAL_ALN, {method: 'POST', body: formData})
                     .then(res => res.json())
                     .then(data => setProcessId(data.processId));
             }
             else if(selectSequenceType === "rna") {
-                fetch(baseUrl + '/rnaLocalAlignment', {method: 'POST', body: formData})
+                fetch(Toolkit.Routes.RNA_LOCAL_ALN, {method: 'POST', body: formData})
                     .then(res => res.json())
                     .then(data => setProcessId(data.processId));
             }
             else if(selectSequenceType === "protein") {
-                fetch(baseUrl + '/proteinLocalAlignment', {method: 'POST', body: formData})
+                fetch(Toolkit.Routes.PTN_LOCAL_ALN, {method: 'POST', body: formData})
                     .then(res => res.json())
                     .then(data => setProcessId(data.processId));
             }

@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import baseUrl from '../../../services/baseUrl';
-import Loading from '../page-elements/loading/Loading';
+import Toolkit from '../../../infra/Toolkit';
+import Loading from '../../page-elements/loading/Loading';
 
 function TaskTableAlign() {
 
@@ -10,7 +10,7 @@ function TaskTableAlign() {
     useEffect(() => {
         // Runs after the first render() lifecycle
         setTimeout(() => {
-            fetch(baseUrl + '/getAlignTable')
+            fetch(Toolkit.Routes.GET_ALIGN_TABLE)
             .then(res => res.json())
             .then(data => 
                 {setAlignData(data);});
