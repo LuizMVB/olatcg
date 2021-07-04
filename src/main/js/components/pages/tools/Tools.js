@@ -16,7 +16,7 @@ function Tools(){
                     <div className="col s4">
                         <div className="card-panel red lighten-5 hoverable center-align">
                             <img src={LocalAlignment} alt="" width="200" height="200"/>
-                            <h3 className="header center grey lighten-1">{msg['tools.card.title.alinhamentoLocal']}</h3>
+                            <h3 className="header center grey lighten-1">{msg['common.name.tools.alinhamentoLocal']}</h3>
                             <h6 className="grey-text text-darken-3">{msg['tools.card.text.alinhamentoLocal']}</h6>
                             <br/>
                             <Link to="local-alignment">
@@ -27,7 +27,7 @@ function Tools(){
                     <div className="col s4">
                         <div className="card-panel red lighten-5 hoverable center-align">
                             <img src={GlobalAlignment} alt="" width="190" height="190"/>
-                            <h3 className="header center grey lighten-1">{msg['tools.card.title.alinhamentoGlobal']}</h3>
+                            <h3 className="header center grey lighten-1">{msg['common.name.tools.alinhamentoGlobal']}</h3>
                             <h6 className="grey-text text-darken-3">{msg['tools.card.text.alinhamentoGlobal']}</h6>
                             <br/>
                             <Link to="/global-alignment">
@@ -38,7 +38,7 @@ function Tools(){
                     <div className="col s4">
                         <div className="card-panel red lighten-5 hoverable center-align">
                             <img src={HomologySearch} alt="" width="190" height="190"/>
-                            <h3 className="header center grey lighten-1">{msg['tools.card.title.buscaHomologa']}</h3>
+                            <h3 className="header center grey lighten-1">{msg['common.name.tools.buscaHomologa']}</h3>
                             <h6 className="grey-text text-darken-3">{msg['tools.card.text.buscaHomologa']}</h6>
                             <br/>
                             <Link to="/homology-search">
