@@ -1,10 +1,12 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
-import { Modal, Button, Icon } from 'react-materialize'
 import '../../../infra/Toolkit';
+import Dialog from '../../page-elements/dialog/Dialog';
 import Toolkit from '../../../infra/Toolkit';
 
 function LocalAlignment() {
+
+    const msg = Toolkit.Messages.getMessages;
 
     const [inputSeq1, setInputSeq1] = useState();
 
@@ -14,8 +16,23 @@ function LocalAlignment() {
 
     const [processId, setProcessId] = useState();
 
+    const [showProccessDialog, setShowProccessDialog] = useState(false);
+
+    const [showValidateFailedDialog, setShowValidateFailedDialog] = useState(false);
+
+    const [disabled, isDisabled] = useState(true);
+
+    useEffect(() => {
+        if(inputSeq1 && inputSeq2 && selectSequenceType) {
+            isDisabled(false);
+        } else {
+            isDisabled(true);
+        }
+    }, [inputSeq1, inputSeq2, selectSequenceType]);
+      
     const getLocalAlignment = (inputSeq1, inputSeq2, selectSequenceType) => {
         if(validateForm(inputSeq1, inputSeq2, selectSequenceType)){
+            setShowProccessDialog(true);
             let formData = new FormData();
             formData.append('seq1', inputSeq1);
             formData.append('seq2', inputSeq2);
@@ -36,11 +53,21 @@ function LocalAlignment() {
                     .then(res => res.json())
                     .then(data => setProcessId(data.processId));
             }
+        } else {
+            setShowValidateFailedDialog(true);
         }
     };
 
-    const validateForm = (inputSeq1, inputSeq2) => {
-        if(inputSeq1 && inputSeq2){
+    const validateForm = (inputSeq1, inputSeq2, selectSequenceType) => {
+        let re;
+        if(selectSequenceType === 'dna') {
+            re = new RegExp('[atcgATCG]', 'g');
+        } else if(selectSequenceType === 'rna') {
+            re = new RegExp('[aucgAUCG]', 'g');
+        } else if(selectSequenceType === 'protein') {
+            re = new RegExp('[acdefghiklmnpqrstvwyACDEFGHIKLMNPQRSTVWY]', 'g');
+        }
+        if(!(inputSeq1.replaceAll(re, '') || inputSeq2.replaceAll(re, ''))) {
             return true;
         }
         return false;
@@ -64,50 +91,63 @@ function LocalAlignment() {
                         </div>
                         <br/>
                         <div className="input-field col s8 offset-s2">
-                            <textarea className="materialize-textarea" onChange={event => setInputSeq1(event.target.value)}></textarea>
+                            <textarea className="materialize-textarea" onChange={event => {setInputSeq1(event.target.value)}}></textarea>
                             <label htmlFor="seq1">Sequência A</label>
                         </div>
                         <div className="col s1 tooltip">
                             <button className="btn-floating amber"><i className="material-icons grey-text text-darken-3">help_outline</i></button>
-                            <span class="tooltiptext">Verifique se as sequências estão com os caracteres corretos antes de enviá-las. <br/>Ex.: A, T, C ou G caso DNA</span>
+                            <span className="tooltiptext">Verifique se as sequências estão com os caracteres corretos antes de enviá-las. <br/>Ex.: A, T, C ou G caso DNA</span>
                         </div>
                         <br/>
                         <div className="input-field col s8 offset-s2">
-                            <textarea id="seq1" className="materialize-textarea" onChange={event => setInputSeq2(event.target.value)}></textarea>
+                            <textarea id="seq1" className="materialize-textarea" onChange={event => {setInputSeq2(event.target.value)}}></textarea>
                             <label htmlFor="seq1">Sequência B</label>
                         </div>
                         <div className="col s1 tooltip">
                             <button className="btn-floating amber"><i className="material-icons grey-text text-darken-3">help_outline</i></button>
-                            <span class="tooltiptext">Verifique se as sequências estão com os caracteres corretos antes de enviá-las. <br/>Ex.: A, T, C ou G caso DNA</span>
+                            <span className="tooltiptext">Verifique se as sequências estão com os caracteres corretos antes de enviá-las. <br/>Ex.: A, T, C ou G caso DNA</span>
                         </div>
-                        <div className="input-field col s6">
-                            <div className="input-field col s6">
-                                <p>O que você quer alinhar?</p>
-                                <select className="browser-default" onChange={event => setSelectSequenceType(event.target.value)}>
-                                    <option value="">Escolha sua opção</option>
-                                    <option value="dna">DNA</option>
-                                    <option value="rna">RNA</option>
-                                    <option value="protein">Proteína</option>
-                                </select>
-                            </div>
+                        <div className="input-field col s4">
+                            <p>O que você quer alinhar?</p>
+                            <select className="browser-default" onChange={event => {setSelectSequenceType(event.target.value)}}>
+                                <option value="">Escolha sua opção</option>
+                                <option value="dna">DNA</option>
+                                <option value="rna">RNA</option>
+                                <option value="protein">Proteína</option>
+                            </select>         
                         </div>
                         <div className="col s12 center">
                             <br/>
-                            <Modal
-                            header='Processamento Iniciado'
-                            trigger={<Button waves='light'>Alinhar<Icon right>insert_chart</Icon></Button>}
-                            onClick={() => {getLocalAlignment(inputSeq1, inputSeq2, selectSequenceType)}}>
-                                <p>Seu alinhamento está sendo realizado, seu id será exibido na tela</p>
-                            </Modal>
+                            <button className="waves-effect waves-light btn" onClick={() => {getLocalAlignment(inputSeq1, inputSeq2, selectSequenceType)}} disabled={disabled}>
+                                <i className="material-icons right">insert_chart</i>
+                                {msg('alignment.local.button.submmit.alinhar')}
+                            </button>
                             <br/>
                             <br/>
-                            {processId && <Link to="/task-table" params={{"processId" : processId}}><div class="col s4 center offset-s4 red lighten-5 hoverable"><h4>Ultimo ID: {processId}</h4></div></Link>}
+                            {processId && <Link to="/task-table" params={{"processId" : processId}}><div className="col s4 center offset-s4 red lighten-5 hoverable"><h4>Ultimo ID: {processId}</h4></div></Link>}
                         </div>
                     </div>
                 </div>
                 <br/>
                 <br/>
             </div>
+            <Dialog 
+                title={msg('alignment.dialog.processamento.title')} 
+                show={showProccessDialog} setShow={setShowProccessDialog} 
+                confirmLabel={msg('common.ok')} 
+                hasCancelButton={false}>
+                    <h5>{msg('alignment.dialog.processamento.text1')}</h5>
+                    <Link to="task-table/align">
+                        {msg('alignment.dialog.processamento.text2')}
+                    </Link>
+            </Dialog>
+            <Dialog 
+                title={msg('alignment.dialog.validacaoFalhou.title')} 
+                show={showValidateFailedDialog} setShow={setShowValidateFailedDialog} 
+                confirmLabel={msg('common.ok')} 
+                hasCancelButton={false}>
+                    <h5>{msg('alignment.dialog.validacaoFalhou.text')}</h5>
+            </Dialog>
         </div>
     );
 }

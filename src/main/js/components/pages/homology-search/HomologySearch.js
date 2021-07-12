@@ -44,7 +44,7 @@ function HomologySearch(){
                         <p className="grey-text text-darken-3">Faça upload das tabelas geradas em outras iterações aqui: </p>
                         <div className="tooltip">
                             <button className="btn-floating amber"><i className="material-icons grey-text text-darken-3">help_outline</i></button>
-                            <span class="tooltiptext">Aqui você deve usar como entrada um arquivo .txt, cada linha deve representar uma sequência VÁLIDA (sem caracteres que não fazem parte dela (Ex.: somente "A", "T", "C", "G" caso DNA)).<br/>Você pode encontrar um exemplo <u onClick={() => {dowloadExampleFile()}}>aqui</u></span>
+                            <span className="tooltiptext">Aqui você deve usar como entrada um arquivo .txt, cada linha deve representar uma sequência VÁLIDA (sem caracteres que não fazem parte dela (Ex.: somente "A", "T", "C", "G" caso DNA)).<br/>Você pode encontrar um exemplo <u onClick={() => {dowloadExampleFile()}}>aqui</u></span>
                         </div>
                         <button className="btn purple lighten-2"><input name="inputSeqsFile" className="file-path validate" type="file" placeholder="Upload one or more files" onChange={event => setInputSeqsFile(event.target)}/></button>
                         <br/><br/>
@@ -58,7 +58,7 @@ function HomologySearch(){
                             </Modal>
                             <br/>
                             <br/>
-                            {processId && <Link to="/task-table" params={{"processId" : processId}}><div class="col s4 center offset-s4 red lighten-5 hoverable"><h4>Ultimo ID: {processId}</h4></div></Link>}
+                            {processId && <Link to="/task-table" params={{"processId" : processId}}><div className="col s4 center offset-s4 red lighten-5 hoverable"><h4>Ultimo ID: {processId}</h4></div></Link>}
                         </div>
                     </div>
                 </div>

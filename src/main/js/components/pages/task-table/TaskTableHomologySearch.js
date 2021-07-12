@@ -9,14 +9,10 @@ function TaskTableHomologySearch() {
     const [alignData, setAlignData] = useState(undefined);
 
     useEffect(() => {
-        // Runs after the first render() lifecycle
-        setTimeout(() =>
-        {
         fetch(Toolkit.Routes.GET_HOMOLOGY_SEARCH_TABLE)
         .then(res => res.json())
         .then(data => 
             {setHomologySearchData(data);});
-        }, 5000);
       }, []);
 
     const getHomologySearchOutputData = (id) => {
@@ -58,7 +54,7 @@ function TaskTableHomologySearch() {
                 <Loading />
             }
             {itemSelected && alignData &&
-            <div> 
+            <div className="alignDataTable"> 
                 <table className="centered highlight purple lighten-5">
                     <thead>
                         <tr>

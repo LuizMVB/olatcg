@@ -13,7 +13,7 @@ import Toolkit from '../../../infra/Toolkit';
 
 function Home(){
 
-    const msg = Toolkit.Messages;
+    const msg = Toolkit.Messages.getMessages;
 
     return(
         <div className="Home">
@@ -26,46 +26,46 @@ function Home(){
                         <br/>
                     </div>
                     <div className="col s8">
-                        <h3 className="header center pink-text">{msg['home.presentation.title']}</h3>
-                        <h5 className="header col s12 grey-text">{msg['home.presentation.text']}</h5>
+                        <h3 className="header center pink-text">{msg('home.presentation.title')}</h3>
+                        <h5 className="header col s12 grey-text">{msg('home.presentation.text')}</h5>
                     </div>
                 </div>
                 <div className="row">
-                    <h1 className="header center grey-text text-darken-3">{msg['home.descriptionOlatcg.title']}</h1>
+                    <h1 className="header center grey-text text-darken-3">{msg('home.descriptionOlatcg.title')}</h1>
                     <div className="col s12">
-                        <h4 className="grey-text text-darken-2">{msg['home.descriptionOlatcg.text']}</h4>
+                        <h4 className="grey-text text-darken-2">{msg('home.descriptionOlatcg.text')}</h4>
                     </div>
                 </div>
             </div>
             <br/>
             <div className="container">
                 <div className="row">
-                <h3 className="header center grey-text text-darken-3">{msg['home.pathOptions.title']}</h3>
+                <h3 className="header center grey-text text-darken-3">{msg('home.pathOptions.title')}</h3>
                 <br/>
                     <div className="col s4 center-aling">
                         <img src={Book} alt="" width="230" height="230"/>
-                        <h3 className="header center grey lighten-1">{msg['home.pathOptions.aprendaBioinfo.title']}</h3>
-                        <h6 className="grey-text text-darken-3">{msg['home.pathOptions.aprendaBioinfo.text']}</h6>
+                        <h3 className="header center grey lighten-1">{msg('home.pathOptions.aprendaBioinfo.title')}</h3>
+                        <h6 className="grey-text text-darken-3">{msg('home.pathOptions.aprendaBioinfo.text')}</h6>
                         <br/>
                         <Link to="/about">
-                            <button className="waves-effect waves-light btn left-align pink lighten-1">{msg['common.button.value']}</button>
+                            <button className="waves-effect waves-light btn left-align pink lighten-1">{msg('common.button.value.vamosLa')}</button>
                         </Link>
                     </div>
                     <div className="col s4"></div>
                     <div className="col s4 center-align">
                         <img src={Settings} alt="" width="210" height="210"/>
-                        <h3 className="header center grey lighten-1">{msg['home.pathOptions.fazendoAnalises.title']}</h3>
-                        <h6 className="grey-text text-darken-3">{msg['home.pathOptions.fazendoAnalises.text']}</h6>
+                        <h3 className="header center grey lighten-1">{msg('home.pathOptions.fazendoAnalises.title')}</h3>
+                        <h6 className="grey-text text-darken-3">{msg('home.pathOptions.fazendoAnalises.text')}</h6>
                         <br/>
                         <Link to="/tools">
-                            <button className="waves-effect waves-light btn left-align pink lighten-1">{msg['common.button.value']}</button>
+                            <button className="waves-effect waves-light btn left-align pink lighten-1">{msg('common.button.value.vamosLa')}</button>
                         </Link>
                     </div>
                 </div>
             </div>
             <div className="container-fluid center-align">
                 <div className="row center-align">
-                    <h3 className="header center grey-text text-darken-3">{msg['home.collaboration.title']}</h3>
+                    <h3 className="header center grey-text text-darken-3">{msg('home.collaboration.title')}</h3>
                     <div className="col s4">
                         <img src={UfzLogo} alt="" width="330" height="290"/>
                     </div>

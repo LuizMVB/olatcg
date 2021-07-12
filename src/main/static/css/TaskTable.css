@@ -1,0 +1,18 @@
+.task-table .align-table {
+    overflow-x: auto;
+}
+.task-table .bg-color-red {
+    background-color: var(--bg-color-red);
+}
+.task-table .bg-color-green {
+    background-color: var(--bg-color-green);
+}
+.task-table .bg-color-blue {
+    background-color: var(--bg-color-blue);
+}
+.task-table .bg-color-yellow {
+    background-color: var(--bg-color-yellow);
+}
+.task-table .bg-color-gray {
+    background-color: var(--bg-color-gray);
+}

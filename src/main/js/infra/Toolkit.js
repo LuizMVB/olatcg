@@ -1,9 +1,9 @@
 import Routes from './Routes';
-import Messages from './Messages';
+import MessagesService from '../services/MessagesService';
 
 const Toolkit = {
     Routes: Routes,
-    Messages: Messages,
+    Messages: MessagesService,
 };
 
 export default Toolkit;

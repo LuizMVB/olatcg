@@ -9,25 +9,28 @@ import HomologySearch from '../homology-search/HomologySearch';
 import GlobalAlignment from '../alignment/GlobalAlignment';
 import LocalAlignment from '../alignment/LocalAlignment';
 import TaskTable from '../task-table/TaskTable';
+import '../../../../static/css/App.css';
 
 function App(){
 
   return(
-    <Router>
-      <Nav />
-      <Switch>
-        <Route path="/" exact component={Home} />
-        <Route path="/about" component={About} />
-        <Route path="/tools" component={Tools} />
-        <Route path="/homology-search" component={HomologySearch} />
-        <Route path="/global-alignment" component={GlobalAlignment} />
-        <Route path="/local-alignment" component={LocalAlignment} />
-        <Route path="/task-table" exact component={TaskTable} />
-        <Route path="/task-table/align" component={TaskTable} />
-        <Route path="/task-table/homology-search" component={TaskTable} />
-      </Switch>
-      <Footer />
-    </Router>
+    <div className="app">
+      <Router>
+        <Nav />
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/about" component={About} />
+          <Route path="/tools" component={Tools} />
+          <Route path="/homology-search" component={HomologySearch} />
+          <Route path="/global-alignment" component={GlobalAlignment} />
+          <Route path="/local-alignment" component={LocalAlignment} />
+          <Route path="/task-table" exact component={TaskTable} />
+          <Route path="/task-table/align" component={TaskTable} />
+          <Route path="/task-table/homology-search" component={TaskTable} />
+        </Switch>
+        <Footer />
+      </Router>
+    </div>
   );
 }
 
