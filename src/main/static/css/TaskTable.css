@@ -1,4 +1,8 @@
-.task-table .align-table {
+.task-table {
+    overflow: hidden;
+}
+
+.task-table .table {
     overflow-x: auto;
 }
 .task-table .bg-color-red {
@@ -15,4 +19,15 @@
 }
 .task-table .bg-color-gray {
     background-color: var(--bg-color-gray);
+} 
+
+.task-table .homology-search-table {
+    table-layout: fixed;
 }
+
+.aln-column {
+    overflow: auto;
+    max-height: 300px;
+    flex-wrap: wrap;
+}
+

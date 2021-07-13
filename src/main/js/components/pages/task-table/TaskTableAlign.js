@@ -26,7 +26,7 @@ function TaskTableAlign() {
                 tableBodyAlignData.push(<tr key={key}>
                                             <td>{key}</td>
                                             <td>{element.aln_type ? element.aln_type : '-'}</td>
-                                            <td>{element.is_loaded ? <button className="waves-effect waves-light btn" onClick={() => {setItemSelected(element)}}>Veja o Resultado</button> : <span>Carregando...</span>}</td>
+                                            <td>{element.is_loaded === 'TRUE' ? <button className="waves-effect waves-light btn" onClick={() => {setItemSelected(element)}}>Veja o Resultado</button> : <span>Carregando...</span>}</td>
                                         </tr>);
             }
         }
@@ -96,7 +96,7 @@ function TaskTableAlign() {
                 </table>}
                 {itemSelected &&
                 <>
-                    <div className="align-table">
+                    <div className="table">
                         {createJSXTableOfBases(itemSelected.aln1, itemSelected.aln2)}
                         <table className="centered highlight purple lighten-5">
                             <thead>

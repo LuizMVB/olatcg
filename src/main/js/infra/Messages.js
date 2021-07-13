@@ -11,6 +11,7 @@ var data = {
     'common.confirmar'                          : 'Confirmar',
     'common.cancelar'                           : 'Cancelar',
     'common.ok'                                 : 'Ok',
+    'common.naoHaDados'                         : 'Não há dados, realize uma operação para visualizar seu resultado',
 
     // NAV
     'nav.links.home'                : 'Home',
@@ -82,13 +83,25 @@ var data = {
     'alignment.dialog.processamento.title'            : 'Processamento Iniciado',
     'alignment.dialog.processamento.text1'            : 'Seu alinhamento está sendo realizado, seu id será exibido na tela.',
     'alignment.dialog.processamento.text2'            : 'Acompanhe o resultado na fila de processamento',
-    'alignment.dialog.validacaoFalhou.title'          : 'Verifique suas sequências',
+    'alignment.dialog.validacaoFalhou.title'          : 'Verifique Suas Sequências',
     'alignment.dialog.validacaoFalhou.text'           : 'Sua sequência possui alguns caracteres irregulares, verifique se ' +
                                                         'sua entrada está de acordo com o tipo de sequência selecionada',
 
     //LOCAL ALIGNMENT
     'alignment.local.button.submmit.alinhar'                : 'Alinhar',
-    
+
+    //HOMOLOGY SEARCH
+    'homologySearch.dialog.processamento.title'                                 : 'Processamento Iniciado',
+    'homologySearch.dialog.processamento.text1'                                 : 'A busca homóloga está sendo realizada. As sequências serão comparadas com ' +
+                                                                                  'um banco de sequências filogeneticamente anotadas e retornarão sua filogenia ' +
+                                                                                  'mais provável beseando-se nessa comparação',
+    'homologySearch.dialog.processamento.text2'                                 : 'Acompanhe o resultado na fila de processamento',
+    'homologySearch.dialog.validacaoFalhou.caracteresInvalidos.title'           : 'Verifique Suas Sequências',
+    'homologySearch.dialog.validacaoFalhou.caracteresInvalidos.text'            : 'As sequências presentes neste arquivo não estão de acordo com o padrão IUPAC. ' +
+                                                                                  'Foi detectada a existência de caracteres inválidos. Por favor reavalie o conteúdo' + 
+                                                                                  'do arquivo e tente novamente.',
+    'homologySearch.dialog.validacaoFalhou.formatoArquivoInvalido.title'        : 'Formato do Arquivo Inválido',
+    'homologySearch.dialog.validacaoFalhou.formatoArquivoInvalido.text'         : 'O formato do arquivo de entrada precisa ser .txt',
 };
 
 function getMessages (key, ...args) {

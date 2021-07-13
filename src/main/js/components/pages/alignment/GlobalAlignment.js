@@ -68,6 +68,7 @@ function GlobalAlignment() {
         } else if(selectSequenceType === 'protein') {
             re = new RegExp('[acdefghiklmnpqrstvwyACDEFGHIKLMNPQRSTVWY]', 'g');
         }
+        console.log(inputSeq1.replaceAll(re, ''));
         if(!(inputSeq1.replaceAll(re, '') || inputSeq2.replaceAll(re, ''))) {
             return true;
         }
