@@ -23,5 +23,6 @@ def generate_dto(data):
             'aln_type': item[6],
             'erro': item[7],
         }
+    print(dto)
     return dto
     
