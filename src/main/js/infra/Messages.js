@@ -12,6 +12,7 @@ var data = {
     'common.cancelar'                           : 'Cancelar',
     'common.ok'                                 : 'Ok',
     'common.naoHaDados'                         : 'Não há dados, realize uma operação para visualizar seu resultado',
+    'common.button.baixar'                      : 'baixar',  
 
     // NAV
     'nav.links.home'                : 'Home',
@@ -94,7 +95,7 @@ var data = {
     'homologySearch.dialog.processamento.title'                                 : 'Processamento Iniciado',
     'homologySearch.dialog.processamento.text1'                                 : 'A busca homóloga está sendo realizada. As sequências serão comparadas com ' +
                                                                                   'um banco de sequências filogeneticamente anotadas e retornarão sua filogenia ' +
-                                                                                  'mais provável beseando-se nessa comparação',
+                                                                                  'mais provável baseando-se nessa comparação',
     'homologySearch.dialog.processamento.text2'                                 : 'Acompanhe o resultado na fila de processamento',
     'homologySearch.dialog.validacaoFalhou.caracteresInvalidos.title'           : 'Verifique Suas Sequências',
     'homologySearch.dialog.validacaoFalhou.caracteresInvalidos.text'            : 'As sequências presentes neste arquivo não estão de acordo com o padrão IUPAC. ' +
@@ -102,6 +103,12 @@ var data = {
                                                                                   'do arquivo e tente novamente.',
     'homologySearch.dialog.validacaoFalhou.formatoArquivoInvalido.title'        : 'Formato do Arquivo Inválido',
     'homologySearch.dialog.validacaoFalhou.formatoArquivoInvalido.text'         : 'O formato do arquivo de entrada precisa ser .txt',
+
+    //TASK TABLE
+    'taskTable.homologySearch.column.id'            : 'id',
+    'taskTable.homologySearch.column.resultados'    : 'Resultados',
+    'taskTable.homologySearch.column.arquivoOrigem' : 'Arquivo de Origem',
+    'taskTable.homologySearch.column.arquivoGerado' : 'Arquivo Gerado',
 };
 
 function getMessages (key, ...args) {
