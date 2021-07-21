@@ -109,12 +109,15 @@ var data = {
     'taskTable.homologySearch.column.resultados'    : 'Resultados',
     'taskTable.homologySearch.column.arquivoOrigem' : 'Arquivo de Origem',
     'taskTable.homologySearch.column.arquivoGerado' : 'Arquivo Gerado',
+
+    'taskTable.align.columns.metadata.similaridade'     : 'Similaridade',
+    'taskTable.align.columns.metadata.score'            : 'Score',
 };
 
 function getMessages (key, ...args) {
     let msg = data[key];
     if(!data || !msg) {
-        return undefined;
+        return key;
     } else if (args.length === 0){
         return msg;
     } else {
@@ -134,7 +137,7 @@ function format(msg, args) {
 }
 
 function insert(str, index, value) {
-    return str.substr(0, index) + value + str.substr(index);
+    return str.substr(0, index) + value + str.substr(index+2);
 }
 
 const Messages = {

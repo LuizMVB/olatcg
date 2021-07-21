@@ -31,3 +31,19 @@
     flex-wrap: wrap;
 }
 
+.task-table .metadata-table {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.task-table .metadata-table thead {
+    display: flex;
+    flex-direction: column;
+}
+  
+.task-table .metadata-table tbody {
+    display: flex;
+    flex-direction: column;
+}
+

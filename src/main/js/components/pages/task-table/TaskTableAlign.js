@@ -1,9 +1,13 @@
 import React, {useState, useEffect} from 'react';
-import Toolkit from '../../../infra/Toolkit';
 import Loading from '../../page-elements/loading/Loading';
 import '../../../../static/css/TaskTable.css'
+import Toolkit from '../../../infra/Toolkit';
 
 function TaskTableAlign() {
+
+    const msg = Toolkit.Messages.getMessages;
+
+    const teste = "teste";
 
     const [alignData, setAlignData] = useState(undefined);
     const [itemSelected, setItemSelected] = useState(undefined);
@@ -16,7 +20,7 @@ function TaskTableAlign() {
         fetch(Toolkit.Routes.GET_ALIGN_TABLE)
         .then(res => res.json())
         .then(data => 
-            {setAlignData(data)});   
+            setAlignData(data));   
       }, []);
 
     const createJSXTableBodyAlignData = (alignData) => {
@@ -97,7 +101,7 @@ function TaskTableAlign() {
                 {itemSelected &&
                 <>
                     <div className="table">
-                        {createJSXTableOfBases(itemSelected.aln1, itemSelected.aln2)}
+                        {createJSXTableOfBases(itemSelected.aln1, itemSelected.aln2, itemSelected.similarity)}
                         <table className="centered highlight purple lighten-5">
                             <thead>
                                 <tr>
@@ -114,6 +118,17 @@ function TaskTableAlign() {
                                     <td><b>Sequência B</b></td>
                                     {tableBodyBase2}
                                 </tr>
+                            </tbody>
+                        </table>
+                        <br />
+                        <table className="metadata-table">
+                            <thead>
+                                <th>{msg('taskTable.align.columns.metadata.similaridade')}</th>
+                                <th>{msg('taskTable.align.columns.metadata.score')}</th>
+                            </thead>
+                            <tbody>
+                                <td>{itemSelected.similarity}</td>
+                                <td>{itemSelected.score}</td>
                             </tbody>
                         </table>
                         <br />
