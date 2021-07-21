@@ -73,6 +73,7 @@ def dnaLocalAlignSsw(seq1, seq2):
     
     response = {
         'seq1': str(seq1),
+        'seq2': str(seq2),
         'aln1': str(msa[0]),
         'aln2': str(msa[1]),
         'score': score,

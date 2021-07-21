@@ -15,4 +15,5 @@ def getHomologySearchTable():
 
 @taskTableView.route('/getHomologySearchOutputTable/<homologySearchId>')
 def getHomologySearchOutputTable(homologySearchId):
+    print("iddd : ", homologySearchId)
     return taskTableController.getHomologySearchOutputTable(homologySearchId)

@@ -39,6 +39,8 @@ def compareWithDB(homologySearchId, seqsInFile, seqsDb, taxDb):
     
     for id in ids:
         columns = {
+            'seq1': response[id]['seq1'],
+            'seq2': response[id]['seq2'],
             'aln1': response[id]['aln1'],
             'aln2': response[id]['aln2'],
             'score': response[id]['score'],

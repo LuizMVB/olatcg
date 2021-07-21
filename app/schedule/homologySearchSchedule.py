@@ -6,8 +6,13 @@ import os
 tableName = "HomologySearch"
 
 def defineTaxSeqsFile(uploadedSeqsFile):
-    msg, status = create(tableName, {}, default_values=True)
     seqsInFile = create_line_by_line_list(uploadedSeqsFile)
+    text_seqs = "\n".join(seqsInFile)
+    columns = {
+        "seqFile": text_seqs,
+    }
+    msg, status = create(tableName, columns=columns)
+    print("seqsInFile: ", seqsInFile)
     threading.Thread(target=processHomologySearch, args=(msg['processId'], seqsInFile)).start()
     return msg, status
 

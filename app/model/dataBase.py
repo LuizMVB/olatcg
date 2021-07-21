@@ -20,7 +20,7 @@ def create_table(table_name, columns = {}):
 def create(table_name, columns:dict, default_values=False):
     conn = sqlite3.connect('OLATCG.db')
     query = ''
-    if not default_values:
+    if columns != []:
         query += f'INSERT INTO {table_name} ('
         for key in columns:
             query += f'{key}, '

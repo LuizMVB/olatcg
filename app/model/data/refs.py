@@ -5,3 +5,6 @@ def get_reference_sequences():
 
 def get_reference_taxonomy():
     return os.path.join(os.path.dirname(os.path.abspath(__file__)), 'taxonomy_references', 'taxonomy.txt')
+
+def get_reference_tree():
+    return os.path.join(os.path.dirname(os.path.abspath(__file__)), 'tree_references', 'tree.fasta')

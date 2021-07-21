@@ -23,6 +23,7 @@ def create_homology_search_table():
     columns = {
         'id': 'INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT',
         'isLoaded': 'BOOLEAN NOT NULL DEFAULT FALSE',
+        'seqFile': 'TEXT NOT NULL',
         'erro': 'TEXT NULL DEFAULT NULL',
     }
     create_table('HomologySearch', columns)
@@ -30,6 +31,8 @@ def create_homology_search_table():
 def create_homology_search_output_table():
     columns = {
         'id': 'INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT',
+        'seq1': 'TEXT NULL DEFAULT NULL',
+        'seq2': 'TEXT NULL DEFAULT NULL',
         'aln1': 'TEXT NULL DEFAULT NULL',
         'aln2': 'TEXT NULL DEFAULT NULL',
         'taxonomy': 'TEXT NULL DEFAULT NULL',
@@ -37,6 +40,7 @@ def create_homology_search_output_table():
         'similarity': 'REAL NULL DEFAULT NULL',
         'homologySearchId': 'INTEGER NOT NULL',
         'erro': 'TEXT NULL DEFAULT NULL',
+        'outputSeqFile': 'TEXT NULL DEFAULT NULL',
         'FOREIGN KEY (homologySearchId)': 'REFERENCES HomologySearch(id)'
     }
     create_table('HomologySearchOutput', columns)
