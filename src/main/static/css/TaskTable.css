@@ -31,6 +31,10 @@
     flex-wrap: wrap;
 }
 
+.task-table .metadata-table-container {
+    display: inline-block;
+}
+
 .task-table .metadata-table {
     display: flex;
     flex-direction: row;
@@ -47,3 +51,7 @@
     flex-direction: column;
 }
 
+.task-table .button-voltar {
+    float: right;
+    padding-top: 80px;
+}

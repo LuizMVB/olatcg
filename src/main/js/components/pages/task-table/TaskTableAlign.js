@@ -80,64 +80,68 @@ function TaskTableAlign() {
     
     return (
         <div className="task-table">
-            <div className="col s10 offset-s1">
-                {!alignData &&
-                    <Loading />
-                }
-                {!itemSelected && alignData && 
-                <table className="centered highlight purple lighten-5">
-                    <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>Tipo</th>
-                            <th>Ações</th>
-                        </tr>
-                    </thead>    
-                    <tbody>
-                        {createJSXTableBodyAlignData(alignData)}
-                        {tableBodyAlignData}
-                    </tbody>
-                </table>}
-                {itemSelected &&
-                <>
-                    <div className="table">
-                        {createJSXTableOfBases(itemSelected.aln1, itemSelected.aln2, itemSelected.similarity)}
+            <div className="container-fluid">
+                <div className="row">
+                    <div className="col s10 offset-s1">
+                        {!alignData &&
+                            <Loading />
+                        }
+                        {!itemSelected && alignData && 
                         <table className="centered highlight purple lighten-5">
                             <thead>
                                 <tr>
-                                    <th></th>
-                                    {tableHeaderAsterisk}
+                                    <th>Id</th>
+                                    <th>Tipo</th>
+                                    <th>Ações</th>
                                 </tr>
                             </thead>    
                             <tbody>
-                                <tr>
-                                    <td><b>Sequência A</b></td>
-                                    {tableBodyBase1}
-                                </tr>
-                                <tr>
-                                    <td><b>Sequência B</b></td>
-                                    {tableBodyBase2}
-                                </tr>
+                                {createJSXTableBodyAlignData(alignData)}
+                                {tableBodyAlignData}
                             </tbody>
-                        </table>
-                        <br />
-                        <table className="metadata-table">
-                            <thead>
-                                <th>{msg('taskTable.align.columns.metadata.similaridade')}</th>
-                                <th>{msg('taskTable.align.columns.metadata.score')}</th>
-                            </thead>
-                            <tbody>
-                                <td>{itemSelected.similarity}</td>
-                                <td>{itemSelected.score}</td>
-                            </tbody>
-                        </table>
-                        <br />
+                        </table>}
                     </div>
-                    <br />
-                    <div className="col s5 push-s10">
-                        <button className="waves-effect waves-light btn red" onClick={() => {setItemSelected(undefined)}}>Voltar</button>
-                    </div>
-                </>}
+                    {itemSelected &&
+                    <div className="col s10 offset-s1">
+                        <div className="table">
+                            {createJSXTableOfBases(itemSelected.aln1, itemSelected.aln2, itemSelected.similarity)}
+                            <table className="centered highlight purple lighten-5">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        {tableHeaderAsterisk}
+                                    </tr>
+                                </thead>    
+                                <tbody>
+                                    <tr>
+                                        <td><b>Sequência A</b></td>
+                                        {tableBodyBase1}
+                                    </tr>
+                                    <tr>
+                                        <td><b>Sequência B</b></td>
+                                        {tableBodyBase2}
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br />
+                        </div>
+                        <div className="metadata-table-container">
+                            <table className="metadata-table">
+                                <thead>
+                                    <th>{msg('taskTable.align.columns.metadata.similaridade')}</th>
+                                    <th>{msg('taskTable.align.columns.metadata.score')}</th>
+                                </thead>
+                                <tbody>
+                                    <td>{itemSelected.similarity}</td>
+                                    <td>{itemSelected.score}</td>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div className="button-voltar">
+                            <button className="waves-effect waves-light btn red" onClick={() => {setItemSelected(undefined)}}>Voltar</button>
+                        </div>
+                    </div>}
+                </div>
             </div>
         </div>
     );
