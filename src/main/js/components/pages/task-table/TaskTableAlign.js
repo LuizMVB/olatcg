@@ -7,8 +7,6 @@ function TaskTableAlign() {
 
     const msg = Toolkit.Messages.getMessages;
 
-    const teste = "teste";
-
     const [alignData, setAlignData] = useState(undefined);
     const [itemSelected, setItemSelected] = useState(undefined);
     const tableBodyAlignData = [];
