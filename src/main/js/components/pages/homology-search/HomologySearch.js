@@ -103,10 +103,15 @@ function HomologySearch(){
                 show={showProccessDialog} setShow={setShowProccessDialog} 
                 confirmLabel={msg('common.ok')} 
                 hasCancelButton={false}>
-                    <h5>{msg('homologySearch.dialog.processamento.text1')}</h5>
-                    <Link to="task-table/homology-search">
-                        {msg('homologySearch.dialog.processamento.text2')}
-                    </Link>
+                    <div className="center">
+                        <h5>{msg('homologySearch.dialog.processamento.text1')}</h5>
+                        <Link to="task-table/homology-search">
+                            <div className="dialog-message red lighten-5 hoverable">
+                                <h5>{msg('homologySearch.dialog.processamento.text2')}</h5>
+                                <h5>{processId && msg('homologySearch.dialog.processamento.text3.seuId', processId)}</h5>
+                            </div>
+                        </Link>
+                    </div>
             </Dialog>
             <Dialog 
                 title={msg('homologySearch.dialog.validacaoFalhou.caracteresInvalidos.title')} 

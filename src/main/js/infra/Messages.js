@@ -97,6 +97,7 @@ var data = {
                                                                                   'um banco de sequências filogeneticamente anotadas e retornarão sua filogenia ' +
                                                                                   'mais provável baseando-se nessa comparação',
     'homologySearch.dialog.processamento.text2'                                 : 'Acompanhe o resultado na fila de processamento',
+    'homologySearch.dialog.processamento.text3.seuId'                           : 'Seu ID: {}',
     'homologySearch.dialog.validacaoFalhou.caracteresInvalidos.title'           : 'Verifique Suas Sequências',
     'homologySearch.dialog.validacaoFalhou.caracteresInvalidos.text'            : 'As sequências presentes neste arquivo não estão de acordo com o padrão IUPAC. ' +
                                                                                   'Foi detectada a existência de caracteres inválidos. Por favor reavalie o conteúdo' + 

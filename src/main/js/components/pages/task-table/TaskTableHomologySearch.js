@@ -13,7 +13,7 @@ function TaskTableHomologySearch() {
     useEffect(() => {
         fetch(Toolkit.Routes.GET_HOMOLOGY_SEARCH_TABLE)
         .then(res => res.json())
-        .then(data => setHomologySearchData(data));
+        .then(data => {setHomologySearchData(data);console.log(data)});
     }, []);
 
     const getHomologySearchOutputData = (id) => {
@@ -35,19 +35,18 @@ function TaskTableHomologySearch() {
                     <thead>
                         <tr>
                             <th>{msg('taskTable.homologySearch.column.id')}</th>
-                            <th>{msg('taskTable.homologySearch.column.resultados')}</th>
                             <th>{msg('taskTable.homologySearch.column.arquivoOrigem')}</th>
                             <th>{msg('taskTable.homologySearch.column.arquivoGerado')}</th>
+                            <th>{msg('taskTable.homologySearch.column.resultados')}</th>
                         </tr>
                     </thead>    
                     <tbody>
                         {homologySearchData.map((data, index) => (
-
                             <tr key={index}>
                                 <td>{data[0]}</td>
+                                <td><a className="waves-effect waves-light btn blue" download="origin_sequences.txt" href={"data:text/plain;base64," + btoa(data[2])}>{msg('common.button.baixar')}</a></td>
+                                <td>{data[1] === 'TRUE' ? <a className="waves-effect waves-light btn blue" download="annotated_generated_sequences.txt" href={"data:text/plain;base64," + btoa(data[3])}>{msg('common.button.baixar')}</a> : <span>Carregando...</span>}</td>
                                 <td>{data[1] === 'TRUE' ? <button className="waves-effect waves-light btn" onClick={() => {getHomologySearchOutputData(data[0])}}>Veja o Resultado</button> : <span>Carregando...</span>}</td>
-                                <td><a className="waves-effect waves-light btn red lighten-3" download="origin_sequences.txt" href={"data:text/plain;base64," + btoa(data[2])}>{msg('common.button.baixar')}</a></td>
-                                <td>convertendo dados vindos do banco para arquivo</td>
                             </tr>
                         ))}
                     </tbody>

@@ -23,6 +23,7 @@ const Routes = {
     //TASK TABLE HOMOLOGY SEARCH
     GET_HOMOLOGY_SEARCH_TABLE: API_BASE_PATH + '/getHomologySearchTable',
     GET_HOMOLOGY_SEARCH_OUTPUT_TABLE: API_BASE_PATH + '/getHomologySearchOutputTable',
+    GET_ANNOTATED_SEQ_FILE: API_BASE_PATH + '/getAnnotatedSeqFile',
 };
 
 export default Routes;
