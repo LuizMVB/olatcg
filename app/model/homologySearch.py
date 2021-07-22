@@ -35,10 +35,10 @@ def compareWithDB(homologySearchId, seqsInFile, seqsDb, taxDb):
 
     response = dict(zip(ids, highSimilarityAlnObjs))
 
-    columns = {}
-    
+    columns_hs_output = {}
+    annotated_seq_file = str()
     for id in ids:
-        columns = {
+        columns_hs_output = {
             'seq1': response[id]['seq1'],
             'seq2': response[id]['seq2'],
             'aln1': response[id]['aln1'],
@@ -46,10 +46,17 @@ def compareWithDB(homologySearchId, seqsInFile, seqsDb, taxDb):
             'score': response[id]['score'],
             'similarity': response[id]['similarity'],
             'taxonomy': response[id]['taxonomy'],
-            'homologySearchId': homologySearchId
+            'homologySearchId': homologySearchId,
         }
-        msg, status = create(tableNameOutput, columns)
-    msg, status = update(tableName, {'isLoaded': 'TRUE'}, conditions='id=' + str(homologySearchId))
+        msg, status = create(tableNameOutput, columns_hs_output)
+        annotated_seq_file = annotated_seq_file + ">" + response[id]["taxonomy"] + "\n" + response[id]["aln1"] + "\n"
+
+    print(annotated_seq_file)
+    columns_hs = {
+        'isLoaded': 'TRUE',
+        'annotatedSeqFile': annotated_seq_file,
+    }
+    msg, status = update(tableName, columns_hs, conditions='id=' + str(homologySearchId))
     
     print("Status returned for the Thread {0}: {1} - {2}".format(
         threading.current_thread().name, status, msg))

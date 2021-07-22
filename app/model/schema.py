@@ -24,6 +24,7 @@ def create_homology_search_table():
         'id': 'INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT',
         'isLoaded': 'BOOLEAN NOT NULL DEFAULT FALSE',
         'seqFile': 'TEXT NOT NULL',
+        'annotatedSeqFile': 'TEXT NULL DEFAULT NULL',
         'erro': 'TEXT NULL DEFAULT NULL',
     }
     create_table('HomologySearch', columns)
