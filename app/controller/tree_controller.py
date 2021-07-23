@@ -1,4 +1,7 @@
 from app.model import phylogeny
 
-def get_tree(fasta_file):
-    return phylogeny.get_tree(fasta_file)
+def create_tree(annotated_seq_file):
+    return phylogeny.create_tree(annotated_seq_file)
+
+def get_trees():
+    return phylogeny.get_trees()

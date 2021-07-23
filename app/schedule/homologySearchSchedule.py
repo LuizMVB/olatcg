@@ -12,7 +12,6 @@ def defineTaxSeqsFile(uploadedSeqsFile):
         "seqFile": text_seqs,
     }
     msg, status = create(tableName, columns=columns)
-    print("seqsInFile: ", seqsInFile)
     threading.Thread(target=processHomologySearch, args=(msg['processId'], seqsInFile)).start()
     return msg, status
 

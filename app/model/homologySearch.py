@@ -51,7 +51,6 @@ def compareWithDB(homologySearchId, seqsInFile, seqsDb, taxDb):
         msg, status = create(tableNameOutput, columns_hs_output)
         annotated_seq_file = annotated_seq_file + ">" + response[id]["taxonomy"] + "\n" + response[id]["aln1"] + "\n"
 
-    print(annotated_seq_file)
     columns_hs = {
         'isLoaded': 'TRUE',
         'annotatedSeqFile': annotated_seq_file,

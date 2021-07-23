@@ -4,6 +4,7 @@ def create_schema():
     create_align_table()
     create_homology_search_table()
     create_homology_search_output_table()
+    create_phylogenetic_tree_table()
 
 
 def create_align_table():
@@ -45,3 +46,11 @@ def create_homology_search_output_table():
         'FOREIGN KEY (homologySearchId)': 'REFERENCES HomologySearch(id)'
     }
     create_table('HomologySearchOutput', columns)
+
+def create_phylogenetic_tree_table():
+    columns = {
+        'id': 'INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT',
+        'annotatedSeqFile': 'TEXT NOT NULL',
+        'nwkFormat': 'TEXT NOT NULL',
+    }
+    create_table('PhylogeneticTree', columns)
