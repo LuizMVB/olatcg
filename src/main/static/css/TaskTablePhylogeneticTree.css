@@ -1,0 +1,17 @@
+.task-table-phylogenetic-tree .tree-title{
+    background-color: #fce4ec;
+    margin: auto;
+    width: 150px;
+    padding: 1px;
+    border-radius: 10px;
+    border: #b1adadc4 solid;
+}
+
+#phylocanvas {
+    background-color: #fce4ec;
+    width: 80%;
+    margin: auto;
+    border-radius: 10px;
+    top: 10px;
+    cursor: none;
+}

@@ -8,11 +8,13 @@ var data = {
     'common.name.tools.alinhamentoLocal'        : 'Alinhamento Local',
     'common.name.tools.alinhamentoGlobal'       : 'Alinhamento Global',
     'common.name.tools.buscaHomologa'           : 'Busca Homologa',
+    'common.name.tools.arvoreFilogenetica'      : 'Árvore Filogenética',
     'common.confirmar'                          : 'Confirmar',
     'common.cancelar'                           : 'Cancelar',
     'common.ok'                                 : 'Ok',
     'common.naoHaDados'                         : 'Não há dados, realize uma operação para visualizar seu resultado',
     'common.button.baixar'                      : 'baixar',  
+    'common.button.vejaOResultado'              : 'Veja o Resultado',
 
     // NAV
     'nav.links.home'                : 'Home',
@@ -59,6 +61,8 @@ var data = {
     'tools.card.text.buscaHomologa'             : 'Submeta uma lista de sequências contra um banco de dados filogeneticamente ' +
                                                   'anotado e receba uma análise comparativa das combinações com maior similaridade ' +
                                                   'referente ao alinhamento dessas sequências',
+    'tools.card.text.arvoreFilogenetica'        : 'Utilize seus arquivos de sequências filogeneticamente anotados gerados na ferramenta ' + 
+                                                  '"Busca Homóloga" para gerar uma Árvore Filogenética',
 
     //GLOBAL ALIGNMENT
     'alignment.global.pageTitle'                    : 'Alinhamento Global',
@@ -113,6 +117,17 @@ var data = {
 
     'taskTable.align.columns.metadata.similaridade'     : 'Similaridade',
     'taskTable.align.columns.metadata.score'            : 'Score',
+    'taskTable.align.columns.metadata.filogenia'         : 'Filogenia',
+
+    'taskTable.phylogeneticTree.columns.metadata.id'    : 'id',
+    'taskTable.phylogeneticTree.columns.metadata.Acoes' : 'Ações',
+    'taskTable.phylogeneticTree.title.idArvore'         : 'ID: {}',
+
+    //PHYLOGENETIC TREE
+    'phylogeneticTree.textLabel.upload'         : 'Faça upload do arquivo de um arquivo .fasta',
+    'phylogeneticTree.tooltip.text'             : 'Caso você não tenha um arquivo .fasta para gerar a Árvore Filogenética realize os processos necessáriosutilizando ' + 
+                                                  'a ferramenta "Busca Homóloga" e faça o download do arquivo gerado na tabela de processamento.',
+    'phylogeneticTree.button.gerarArvore'       : 'Gerar Árvore',
 };
 
 function getMessages (key, ...args) {

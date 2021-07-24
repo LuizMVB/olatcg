@@ -1,4 +1,6 @@
 var BASE_URL = process.env.REACT_APP_BACKEND_URL || 'https://olatcg-backend.herokuapp.com';
+
+// a mudar
 var API_BASE_PATH = BASE_URL + '';
 
 //BACKEND ROUTES
@@ -17,13 +19,16 @@ const Routes = {
     //HOMOLOGY SEARCH
     DEFINE_SEQ_FILE: API_BASE_PATH + '/defineTaxSeqsFile',
 
+    //PHYLOGENETIC TREE
+    GET_TREES: API_BASE_PATH + '/get_trees',
+    CREATE_TREE: API_BASE_PATH + '/create_tree',
+
     //TASK TABLE
     GET_ALIGN_TABLE: API_BASE_PATH + '/getAlignTable',
 
     //TASK TABLE HOMOLOGY SEARCH
     GET_HOMOLOGY_SEARCH_TABLE: API_BASE_PATH + '/getHomologySearchTable',
     GET_HOMOLOGY_SEARCH_OUTPUT_TABLE: API_BASE_PATH + '/getHomologySearchOutputTable',
-    GET_ANNOTATED_SEQ_FILE: API_BASE_PATH + '/getAnnotatedSeqFile',
 };
 
 export default Routes;

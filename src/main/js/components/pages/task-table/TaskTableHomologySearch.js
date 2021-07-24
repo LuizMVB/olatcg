@@ -13,12 +13,11 @@ function TaskTableHomologySearch() {
     useEffect(() => {
         fetch(Toolkit.Routes.GET_HOMOLOGY_SEARCH_TABLE)
         .then(res => res.json())
-        .then(data => {setHomologySearchData(data);console.log(data)});
+        .then(data => setHomologySearchData(data));
     }, []);
 
     const getHomologySearchOutputData = (id) => {
         setItemSelected(true);
-       
         fetch(Toolkit.Routes.GET_HOMOLOGY_SEARCH_OUTPUT_TABLE + '/' + id)
         .then(res => res.json())
         .then(data => setAlignData(data));

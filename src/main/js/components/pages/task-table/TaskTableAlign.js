@@ -123,6 +123,7 @@ function TaskTableAlign() {
                             </table>
                             <br />
                         </div>
+                        <br/>
                         <div className="metadata-table-container">
                             <table className="metadata-table">
                                 <thead>
