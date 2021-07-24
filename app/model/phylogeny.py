@@ -14,7 +14,8 @@ def create_tree(annotated_seq_file):
     ant_str_file = format_annotated_seq_file(annotated_seq_file)
     with tempfile.NamedTemporaryFile() as fp:
         fp.write(bytes(ant_str_file, "utf-8"))
-        msa = TabularMSA.read(fp.name, constructor=DNA,  format='fasta')
+        fp.read()
+        msa = TabularMSA.read(fp.name, constructor=DNA)
         msa.reassign_index(minter='id')
         distance_matrix = DistanceMatrix.from_iterable(msa, metric=hamming, keys=msa.index)
     
@@ -38,7 +39,16 @@ def format_annotated_seq_file(annotated_seq_file):
         seq = str(annotated_seq_file.readline()).strip("b'").replace("\\n", "\n")
     seqsInFile[len(seqsInFile)-1] = seqsInFile[len(seqsInFile)-1][0:-2]
     seqsInFile2 = ""
-    slice_number = 30
+    aqv = io.StringIO("".join(seqsInFile))
+    aqv.readline()
+    slice_number = len(aqv.readline())
+    aqv.seek(0)
+    for item in aqv.readlines():
+        if item[0] != ">" and slice_number > len(item):
+            if item[len(item)-1] == "\n":
+                slice_number = len(item) - 1
+            else:
+                slice_number = len(item)
     for item in io.StringIO("".join(seqsInFile)).readlines():
         if item[0] == ">":
             seqsInFile2 = seqsInFile2 + item

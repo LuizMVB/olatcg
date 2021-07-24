@@ -49,7 +49,7 @@ def compareWithDB(homologySearchId, seqsInFile, seqsDb, taxDb):
             'homologySearchId': homologySearchId,
         }
         msg, status = create(tableNameOutput, columns_hs_output)
-        annotated_seq_file = annotated_seq_file + ">" + response[id]["taxonomy"] + "\n" + response[id]["aln1"] + "\n"
+        annotated_seq_file = annotated_seq_file + ">" + str(id) + "\n" + response[id]["aln1"] + "\n"
 
     columns_hs = {
         'isLoaded': 'TRUE',
