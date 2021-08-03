@@ -12,10 +12,11 @@ table_name = "PhylogeneticTree"
 
 def create_tree(annotated_seq_file):
     ant_str_file = format_annotated_seq_file(annotated_seq_file)
-    with tempfile.NamedTemporaryFile() as fp:
-        fp.write(bytes(ant_str_file, "utf-8"))
-        fp.read()
-        msa = TabularMSA.read(fp.name, constructor=DNA)
+    with tempfile.NamedTemporaryFile(mode="w+t") as fp:
+        fp.write(ant_str_file)
+        fp.seek(0)
+        print(fp.read())
+        msa = TabularMSA.read(fp.name, constructor=DNA, format="fasta")
         msa.reassign_index(minter='id')
         distance_matrix = DistanceMatrix.from_iterable(msa, metric=hamming, keys=msa.index)
     
@@ -44,16 +45,22 @@ def format_annotated_seq_file(annotated_seq_file):
     slice_number = len(aqv.readline())
     aqv.seek(0)
     for item in aqv.readlines():
-        if item[0] != ">" and slice_number > len(item):
+        if item[0] != ">" and len(item) < slice_number:
             if item[len(item)-1] == "\n":
                 slice_number = len(item) - 1
             else:
                 slice_number = len(item)
-    for item in io.StringIO("".join(seqsInFile)).readlines():
-        if item[0] == ">":
+    fastaFileList = io.StringIO("".join(seqsInFile)).readlines()
+    print(fastaFileList)
+    for item in fastaFileList:
+        if fastaFileList.index(item) % 2 == 0 or fastaFileList.index(item) == 0:
             seqsInFile2 = seqsInFile2 + item
+        elif len(item) == slice_number:
+            seqsInFile2 = seqsInFile2 + item[:slice_number-1] + "\n"
+            slice_number = slice_number - 1
         else:
             seqsInFile2 = seqsInFile2 + item[:slice_number] + "\n"
+    print(seqsInFile2)
     return seqsInFile2
 
 def generate_trees_dto(trees_list):
