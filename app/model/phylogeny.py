@@ -15,7 +15,6 @@ def create_tree(annotated_seq_file):
     with tempfile.NamedTemporaryFile(mode="w+t") as fp:
         fp.write(ant_str_file)
         fp.seek(0)
-        print(fp.read())
         msa = TabularMSA.read(fp.name, constructor=DNA, format="fasta")
         msa.reassign_index(minter='id')
         distance_matrix = DistanceMatrix.from_iterable(msa, metric=hamming, keys=msa.index)
@@ -33,8 +32,27 @@ def get_trees():
 
 ## Muito código desnecessário, melhorar depois
 def format_annotated_seq_file(annotated_seq_file):
-    seq = str(annotated_seq_file.readline()).strip("b'").replace("\\n", "\n")
-    seqsInFile = []
+    str_seq = ""
+    slice_number = 100
+    for line in annotated_seq_file.readlines():
+        item = line.decode("utf-8")
+        if item[0] != ">":
+            n_bases = len(item) - 1
+            if n_bases - 1 < slice_number:
+                slice_number = n_bases
+    annotated_seq_file.seek(0)
+    for line in annotated_seq_file.readlines():
+        item = line.decode("utf-8")
+        if item[0] != ">":
+            str_seq += item[:slice_number] + "\n"
+        else:
+            str_seq += item
+    return str_seq
+            
+
+
+
+    '''
     while seq:
         seqsInFile.append(seq)
         seq = str(annotated_seq_file.readline()).strip("b'").replace("\\n", "\n")
@@ -51,16 +69,20 @@ def format_annotated_seq_file(annotated_seq_file):
             else:
                 slice_number = len(item)
     fastaFileList = io.StringIO("".join(seqsInFile)).readlines()
+    for item in fastaFileList:
+        if item[-1] == "\n":
+            fastaFileList[fastaFileList.index(item)] = item[:-1]
     print(fastaFileList)
     for item in fastaFileList:
         if fastaFileList.index(item) % 2 == 0 or fastaFileList.index(item) == 0:
-            seqsInFile2 = seqsInFile2 + item
+            seqsInFile2 = seqsInFile2 + item + "\n"
         elif len(item) == slice_number:
             seqsInFile2 = seqsInFile2 + item[:slice_number-1] + "\n"
             slice_number = slice_number - 1
         else:
             seqsInFile2 = seqsInFile2 + item[:slice_number] + "\n"
     print(seqsInFile2)
+    '''
     return seqsInFile2
 
 def generate_trees_dto(trees_list):
