@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Toolkit from '../../../infra/Toolkit';
 import '../../../../static/css/GlobalAlignment.css';
 import Dialog from '../../page-elements/dialog/Dialog';
+import Loading from '../../page-elements/loading/Loading';
 
 function GlobalAlignment() {
 
@@ -22,6 +23,8 @@ function GlobalAlignment() {
 
     const [disabled, isDisabled] = useState(true);
 
+    const [showLoading, isLoading] = useState(false);
+
     useEffect(() => {
         if(inputSeq1 && inputSeq2 && selectSequenceType) {
             isDisabled(false);
@@ -30,29 +33,36 @@ function GlobalAlignment() {
         }
     }, [inputSeq1, inputSeq2, selectSequenceType]);
 
-    const getGlobalAlignment = (inputSeq1, inputSeq2, selectSequenceType) => {
+    useEffect(() => {
+        if(showProccessDialog || showValidateFailedDialog){
+            isLoading(false);
+        }
+    }, [showProccessDialog, showValidateFailedDialog]);
+
+    const getGlobalAlignment = async (inputSeq1, inputSeq2, selectSequenceType) => {
+        isLoading(true);
         if(validateForm(inputSeq1, inputSeq2, selectSequenceType)){
-            setShowProccessDialog(true);
             let formData = new FormData();
             formData.append('seq1', inputSeq1);
             formData.append('seq2', inputSeq2);
             formData.append('gap_open_penalty', 5);
             formData.append('gap_extend_penalty', 2);
             if(selectSequenceType === "dna") {
-                fetch(Toolkit.Routes.DNA_GLOBAL_ALN, {method: 'POST', body: formData})
+                await fetch(Toolkit.Routes.DNA_GLOBAL_ALN, {method: 'POST', body: formData})
                     .then(res => res.json())
                     .then(data => setProcessId(data.processId));           
             }
             else if(selectSequenceType === "rna") {
-                fetch(Toolkit.Routes.RNA_GLOBAL_ALN, {method: 'POST', body: formData})
+                await fetch(Toolkit.Routes.RNA_GLOBAL_ALN, {method: 'POST', body: formData})
                     .then(res => res.json())
                     .then(data => setProcessId(data.processId));            
             }
             else if(selectSequenceType === "protein") {
-                fetch(Toolkit.Routes.PTN_GLOBAL_ALN, {method: 'POST', body: formData})
+                await fetch(Toolkit.Routes.PTN_GLOBAL_ALN, {method: 'POST', body: formData})
                     .then(res => res.json())
                     .then(data => setProcessId(data.processId));           
             }
+            setShowProccessDialog(true);
         } else {
             setShowValidateFailedDialog(true);
         }
@@ -88,7 +98,7 @@ function GlobalAlignment() {
                         <br/>
                         <div className="input-field col s8 offset-s2">
                             <textarea className="materialize-textarea" onChange={event => setInputSeq1(event.target.value)}></textarea>
-                            <label for="seq1">{msg('alignment.global.label.sequeanciaA')}</label>
+                            <label htmlFor="seq1">{msg('alignment.global.label.sequeanciaA')}</label>
                         </div>
                         <div className="col s1 tooltip">
                             <button className="btn-floating amber"><i className="material-icons grey-text text-darken-3">help_outline</i></button>
@@ -97,7 +107,7 @@ function GlobalAlignment() {
                         <br/>
                         <div className="input-field col s8 offset-s2">
                             <textarea id="seq1" className="materialize-textarea" onChange={event => setInputSeq2(event.target.value)}></textarea>
-                            <label for="seq1">{msg('alignment.global.label.sequenciaB')}</label>
+                            <label htmlFor="seq1">{msg('alignment.global.label.sequenciaB')}</label>
                         </div>
                         <div className="col s1 tooltip">
                             <button className="btn-floating amber"><i className="material-icons grey-text text-darken-3">help_outline</i></button>
@@ -130,16 +140,23 @@ function GlobalAlignment() {
                 <br/>
                 <br/>
             </div>
-            <Dialog 
-                title={msg('alignment.dialog.processamento.title')} 
-                show={showProccessDialog} setShow={setShowProccessDialog} 
-                confirmLabel={msg('common.ok')} 
-                hasCancelButton={false}>
-                    <h5>{msg('alignment.dialog.processamento.text1')}</h5>
-                    <Link to="task-table/align">
-                        {msg('alignment.dialog.processamento.text2')}
-                    </Link>
-            </Dialog>
+            {showLoading && <Loading freezeScreen={true}/>}
+            {processId && 
+                <Dialog
+                    title={msg('dialog.default.processamento.title')} 
+                    show={showProccessDialog} setShow={setShowProccessDialog} 
+                    confirmLabel={msg('common.ok')} 
+                    hasCancelButton={false}>
+                        <div className="center">
+                            <h5>{msg('dialog.default.alignment.processamento.text1')}</h5>
+                            <Link to="task-table/homology-search">
+                                <div className="dialog-message red lighten-5 hoverable">
+                                    <h5>{msg('dialog.default.processamento.text2')}</h5>
+                                    <h5>{processId && msg('dialog.default.processamento.text3.seuId', processId)}</h5>
+                                </div>
+                            </Link>
+                        </div>
+                </Dialog>}
             <Dialog 
                 title={msg('alignment.dialog.validacaoFalhou.title')} 
                 show={showValidateFailedDialog} setShow={setShowValidateFailedDialog} 

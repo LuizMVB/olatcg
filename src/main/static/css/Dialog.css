@@ -19,7 +19,7 @@
 .dialog-content {
     max-width: 750px;
     background-color: #fefefe;
-    margin: 12% auto;
+    margin: 10% auto;
     border: 1px solid #888;
     width: 80%;
     border-radius: 10px;
@@ -65,7 +65,6 @@
 .dialog 
 .dialog-content
 .text {
-    padding-left: 20px;
     text-align: left;
     margin: 30px;
     font-family:Georgia, 'Times New Roman', Times, serif;

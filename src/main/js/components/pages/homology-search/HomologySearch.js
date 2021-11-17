@@ -99,16 +99,16 @@ function HomologySearch(){
                 </div>
             </div>
             <Dialog
-                title={msg('homologySearch.dialog.processamento.title')} 
+                title={msg('dialog.default.processamento.title')} 
                 show={showProccessDialog} setShow={setShowProccessDialog} 
                 confirmLabel={msg('common.ok')} 
                 hasCancelButton={false}>
                     <div className="center">
-                        <h5>{msg('homologySearch.dialog.processamento.text1')}</h5>
+                        <h5>{msg('dialog.default.homologySearch.processamento.text1')}</h5>
                         <Link to="task-table/homology-search">
                             <div className="dialog-message red lighten-5 hoverable">
-                                <h5>{msg('homologySearch.dialog.processamento.text2')}</h5>
-                                <h5>{processId && msg('homologySearch.dialog.processamento.text3.seuId', processId)}</h5>
+                                <h5>{msg('dialog.default.processamento.text2')}</h5>
+                                <h5>{processId && msg('dialog.default.processamento.text3.seuId', processId)}</h5>
                             </div>
                         </Link>
                     </div>
