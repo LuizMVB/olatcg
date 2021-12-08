@@ -18,3 +18,12 @@ table {
     border-collapse: collapse;
     width: 100%
 }
+
+.app {
+    position: relative;
+    min-height: 100vh;
+}
+
+.global-row {
+    padding-bottom: 2.5rem;
+}
