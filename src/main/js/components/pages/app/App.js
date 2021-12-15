@@ -18,19 +18,21 @@ function App(){
     <div className="app">
       <Router>
         <Nav />
-        <Switch>
-          <Route path="/" exact component={Home} />
-          <Route path="/about" component={About} />
-          <Route path="/tools" component={Tools} />
-          <Route path="/homology-search" component={HomologySearch} />
-          <Route path="/global-alignment" component={GlobalAlignment} />
-          <Route path="/local-alignment" component={LocalAlignment} />
-          <Route path="/phylogenetic-tree" component={PhylogeneticTree} />
-          <Route path="/task-table" exact component={TaskTable} />
-          <Route path="/task-table/align" component={TaskTable} />
-          <Route path="/task-table/homology-search" component={TaskTable} />
-          <Route path="/task-table/phylogenetic-tree" component={TaskTable} />
-        </Switch>
+        <div className="global-row"> 
+          <Switch>
+            <Route path="/" exact component={Home} />
+            <Route path="/about" component={About} />
+            <Route path="/tools" component={Tools} />
+            <Route path="/homology-search" component={HomologySearch} />
+            <Route path="/global-alignment" component={GlobalAlignment} />
+            <Route path="/local-alignment" component={LocalAlignment} />
+            <Route path="/phylogenetic-tree" component={PhylogeneticTree} />
+            <Route path="/task-table" exact component={TaskTable} />
+            <Route path="/task-table/align" component={TaskTable} />
+            <Route path="/task-table/homology-search" component={TaskTable} />
+            <Route path="/task-table/phylogenetic-tree" component={TaskTable} />
+          </Switch>
+        </div>
         <Footer />
       </Router>
     </div>

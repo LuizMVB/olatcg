@@ -202,7 +202,7 @@ function About(){
                     </h6>
                 </div>
                 <br/><br/><br/>
-                <div className="sidebar">
+                <div className="sidebar topicos">
                     <div className="col s3 purple lighten-4">
                         <h3 className="header center">Tópicos</h3>
                         <div className="card-panel purple lighten-5">
