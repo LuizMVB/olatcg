@@ -12,8 +12,7 @@ function TaskTable() {
     }
 
     return (
-        <div className="container-fluid">
-            <div className="row">
+        <div className = "container-fluid">
             <Router>
                 <TaskTableSelection />
                     <Switch>
@@ -22,7 +21,6 @@ function TaskTable() {
                         <Route path="/task-table/phylogenetic-tree" component={TaskTablePhylogeneticTree} /> 
                     </Switch>
                 </Router>
-            </div>
         </div>
     );
 }   

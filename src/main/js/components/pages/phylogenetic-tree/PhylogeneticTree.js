@@ -30,7 +30,7 @@ function PhylogeneticTree () {
             body: data
         })
         .then(res => res.json())
-        .then(data => setProcessId(data.processId));
+        .then(data => setProcessId(data.process_id));
     }
 
     const validateFile = (file) => {

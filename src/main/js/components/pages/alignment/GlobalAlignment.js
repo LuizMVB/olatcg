@@ -50,17 +50,17 @@ function GlobalAlignment() {
             if(selectSequenceType === "dna") {
                 await fetch(Toolkit.Routes.DNA_GLOBAL_ALN, {method: 'POST', body: formData})
                     .then(res => res.json())
-                    .then(data => setProcessId(data.processId));           
+                    .then(data => setProcessId(data.process_id));           
             }
             else if(selectSequenceType === "rna") {
                 await fetch(Toolkit.Routes.RNA_GLOBAL_ALN, {method: 'POST', body: formData})
                     .then(res => res.json())
-                    .then(data => setProcessId(data.processId));            
+                    .then(data => setProcessId(data.process_id));            
             }
             else if(selectSequenceType === "protein") {
                 await fetch(Toolkit.Routes.PTN_GLOBAL_ALN, {method: 'POST', body: formData})
                     .then(res => res.json())
-                    .then(data => setProcessId(data.processId));           
+                    .then(data => setProcessId(data.process_id));           
             }
             setShowProccessDialog(true);
         } else {

@@ -69,7 +69,7 @@ function HomologySearch(){
             method: 'POST',
             body: data
         }).then(res => res.json())
-          .then(data => setProcessId(data.processId));
+          .then(data => setProcessId(data.process_id));
     }
 
     return (

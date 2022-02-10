@@ -41,17 +41,17 @@ function LocalAlignment() {
             if(selectSequenceType === "dna") {
                 fetch(Toolkit.Routes.DNA_LOCAL_ALN, {method: 'POST', body: formData})
                     .then(res => res.json())
-                    .then(data => setProcessId(data.processId));
+                    .then(data => setProcessId(data.process_id));
             }
             else if(selectSequenceType === "rna") {
                 fetch(Toolkit.Routes.RNA_LOCAL_ALN, {method: 'POST', body: formData})
                     .then(res => res.json())
-                    .then(data => setProcessId(data.processId));
+                    .then(data => setProcessId(data.process_id));
             }
             else if(selectSequenceType === "protein") {
                 fetch(Toolkit.Routes.PTN_LOCAL_ALN, {method: 'POST', body: formData})
                     .then(res => res.json())
-                    .then(data => setProcessId(data.processId));
+                    .then(data => setProcessId(data.process_id));
             }
         } else {
             setShowValidateFailedDialog(true);

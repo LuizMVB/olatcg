@@ -18,7 +18,7 @@ function TaskTableAlign() {
         fetch(Toolkit.Routes.GET_ALIGN_TABLE)
         .then(res => res.json())
         .then(data => 
-            setAlignData(data));   
+            setAlignData(data));
       }, []);
 
     const createJSXTableBodyAlignData = (alignData) => {
@@ -84,7 +84,7 @@ function TaskTableAlign() {
                         {!alignData &&
                             <Loading />
                         }
-                        {!itemSelected && alignData && 
+                        {!itemSelected && alignData &&
                         <table className="centered highlight purple lighten-5">
                             <thead>
                                 <tr>
