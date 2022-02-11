@@ -18,7 +18,7 @@ function App(){
     <div className="app">
       <Router>
         <Nav />
-        <div className="global-row">
+        <div className="global-row"> 
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/about" component={About} />
