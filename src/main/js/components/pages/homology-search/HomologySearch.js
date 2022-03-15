@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import Toolkit from '../../../infra/Toolkit';
 import Dialog from '../../page-elements/dialog/Dialog';
+import Loading from '../../page-elements/loading/Loading';
 import '../../../../static/css/HomologySearch.css';
 
 
@@ -16,17 +17,19 @@ function HomologySearch(){
 
     const msg = Toolkit.Messages.getMessages;
 
+    const [errorDialogMessage, setErrorDialogMessage] = useState('');
+
     const [inputSeqsFile, setInputSeqsFile] = useState();
 
     const [processId, setProcessId] = useState();
 
-    const [showProccessDialog, setShowProccessDialog] = useState(false);
+    const [showSuccessDialog, setShowSuccessDialog] = useState(false);
 
-    const [showInvalidCharDialog, setshowInvalidCharDialog] = useState(false);
-
-    const [showInvalidFileTypeDialog, setshowInvalidFileTypeDialog] = useState(false)
+    const [showErrorDialog, setshowErrorDialog] = useState(false);
     
     const [disabled, isDisabled] = useState(true);
+
+    const [loading, isLoading] = useState(false);
 
     useEffect(() => {
         if(inputSeqsFile) {
@@ -36,19 +39,30 @@ function HomologySearch(){
         }
     }, [inputSeqsFile]);
 
-    const validateFile = (input) => {
+    const validateAndUploadFile = (input) => {
+        isLoading(true)
         if(input.type === 'text/plain'){
-            let reader = new FileReader();
-            reader.readAsBinaryString(input);
-            reader.onload = function () {
-                if(validateTextFileContent(reader.result)){
-                    uploadSeqsFile(input);
-                } else {
-                    setshowInvalidCharDialog(true);
+            let readerBinaryString = new FileReader();
+            readerBinaryString.readAsBinaryString(input);
+            readerBinaryString.onload = function (evt) {
+                if(evt.target.readyState == FileReader.DONE){
+                    if(validateTextFileContent(evt.target.result)){
+                        let readerDataUrl = new FileReader();
+                        readerDataUrl.readAsDataURL(input);
+                        readerDataUrl.onload = function(evt){
+                            if(evt.target.readyState == FileReader.DONE){
+                                uploadSeqsFile(input.name, 'description', evt.target.result);
+                            }
+                        }
+                    } else {
+                        setErrorDialogMessage(msg('homologySearch.dialog.error.validacaoFalhou.conteudoArquivoInvalido.text'));
+                        setshowErrorDialog(true);
+                    }   
                 }
             };
         } else {
-            setshowInvalidFileTypeDialog(true);
+            setErrorDialogMessage(msg('homologySearch.dialog.validacaoFalhou.formatoArquivoInvalido.text'));
+            setshowErrorDialog(true);
         }
     }
 
@@ -61,33 +75,48 @@ function HomologySearch(){
         return false;
     }
 
-    const uploadSeqsFile = (file) => {
-        setShowProccessDialog(true);
-        var data = new FormData();
-        data.append('uploaded_seqs_file', file);
-        fetch(Toolkit.Routes.DEFINE_SEQ_FILE, {
+    const uploadSeqsFile = (name, description, encodedFile) => {
+        let data = JSON.stringify({
+            name: name,
+            description: description,
+            encodedFile: encodedFile
+          });
+        fetch(Toolkit.Routes.GET_TAXONOMY_FROM_SEQUENCES, {
             method: 'POST',
-            body: data
-        }).then(res => res.json())
-          .then(data => setProcessId(data.processId));
+            body: data,
+            headers: {'Content-Type': 'application/json'}
+        })
+        .then(res => res.json())
+        .then(data => {
+            isLoading(false);
+            if(!data.errorCode){
+                setProcessId(data.idAnalysis);
+                setShowSuccessDialog(true);
+            }else{
+                setErrorDialogMessage(msg('homologySearch.dialog.validacaoFalhou.formatoArquivoInvalido.text'));
+                setshowErrorDialog(true);
+            }
+        });
     }
 
     return (
         <div className="HomologySearch">
+            {loading && <Loading freezeScreen={loading}></Loading>}
             <div className="container-fluid">
                 <div className="row">
-                    <h3 className="header center grey-text text-darken-3">Busca homóloga</h3>
+                    <h3 className="header center grey-text text-darken-3">{msg('common.name.tools.buscaHomologa')}</h3>
                     <div className="col s12 center">
-                        <p className="grey-text text-darken-3">Faça upload das tabelas geradas em outras iterações aqui: </p>
+                        <p className="grey-text text-darken-3">{msg('homologySearch.label.upload')}</p>
                         <div className="tooltip">
                             <button className="btn-floating amber"><i className="material-icons grey-text text-darken-3">help_outline</i></button>
-                            <span className="tooltiptext">Aqui você deve usar como entrada um arquivo .txt, cada linha deve representar uma sequência VÁLIDA (sem caracteres que não fazem parte dela (Ex.: somente "A", "T", "C", "G" caso DNA)).<br/>Você pode encontrar um exemplo <a download="example_sequences.txt" href={"data:text/plain;base64," + btoa(exampleSequencesContet)}>aqui</a></span>
+                            <span className="tooltiptext">{msg('homologySearch.tooltip.upload.message')}
+                            <br/><a download="example_sequences.txt" href={"data:text/plain;base64," + btoa(exampleSequencesContet)}>{msg('common.exemplo')}</a></span>
                         </div>
                         <button className="btn purple lighten-2"><input name="inputSeqsFile" className="file-path validate" type="file" placeholder="Upload one or more files" onChange={event => setInputSeqsFile(event.target.files[0])}/></button>
                         <br/><br/>
                         <div className="col s12 center">
                             <br/>
-                            <button className="waves-effect waves-light btn" onClick={() => validateFile(inputSeqsFile)} disabled={disabled}>
+                            <button className="waves-effect waves-light btn" onClick={() => validateAndUploadFile(inputSeqsFile)} disabled={disabled}>
                                 <i className="material-icons right">insert_chart</i>
                                 {msg('alignment.local.button.submmit.alinhar')}
                             </button>
@@ -100,7 +129,7 @@ function HomologySearch(){
             </div>
             <Dialog
                 title={msg('dialog.default.processamento.title')} 
-                show={showProccessDialog} setShow={setShowProccessDialog} 
+                show={showSuccessDialog} setShow={setShowSuccessDialog} 
                 confirmLabel={msg('common.ok')} 
                 hasCancelButton={false}>
                     <div className="center">
@@ -113,19 +142,12 @@ function HomologySearch(){
                         </Link>
                     </div>
             </Dialog>
-            <Dialog 
-                title={msg('homologySearch.dialog.validacaoFalhou.caracteresInvalidos.title')} 
-                show={showInvalidCharDialog} setShow={setshowInvalidCharDialog} 
+            <Dialog
+                title={msg('homologySearch.dialog.validacaoFalhou.title')}
+                show={showErrorDialog} setShow={setshowErrorDialog} 
                 confirmLabel={msg('common.ok')} 
                 hasCancelButton={false}>
-                    <h5>{msg('homologySearch.dialog.validacaoFalhou.caracteresInvalidos.text')}</h5>
-            </Dialog>
-            <Dialog 
-                title={msg('homologySearch.dialog.validacaoFalhou.formatoArquivoInvalido.title')} 
-                show={showInvalidFileTypeDialog} setShow={setshowInvalidFileTypeDialog} 
-                confirmLabel={msg('common.ok')} 
-                hasCancelButton={false}>
-                    <h5>{msg('homologySearch.dialog.validacaoFalhou.formatoArquivoInvalido.text')}</h5>
+                    <h5>{errorDialogMessage}</h5>
             </Dialog>
         </div>
     );
