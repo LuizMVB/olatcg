@@ -15,6 +15,9 @@ var data = {
     'common.naoHaDados'                         : 'Não há dados, realize uma operação para visualizar seu resultado',
     'common.button.baixar'                      : 'baixar',  
     'common.button.vejaOResultado'              : 'Veja o Resultado',
+    'common.title.notFound'                     : 'Nada para mostrar!',
+    'common.subtitle.notFound'                  : 'Realize alguma operação disponível em "Ferramentas" para que algum resultado' +
+                                                    ' seja exibido.',
 
     // DEFAULT MODAL MESSAGES
     'dialog.default.processamento.title'                                 : 'Processamento Iniciado',
