@@ -112,7 +112,10 @@ var data = {
     //HOMOLOGY SEARCH
     'homologySearch.dialog.validacaoFalhou.formatoArquivoInvalido.title'        : 'Formato do Arquivo Inválido',
     'homologySearch.dialog.validacaoFalhou.formatoArquivoInvalido.text'         : 'O formato do arquivo de entrada precisa ser .txt',
-
+    'homologySearch.dialog.validacaoFalhou.caracteresInvalidos.title'           : 'Verifique suas sequências',
+    'homologySearch.dialog.validacaoFalhou.caracteresInvalidos.text'            : 'Sua sequência possui alguns caracteres irregulares. Verifique se ' +
+                                                                                    'sua entrada está de acordo com o tipo de sequência selecionada',
+                                    
     //TASK TABLE
     'taskTable.homologySearch.column.id'            : 'id',
     'taskTable.homologySearch.column.resultados'    : 'Resultados',
@@ -128,10 +131,14 @@ var data = {
     'taskTable.phylogeneticTree.title.idArvore'         : 'ID: {}',
 
     //PHYLOGENETIC TREE
-    'phylogeneticTree.textLabel.upload'         : 'Faça upload do arquivo de um arquivo .fasta',
-    'phylogeneticTree.tooltip.text'             : 'Caso você não tenha um arquivo .fasta para gerar a Árvore Filogenética realize os processos necessáriosutilizando ' + 
-                                                  'a ferramenta "Busca Homóloga" e faça o download do arquivo gerado na tabela de processamento.',
-    'phylogeneticTree.button.gerarArvore'       : 'Gerar Árvore',
+    'phylogeneticTree.textLabel.upload'                                         : 'Faça upload do arquivo de um arquivo .fasta',
+    'phylogeneticTree.tooltip.text'                                             : 'Caso você não tenha um arquivo .fasta para gerar a Árvore Filogenética realize os processos necessários utilizando ' + 
+                                                                                'a ferramenta "Busca Homóloga" e faça o download do arquivo gerado na tabela de processamento.',
+    'phylogeneticTree.button.gerarArvore'                                       : 'Gerar Árvore',
+    
+    'phylogeneticTree.dialog.validacaoFalhou.caracteresInvalidos.title'         : 'Verifique suas sequências',
+    'phylogeneticTree.dialog.validacaoFalhou.caracteresInvalidos.text'          : 'Sua sequência possui alguns caracteres irregulares. Verifique se ' +
+                                                                                    'sua entrada está de acordo com o tipo de sequência selecionada',
 };
 
 function getMessages (key, ...args) {

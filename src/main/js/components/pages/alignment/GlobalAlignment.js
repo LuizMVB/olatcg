@@ -149,7 +149,7 @@ function GlobalAlignment() {
                     hasCancelButton={false}>
                         <div className="center">
                             <h5>{msg('dialog.default.alignment.processamento.text1')}</h5>
-                            <Link to="task-table/homology-search">
+                            <Link to="task-table/align">
                                 <div className="dialog-message red lighten-5 hoverable">
                                     <h5>{msg('dialog.default.processamento.text2')}</h5>
                                     <h5>{processId && msg('dialog.default.processamento.text3.seuId', processId)}</h5>

@@ -86,11 +86,11 @@ function PhylogeneticTree () {
                     </div>
             </Dialog>
             <Dialog 
-                title={msg('homologySearch.dialog.validacaoFalhou.caracteresInvalidos.title')} 
+                title={msg('phylogeneticTree.dialog.validacaoFalhou.caracteresInvalidos.title')} 
                 show={showInvalidCharDialog} setShow={setshowInvalidCharDialog} 
                 confirmLabel={msg('common.ok')} 
                 hasCancelButton={false}>
-                    <h5>{msg('homologySearch.dialog.validacaoFalhou.caracteresInvalidos.text')}</h5>
+                    <h5>{msg('phylogeneticTree.dialog.validacaoFalhou.caracteresInvalidos.text')}</h5>
             </Dialog>
         </div>
     );
