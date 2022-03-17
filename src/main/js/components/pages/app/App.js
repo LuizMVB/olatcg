@@ -11,7 +11,6 @@ import LocalAlignment from '../alignment/LocalAlignment';
 import PhylogeneticTree from '../phylogenetic-tree/PhylogeneticTree';
 import TaskTable from '../task-table/TaskTable';
 import '../../../../static/css/App.css';
-import Toolkit from '../../../infra/Toolkit';
 
 function App(){
   return(

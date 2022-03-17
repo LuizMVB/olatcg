@@ -27,6 +27,7 @@ function TaskTableHomologySearch() {
     }
 
     const displayTree = (nwkFormat) => {
+        setShowTree(true);
         let phyloTree = Phylocanvas.createTree("phylocanvas");
         phyloTree.load(nwkFormat);
         phyloTree.setNodeSize(15);
@@ -34,7 +35,6 @@ function TaskTableHomologySearch() {
         phyloTree.setTreeType("rectangular");
         phyloTree.lineWidth = 2;
         setLeaves(phyloTree.leaves);
-        setShowTree(true);
     };
 
     const onMouseMoveTree = (tree, evt) => {
@@ -142,28 +142,33 @@ function TaskTableHomologySearch() {
                         <button className="waves-effect waves-light btn green" onClick={() => {generateTree(idAnalysis)}}>Gerar Árvore</button>
                     </div>
                 </div>}
-                <div className="col s8">
-                    <div onMouseMove={event => onMouseMoveTree(leaves, event)} id="phylocanvas">
+                {showTree &&
+                <div className="row">
+                    <div className="col s8">
+                        <div onMouseMove={event => onMouseMoveTree(leaves, event)} id="phylocanvas">
+                        </div>
                     </div>
-                </div>
-                {leaveTooltip &&
-                <div className="col s4">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Taxonomia</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td id="0">{taxonomy}</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div className="col s4">
+                    {leaveTooltip &&               
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Taxonomia</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td id="0">{taxonomy}</td>
+                                </tr>
+                            </tbody>
+                        </table>}
+                    </div>
+                    <div className="col s12 push-s9">
+                        <button className="waves-effect waves-light btn red" onClick={() => {setShowTree(false); setShowLeaveTooltip(undefined)}}>Voltar</button>                    
+                    </div>
                 </div>}
             </div>
         </div>
-        
     );
 }
 
