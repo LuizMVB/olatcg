@@ -7,7 +7,7 @@ var data = {
     'common.simbol.separate'                    : '|',
     'common.name.tools.alinhamentoLocal'        : 'Alinhamento Local',
     'common.name.tools.alinhamentoGlobal'       : 'Alinhamento Global',
-    'common.name.tools.buscaHomologa'           : 'Busca Homologa',
+    'common.name.tools.buscaHomologa'           : 'Busca Homóloga',
     'common.name.tools.arvoreFilogenetica'      : 'Árvore Filogenética',
     'common.confirmar'                          : 'Confirmar',
     'common.cancelar'                           : 'Cancelar',
@@ -18,6 +18,7 @@ var data = {
     'common.title.notFound'                     : 'Nada para mostrar!',
     'common.subtitle.notFound'                  : 'Realize alguma operação disponível em "Ferramentas" para que algum resultado' +
                                                     ' seja exibido.',
+    'common.exemplo'                            : 'Exemplo ',
 
     // DEFAULT MODAL MESSAGES
     'dialog.default.processamento.title'                                 : 'Processamento Iniciado',
@@ -110,12 +111,16 @@ var data = {
     'alignment.local.button.submmit.alinhar'                : 'Alinhar',
 
     //HOMOLOGY SEARCH
-    'homologySearch.dialog.validacaoFalhou.formatoArquivoInvalido.title'        : 'Formato do Arquivo Inválido',
+    'homologySearch.dialog.validacaoFalhou.title'                               : 'Erro na validação',
     'homologySearch.dialog.validacaoFalhou.formatoArquivoInvalido.text'         : 'O formato do arquivo de entrada precisa ser .txt',
-    'homologySearch.dialog.validacaoFalhou.caracteresInvalidos.title'           : 'Verifique suas sequências',
-    'homologySearch.dialog.validacaoFalhou.caracteresInvalidos.text'            : 'Sua sequência possui alguns caracteres irregulares. Verifique se ' +
-                                                                                    'sua entrada está de acordo com o tipo de sequência selecionada',
-                                    
+    'homologySearch.dialog.error.validacaoFalhou.conteudoArquivoInvalido.text' : 'O arquivo contém caracteres inválidos',
+
+    'homologySearch.label.upload'                                               : 'Faça upload do arquivo de sequências aqui: ',
+    'homologySearch.tooltip.upload.message'                                     : 'Aqui você deve usar como entrada um arquivo .txt, ' +
+                                                                                   'cada linha deve representar uma sequência VÁLIDA (sem ' +
+                                                                                   'caracteres que não fazem parte dela (Ex.: somente "A", ' + 
+                                                                                   '"T", "C", "G" caso DNA)).',
+
     //TASK TABLE
     'taskTable.homologySearch.column.id'            : 'id',
     'taskTable.homologySearch.column.resultados'    : 'Resultados',

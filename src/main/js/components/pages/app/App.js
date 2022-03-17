@@ -13,7 +13,6 @@ import TaskTable from '../task-table/TaskTable';
 import '../../../../static/css/App.css';
 
 function App(){
-
   return(
     <div className="app">
       <Router>
