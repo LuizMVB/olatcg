@@ -1,62 +1,100 @@
 import React, { useEffect, useState } from 'react';
 import Toolkit from '../../../infra/Toolkit';
 import Loading from '../../page-elements/loading/Loading';
+import Phylocanvas from 'phylocanvas';
 
 function TaskTableHomologySearch() {
 
     const msg = Toolkit.Messages.getMessages;
 
-    const [homologySearchData, setHomologySearchData] = useState(undefined);
-    const [itemSelected, setItemSelected] = useState(undefined);
+    const [taxonomySearchAnalysesResponse, setTaxonomySearchAnalysesResponse] = useState(undefined);
     const [alignData, setAlignData] = useState(undefined);
+    const [idAnalysis, setIdAanalysis] = useState(undefined);
+    const [showTree, setShowTree] = useState(undefined);
+    const [leaves, setLeaves] = useState(undefined);
+    const [leaveTooltip, setShowLeaveTooltip] = useState(undefined);
+    const [taxonomy, setTaxonomy] = useState(undefined);
+
+    const generateTree = (idAnalysis) => {
+        fetch(Toolkit.Routes.GET_NEWICK_FROM_TAXONOMY + '?idAnalysis=' + idAnalysis,
+        {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'}
+        })
+        .then(res => res.json())
+        .then(data => data.nwkFormat)
+        .then(nwk => displayTree(nwk));
+    }
+
+    const displayTree = (nwkFormat) => {
+        setShowTree(true);
+        let phyloTree = Phylocanvas.createTree("phylocanvas");
+        phyloTree.load(nwkFormat);
+        phyloTree.setNodeSize(15);
+        phyloTree.setTextSize(30);
+        phyloTree.setTreeType("rectangular");
+        phyloTree.lineWidth = 2;
+        setLeaves(phyloTree.leaves);
+    };
+
+    const onMouseMoveTree = (tree, evt) => {
+        let hoveredLeave = tree.filter((leave) => leave.hovered === true)[0];
+        if(hoveredLeave){
+            /**
+            let x = evt.clientX;
+            let y = evt.clientY;
+        
+            document.documentElement.style.setProperty('--mouse-x', x);
+            document.documentElement.style.setProperty('--mouse-y', y);
+            */
+
+            fetch(Toolkit.Routes.GET_TAXONOMY_FROM_SEQUENCE + '?sequenceId=' + hoveredLeave.id,
+            {
+                method: 'GET',
+                headers: {'Content-Type': 'application/json'}
+            })
+            .then(res => res.json())
+            .then(data => setTaxonomy(data.name))
+            .then(setShowLeaveTooltip(true));
+        }else{
+            setTaxonomy(undefined);
+            setShowLeaveTooltip(false);
+        }
+    }
 
     useEffect(() => {
-        fetch(Toolkit.Routes.GET_HOMOLOGY_SEARCH_TABLE)
+        fetch(Toolkit.Routes.GET_TAXONOMY_SEARCH_RECORDS)
         .then(res => res.json())
-        .then(data => setHomologySearchData(data));
+        .then(data => setTaxonomySearchAnalysesResponse(data));
     }, []);
-
-    const getHomologySearchOutputData = (id) => {
-        setItemSelected(true);
-        fetch(Toolkit.Routes.GET_HOMOLOGY_SEARCH_OUTPUT_TABLE + '/' + id)
-        .then(res => res.json())
-        .then(data => setAlignData(data));
-    }
 
     return (
         <div className="task-table">
             <div className="col s10 offset-s1">
-                {!homologySearchData && 
+                {!taxonomySearchAnalysesResponse && 
                     <Loading />
                 }
-                {!itemSelected && homologySearchData && 
+                {!alignData && !showTree && taxonomySearchAnalysesResponse && 
                 <table className="centered highlight purple lighten-5">
                     <thead>
                         <tr>
                             <th>{msg('taskTable.homologySearch.column.id')}</th>
-                            <th>{msg('taskTable.homologySearch.column.arquivoOrigem')}</th>
-                            <th>{msg('taskTable.homologySearch.column.arquivoGerado')}</th>
                             <th>{msg('taskTable.homologySearch.column.resultados')}</th>
                         </tr>
                     </thead>    
                     <tbody>
-                        {homologySearchData.map((data, index) => (
-                            <tr key={index}>
-                                <td>{data[0]}</td>
-                                <td><a className="waves-effect waves-light btn blue" download="origin_sequences.txt" href={"data:text/plain;base64," + btoa(data[2])}>{msg('common.button.baixar')}</a></td>
-                                <td>{data[1] === 'TRUE' ? <a className="waves-effect waves-light btn blue" download="annotated_generated_sequences.txt" href={"data:text/plain;base64," + btoa(data[3])}>{msg('common.button.baixar')}</a> : <span>Carregando...</span>}</td>
-                                <td>{data[1] === 'TRUE' ? <button className="waves-effect waves-light btn" onClick={() => {getHomologySearchOutputData(data[0])}}>Veja o Resultado</button> : <span>Carregando...</span>}</td>
-                            </tr>
-                        ))}
+                        {taxonomySearchAnalysesResponse.
+                            taxonomySearchRecords.map((record, indexRecord) => (
+                                <tr key={indexRecord}>
+                                    <td>{record.idAnalysis}</td>
+                                    <td>{<button className="waves-effect waves-light btn" onClick={() => {setAlignData(record.alignments); setIdAanalysis(record.idAnalysis)}}>Veja o Resultado</button>}</td>
+                                </tr>
+                            ))}
                     </tbody>
                 </table>}
-                {itemSelected && !alignData &&
-                    <Loading />
-                }
-                {itemSelected && alignData &&
+                {!showTree && alignData &&
                 <div> 
                     <div className="overflow-table">
-
                         <table className="centered highlight purple lighten-5 homology-search-table">
                             <thead>
                                 <tr>
@@ -64,44 +102,69 @@ function TaskTableHomologySearch() {
                                     <th>Sequência B</th>
                                     <th>Alinhamento A</th>
                                     <th>Alinhamento B</th>
-                                    <th>Similaridade aprox. (%)</th>
                                     <th>Taxonomia</th>
+                                    <th>Score</th>
                                 </tr>
                             </thead>    
                             <tbody>
-                            {alignData.map((data, index) => (
+                            {alignData.map((alignment, index) => (
                                 <tr key={index}>
                                     <td>
                                         <div className="aln-column">
-                                            {data[1]}
+                                            {alignment.inputSequence}
                                         </div>
                                     </td>
                                     <td>
                                         <div className="aln-column">
-                                            {data[2]}
+                                            {alignment.matchSequence}
                                         </div>
                                     </td>
                                     <td>
                                         <div className="aln-column">
-                                            {data[3]}
+                                            {alignment.inputAlignment}
                                         </div>
                                     </td>
                                     <td>
                                         <div className="aln-column">
-                                            {data[4]}
+                                            {alignment.matchAlignment}
                                         </div>
                                     </td>
-                                    <td>{data[7]}</td>
-                                    <td>{data[5]}</td>
+                                    <td>{alignment.taxonomy}</td>
+                                    <td>{alignment.score}</td>
                                 </tr>
                             ))}
                             </tbody>
                         </table>
                     </div>
-                   
                     <br />
-                    <div className="col s5 push-s10">
-                        <button className="waves-effect waves-light btn red" onClick={() => {setItemSelected(undefined)}}>Voltar</button>
+                    <div className="col s7 push-s9">
+                        <button className="waves-effect waves-light btn red" onClick={() => {setAlignData(undefined); setIdAanalysis(undefined)}}>Voltar</button>
+                        <button className="waves-effect waves-light btn green" onClick={() => {generateTree(idAnalysis)}}>Gerar Árvore</button>
+                    </div>
+                </div>}
+                {showTree &&
+                <div className="row">
+                    <div className="col s8">
+                        <div onMouseMove={event => onMouseMoveTree(leaves, event)} id="phylocanvas">
+                        </div>
+                    </div>
+                    <div className="col s4">
+                    {leaveTooltip &&               
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Taxonomia</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td id="0">{taxonomy}</td>
+                                </tr>
+                            </tbody>
+                        </table>}
+                    </div>
+                    <div className="col s12 push-s9">
+                        <button className="waves-effect waves-light btn red" onClick={() => {setShowTree(false); setShowLeaveTooltip(undefined)}}>Voltar</button>                    
                     </div>
                 </div>}
             </div>

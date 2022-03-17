@@ -27,3 +27,7 @@ table {
 .global-row {
     padding-bottom: 17rem;
 }
+
+button{
+    margin: 6px;
+}
