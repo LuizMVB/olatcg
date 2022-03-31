@@ -98,6 +98,7 @@ function TaskTableHomologySearch() {
                         <table className="centered highlight purple lighten-5 homology-search-table">
                             <thead>
                                 <tr>
+                                    <th>Id Sequência A</th>
                                     <th>Sequência A</th>
                                     <th>Sequência B</th>
                                     <th>Alinhamento A</th>
@@ -109,6 +110,11 @@ function TaskTableHomologySearch() {
                             <tbody>
                             {alignData.map((alignment, index) => (
                                 <tr key={index}>
+                                    <td>
+                                        <div className="aln-column">
+                                            {alignment.inputSequenceId}
+                                        </div>
+                                    </td>
                                     <td>
                                         <div className="aln-column">
                                             {alignment.inputSequence}
