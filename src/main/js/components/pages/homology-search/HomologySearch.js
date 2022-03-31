@@ -89,12 +89,12 @@ function HomologySearch(){
         .then(res => res.json())
         .then(data => {
             isLoading(false);
-            if(!data.errorCode){
-                setProcessId(data.idAnalysis);
-                setShowSuccessDialog(true);
-            }else{
+            if(data.errorCode){
                 setErrorDialogMessage(msg('homologySearch.dialog.validacaoFalhou.formatoArquivoInvalido.text'));
                 setshowErrorDialog(true);
+            }else{
+                setProcessId(data.idAnalysis);
+                setShowSuccessDialog(true);
             }
         });
     }
