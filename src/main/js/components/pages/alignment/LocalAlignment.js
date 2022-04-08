@@ -40,11 +40,8 @@ function LocalAlignment() {
     }, [showProccessDialog, showValidateFailedDialog]);
       
     const getLocalAlignment = async (inputSeq1, inputSeq2, selectSequenceType) => {
-        debugger;
         isLoading(true);
         if(validateForm(inputSeq1, inputSeq2, selectSequenceType)){
-            setShowProccessDialog(true);
-
             let bodyRequestAlignment = JSON.stringify({
                 sequenceA: inputSeq1,
                 sequenceB: inputSeq2,
@@ -57,7 +54,7 @@ function LocalAlignment() {
                 headers: {'Content-Type': 'application/json'}
             }).then(res => res.json())
             .then(data => setProcessId(data.idAnalysis));   
-            
+            setShowProccessDialog(true);
         } else {
             setShowValidateFailedDialog(true);
         }
