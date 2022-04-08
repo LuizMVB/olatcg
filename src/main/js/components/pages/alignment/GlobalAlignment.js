@@ -42,26 +42,19 @@ function GlobalAlignment() {
     const getGlobalAlignment = async (inputSeq1, inputSeq2, selectSequenceType) => {
         isLoading(true);
         if(validateForm(inputSeq1, inputSeq2, selectSequenceType)){
-            let formData = new FormData();
-            formData.append('seq1', inputSeq1);
-            formData.append('seq2', inputSeq2);
-            formData.append('gap_open_penalty', 5);
-            formData.append('gap_extend_penalty', 2);
-            if(selectSequenceType === "dna") {
-                await fetch(Toolkit.Routes.DNA_GLOBAL_ALN, {method: 'POST', body: formData})
-                    .then(res => res.json())
-                    .then(data => setProcessId(data.processId));           
-            }
-            else if(selectSequenceType === "rna") {
-                await fetch(Toolkit.Routes.RNA_GLOBAL_ALN, {method: 'POST', body: formData})
-                    .then(res => res.json())
-                    .then(data => setProcessId(data.processId));            
-            }
-            else if(selectSequenceType === "protein") {
-                await fetch(Toolkit.Routes.PTN_GLOBAL_ALN, {method: 'POST', body: formData})
-                    .then(res => res.json())
-                    .then(data => setProcessId(data.processId));           
-            }
+            let bodyRequestAlignment =  JSON.stringify({
+                sequenceA: inputSeq1,
+                sequenceB: inputSeq2,
+                type: 'GLOBAL'
+            });
+            
+            await fetch(Toolkit.Routes.ALIGN, {
+                method: 'POST', 
+                body: bodyRequestAlignment,
+                headers: {'Content-Type': 'application/json'}
+            }).then(res => res.json())
+            .then(data => setProcessId(data.idAnalysis));           
+            
             setShowProccessDialog(true);
         } else {
             setShowValidateFailedDialog(true);

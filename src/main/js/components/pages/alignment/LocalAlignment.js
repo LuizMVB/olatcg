@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import '../../../infra/Toolkit';
 import Dialog from '../../page-elements/dialog/Dialog';
 import Toolkit from '../../../infra/Toolkit';
+import Loading from '../../page-elements/loading/Loading';
 
 function LocalAlignment() {
 
@@ -21,6 +22,8 @@ function LocalAlignment() {
     const [showValidateFailedDialog, setShowValidateFailedDialog] = useState(false);
 
     const [disabled, isDisabled] = useState(true);
+    
+    const [showLoading, isLoading] = useState(false);
 
     useEffect(() => {
         if(inputSeq1 && inputSeq2 && selectSequenceType) {
@@ -29,30 +32,32 @@ function LocalAlignment() {
             isDisabled(true);
         }
     }, [inputSeq1, inputSeq2, selectSequenceType]);
+
+    useEffect(() => {
+        if(showProccessDialog || showValidateFailedDialog){
+            isLoading(false);
+        }
+    }, [showProccessDialog, showValidateFailedDialog]);
       
-    const getLocalAlignment = (inputSeq1, inputSeq2, selectSequenceType) => {
+    const getLocalAlignment = async (inputSeq1, inputSeq2, selectSequenceType) => {
+        debugger;
+        isLoading(true);
         if(validateForm(inputSeq1, inputSeq2, selectSequenceType)){
             setShowProccessDialog(true);
-            let formData = new FormData();
-            formData.append('seq1', inputSeq1);
-            formData.append('seq2', inputSeq2);
-            formData.append('gap_open_penalty', 5);
-            formData.append('gap_extend_penalty', 2);
-            if(selectSequenceType === "dna") {
-                fetch(Toolkit.Routes.DNA_LOCAL_ALN, {method: 'POST', body: formData})
-                    .then(res => res.json())
-                    .then(data => setProcessId(data.processId));
-            }
-            else if(selectSequenceType === "rna") {
-                fetch(Toolkit.Routes.RNA_LOCAL_ALN, {method: 'POST', body: formData})
-                    .then(res => res.json())
-                    .then(data => setProcessId(data.processId));
-            }
-            else if(selectSequenceType === "protein") {
-                fetch(Toolkit.Routes.PTN_LOCAL_ALN, {method: 'POST', body: formData})
-                    .then(res => res.json())
-                    .then(data => setProcessId(data.processId));
-            }
+
+            let bodyRequestAlignment = JSON.stringify({
+                sequenceA: inputSeq1,
+                sequenceB: inputSeq2,
+                type: 'LOCAL'
+            });
+
+            await fetch(Toolkit.Routes.ALIGN, {
+                method: 'POST', 
+                body: bodyRequestAlignment,
+                headers: {'Content-Type': 'application/json'}
+            }).then(res => res.json())
+            .then(data => setProcessId(data.idAnalysis));   
+            
         } else {
             setShowValidateFailedDialog(true);
         }
@@ -131,6 +136,8 @@ function LocalAlignment() {
                 <br/>
                 <br/>
             </div>
+            {showLoading && <Loading freezeScreen={true}/>}
+            {processId && 
             <Dialog
                 title={msg('dialog.default.processamento.title')} 
                 show={showProccessDialog} setShow={setShowProccessDialog} 
@@ -145,7 +152,7 @@ function LocalAlignment() {
                             </div>
                         </Link>
                     </div>
-            </Dialog>
+            </Dialog>}
             <Dialog 
                 title={msg('alignment.dialog.validacaoFalhou.title')} 
                 show={showValidateFailedDialog} setShow={setShowValidateFailedDialog} 
