@@ -9,9 +9,13 @@ var INTEGRATION_API_BASE_PATH = BASE_URL_INTEGRATION_API + '/api';
 const Routes = {
 
     //GLOBAL ALIGNMENT
+
+    /** OLD */
     DNA_GLOBAL_ALN: API_BASE_PATH + '/dnaGlobalAlignment',
     RNA_GLOBAL_ALN: API_BASE_PATH + '/rnaGlobalAlignment',
     PTN_GLOBAL_ALN: API_BASE_PATH + '/proteinGlobalAlignment',
+
+    ALIGN: INTEGRATION_API_BASE_PATH + '/sequenceAlignment/align',
 
     //LOCAL ALIGNMENT
     DNA_LOCAL_ALN:  API_BASE_PATH + '/dnaLocalAlignment',
@@ -37,6 +41,8 @@ const Routes = {
 
     //TASK TABLE
     GET_ALIGN_TABLE: API_BASE_PATH + '/getAlignTable',
+
+    SEARCH_ALIGNMENTS: INTEGRATION_API_BASE_PATH + '/sequenceAlignment/search',
 
     //TASK TABLE HOMOLOGY SEARCH
 

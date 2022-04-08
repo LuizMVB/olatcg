@@ -15,24 +15,23 @@ function TaskTableAlign() {
     const tableBodyBase2 = [];
 
     useEffect(() => { 
-        fetch(Toolkit.Routes.GET_ALIGN_TABLE)
+        fetch(Toolkit.Routes.SEARCH_ALIGNMENTS)
+        .then({
+            method: 'GET',
+            headers: {'Content-Type': 'application/json'}
+        })
         .then(res => res.json())
-        .then(data => 
-            setAlignData(data));   
+        .then(data => setAlignData(data));   
       }, []);
 
     const createJSXTableBodyAlignData = (alignData) => {
-        for(const key in alignData) {
-            if (Object.hasOwnProperty.call(alignData, key)) {
-                const element = alignData[key];
-                tableBodyAlignData.push(<tr key={key}>
-                                            <td>{key}</td>
-                                            <td>{element.aln_type ? element.aln_type : '-'}</td>
-                                            <td>{element.is_loaded === 'TRUE' ? <button className="waves-effect waves-light btn" onClick={() => {setItemSelected(element)}}>Veja o Resultado</button> : <span>Carregando...</span>}</td>
-                                        </tr>);
-            }
-        }
-        tableBodyAlignData.reverse();
+        alignData.sequenceAlignmentAnalyses.forEach((analysis, index) => {
+            tableBodyAlignData.push(<tr key={index}>
+                <td>{analysis.idAnalysis}</td>
+                <td>{analysis.type}</td>
+                <td><button className="waves-effect waves-light btn" onClick={() => {setItemSelected(analysis)}}>Veja o Resultado</button></td>
+            </tr>)
+        });
     }
 
     const createJSXTableOfBases = (aln1, aln2) => {
@@ -102,7 +101,7 @@ function TaskTableAlign() {
                     {itemSelected &&
                     <div className="col s10 offset-s1">
                         <div className="table">
-                            {createJSXTableOfBases(itemSelected.aln1, itemSelected.aln2, itemSelected.similarity)}
+                            {createJSXTableOfBases(itemSelected.alignmentA, itemSelected.alignmentB)}
                             <table className="centered highlight purple lighten-5">
                                 <thead>
                                     <tr>
@@ -127,11 +126,9 @@ function TaskTableAlign() {
                         <div className="metadata-table-container">
                             <table className="metadata-table">
                                 <thead>
-                                    <th>{msg('taskTable.align.columns.metadata.similaridade')}</th>
                                     <th>{msg('taskTable.align.columns.metadata.score')}</th>
                                 </thead>
                                 <tbody>
-                                    <td>{itemSelected.similarity}</td>
                                     <td>{itemSelected.score}</td>
                                 </tbody>
                             </table>

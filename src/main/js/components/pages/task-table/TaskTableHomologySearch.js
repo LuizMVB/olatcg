@@ -98,22 +98,22 @@ function TaskTableHomologySearch() {
                         <table className="centered highlight purple lighten-5 homology-search-table">
                             <thead>
                                 <tr>
-                                    <th>Id Sequência A</th>
-                                    <th>Sequência A</th>
-                                    <th>Sequência B</th>
-                                    <th>Alinhamento A</th>
-                                    <th>Alinhamento B</th>
+                                    <th>Identificador Sequência de Entrada</th>
+                                    <th>Sequência de Entrada</th>
+                                    <th>Sequência Correspondente</th>
+                                    <th>Alinhamento (Entrada)</th>
+                                    <th>Alinhamento (Correspondente)</th>
                                     <th>Taxonomia</th>
                                     <th>Score</th>
+                                    <th>País de Origem</th>
+                                    <th>Link NCBI</th>
                                 </tr>
                             </thead>    
                             <tbody>
                             {alignData.map((alignment, index) => (
                                 <tr key={index}>
                                     <td>
-                                        <div className="aln-column">
-                                            {alignment.inputSequenceId}
-                                        </div>
+                                        {alignment.inputSequenceId}
                                     </td>
                                     <td>
                                         <div className="aln-column">
@@ -122,7 +122,7 @@ function TaskTableHomologySearch() {
                                     </td>
                                     <td>
                                         <div className="aln-column">
-                                            {alignment.matchSequence}
+                                            {alignment.matchSequence.bases}
                                         </div>
                                     </td>
                                     <td>
@@ -137,6 +137,12 @@ function TaskTableHomologySearch() {
                                     </td>
                                     <td>{alignment.taxonomy}</td>
                                     <td>{alignment.score}</td>
+                                    <td>{alignment.matchSequence.countryOrigin}</td>
+                                    <td>
+                                        <a href={"https://www.ncbi.nlm.nih.gov/nuccore/" + alignment.matchSequence.externalDatabaseId}>
+                                            {alignment.matchSequence.externalDatabaseId}
+                                        </a>
+                                    </td>
                                 </tr>
                             ))}
                             </tbody>
