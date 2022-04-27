@@ -3,10 +3,12 @@ import Toolkit from '../../../infra/Toolkit';
 import Phylocanvas from 'phylocanvas';
 import Loading from '../../page-elements/loading/Loading';
 import '../../../../static/css/TaskTablePhylogeneticTree.css';
+import useRequest from '../../../hooks/useRequest';
 
 function TaskTablePhylogeneticTree() {
 
     const msg = Toolkit.Messages.getMessages;
+    const [makeRequest] = useRequest();
 
     const [phylogeneticTreeData, setPhylogeneticTreeData] = useState(undefined);
     const [itemSelected, setItemSelected] = useState(undefined);
@@ -62,9 +64,8 @@ function TaskTablePhylogeneticTree() {
     }
 
     useEffect(() => {
-        fetch(Toolkit.Routes.GET_TREES)
-        .then(res => res.json())
-        .then(data => setPhylogeneticTreeData(data));
+        makeRequest(Toolkit.Routes.GET_TREES, 'GET', 
+            undefined, undefined, data => setPhylogeneticTreeData(data));
     }, []);
    
     return (

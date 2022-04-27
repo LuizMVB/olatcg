@@ -2,9 +2,8 @@ import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import Toolkit from '../../../infra/Toolkit';
 import Dialog from '../../page-elements/dialog/Dialog';
-import Loading from '../../page-elements/loading/Loading';
 import '../../../../static/css/HomologySearch.css';
-
+import useRequest from '../../../hooks/useRequest';
 
 function HomologySearch(){
 
@@ -17,19 +16,14 @@ function HomologySearch(){
 
     const msg = Toolkit.Messages.getMessages;
 
-    const [errorDialogMessage, setErrorDialogMessage] = useState('');
+    const [makeRequest] = useRequest();
 
     const [inputSeqsFile, setInputSeqsFile] = useState();
-
     const [processId, setProcessId] = useState();
-
-    const [showSuccessDialog, setShowSuccessDialog] = useState(false);
-
-    const [showErrorDialog, setshowErrorDialog] = useState(false);
-    
+    const [isDialogOpened, openDialog] = useState(false);
+    const [dialogTitle, setDialogTitle] = useState();
+    const [dialogContent, setDialogContent] = useState();
     const [disabled, isDisabled] = useState(true);
-
-    const [loading, isLoading] = useState(false);
 
     useEffect(() => {
         if(inputSeqsFile) {
@@ -40,7 +34,6 @@ function HomologySearch(){
     }, [inputSeqsFile]);
 
     const validateAndUploadFile = (input) => {
-        isLoading(true)
         if(input.type === 'text/plain'){
             let readerBinaryString = new FileReader();
             readerBinaryString.readAsBinaryString(input);
@@ -55,14 +48,16 @@ function HomologySearch(){
                             }
                         }
                     } else {
-                        setErrorDialogMessage(msg('homologySearch.dialog.error.validacaoFalhou.conteudoArquivoInvalido.text'));
-                        setshowErrorDialog(true);
+                        setDialogTitle(msg('homologySearch.dialog.validacaoFalhou.title'));
+                        setDialogContent(<h5>{msg('homologySearch.dialog.error.validacaoFalhou.conteudoArquivoInvalido.text')}</h5>);
+                        openDialog(true);
                     }   
                 }
             };
         } else {
-            setErrorDialogMessage(msg('homologySearch.dialog.validacaoFalhou.formatoArquivoInvalido.text'));
-            setshowErrorDialog(true);
+            setDialogTitle(msg('homologySearch.dialog.validacaoFalhou.title'));
+            setDialogContent(<h5>{msg('homologySearch.dialog.validacaoFalhou.formatoArquivoInvalido.text')}</h5>);
+            openDialog(true);
         }
     }
 
@@ -75,33 +70,39 @@ function HomologySearch(){
         return false;
     }
 
+    const onSuccessUpload = (responseData) => {
+        if(responseData.errorCode){
+            setDialogTitle(msg('homologySearch.dialog.validacaoFalhou.title'));
+            setDialogContent(<h5>{msg('homologySearch.dialog.validacaoFalhou.formatoArquivoInvalido.text')}</h5>);
+            openDialog(true);
+        }else{
+            setDialogTitle(msg('dialog.default.processamento.title'));
+            setDialogContent(<div className="center">
+                                <h5>{msg('dialog.default.homologySearch.processamento.text1')}</h5>
+                                <Link to="task-table/homology-search">
+                                    <div className="dialog-message red lighten-5 hoverable">
+                                        <h5>{msg('dialog.default.processamento.text2')}</h5>
+                                        <h5>{msg('dialog.default.processamento.text3.seuId', responseData.idAnalysis)}</h5>
+                                    </div>
+                                </Link>
+                            </div>);
+            setProcessId(responseData.idAnalysis);
+            openDialog(true);
+        }
+    }
+
     const uploadSeqsFile = (name, description, encodedFile) => {
-        let data = JSON.stringify({
+        let uploadRequest = {
             name: name,
             description: description,
             encodedFile: encodedFile
-          });
-        fetch(Toolkit.Routes.GET_TAXONOMY_FROM_SEQUENCES, {
-            method: 'POST',
-            body: data,
-            headers: {'Content-Type': 'application/json'}
-        })
-        .then(res => res.json())
-        .then(data => {
-            isLoading(false);
-            if(data.errorCode){
-                setErrorDialogMessage(msg('homologySearch.dialog.validacaoFalhou.formatoArquivoInvalido.text'));
-                setshowErrorDialog(true);
-            }else{
-                setProcessId(data.idAnalysis);
-                setShowSuccessDialog(true);
-            }
-        });
-    }
+          };
+
+        makeRequest(Toolkit.Routes.GET_TAXONOMY_FROM_SEQUENCES, 'POST', uploadRequest, undefined, onSuccessUpload);
+    };
 
     return (
         <div className="HomologySearch">
-            {loading && <Loading freezeScreen={loading}></Loading>}
             <div className="container-fluid">
                 <div className="row">
                     <h3 className="header center grey-text text-darken-3">{msg('common.name.tools.buscaHomologa')}</h3>
@@ -128,26 +129,11 @@ function HomologySearch(){
                 </div>
             </div>
             <Dialog
-                title={msg('dialog.default.processamento.title')} 
-                show={showSuccessDialog} setShow={setShowSuccessDialog} 
+                title={dialogTitle}
+                show={isDialogOpened} setShow={openDialog} 
                 confirmLabel={msg('common.ok')} 
                 hasCancelButton={false}>
-                    <div className="center">
-                        <h5>{msg('dialog.default.homologySearch.processamento.text1')}</h5>
-                        <Link to="task-table/homology-search">
-                            <div className="dialog-message red lighten-5 hoverable">
-                                <h5>{msg('dialog.default.processamento.text2')}</h5>
-                                <h5>{processId && msg('dialog.default.processamento.text3.seuId', processId)}</h5>
-                            </div>
-                        </Link>
-                    </div>
-            </Dialog>
-            <Dialog
-                title={msg('homologySearch.dialog.validacaoFalhou.title')}
-                show={showErrorDialog} setShow={setshowErrorDialog} 
-                confirmLabel={msg('common.ok')} 
-                hasCancelButton={false}>
-                    <h5>{errorDialogMessage}</h5>
+                    {dialogContent}
             </Dialog>
         </div>
     );

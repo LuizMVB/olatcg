@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react';
 import Toolkit from '../../../infra/Toolkit';
 import Loading from '../../page-elements/loading/Loading';
 import Phylocanvas from 'phylocanvas';
+import useRequest from '../../../hooks/useRequest';
 
 function TaskTableHomologySearch() {
 
     const msg = Toolkit.Messages.getMessages;
+    const [makeRequest] = useRequest();
 
     const [taxonomySearchAnalysesResponse, setTaxonomySearchAnalysesResponse] = useState(undefined);
     const [alignData, setAlignData] = useState(undefined);
@@ -16,14 +18,8 @@ function TaskTableHomologySearch() {
     const [taxonomy, setTaxonomy] = useState(undefined);
 
     const generateTree = (idAnalysis) => {
-        fetch(Toolkit.Routes.GET_NEWICK_FROM_TAXONOMY + '?idAnalysis=' + idAnalysis,
-        {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'}
-        })
-        .then(res => res.json())
-        .then(data => data.nwkFormat)
-        .then(nwk => displayTree(nwk));
+        makeRequest(Toolkit.Routes.GET_NEWICK_FROM_TAXONOMY + '?idAnalysis=' + idAnalysis,
+            'POST', undefined, undefined, data => displayTree(data.nwkFormat));
     }
 
     const displayTree = (nwkFormat) => {
@@ -40,22 +36,9 @@ function TaskTableHomologySearch() {
     const onMouseMoveTree = (tree, evt) => {
         let hoveredLeave = tree.filter((leave) => leave.hovered === true)[0];
         if(hoveredLeave){
-            /**
-            let x = evt.clientX;
-            let y = evt.clientY;
-        
-            document.documentElement.style.setProperty('--mouse-x', x);
-            document.documentElement.style.setProperty('--mouse-y', y);
-            */
-
-            fetch(Toolkit.Routes.GET_TAXONOMY_FROM_SEQUENCE + '?sequenceId=' + hoveredLeave.id,
-            {
-                method: 'GET',
-                headers: {'Content-Type': 'application/json'}
-            })
-            .then(res => res.json())
-            .then(data => setTaxonomy(data.name))
-            .then(setShowLeaveTooltip(true));
+            makeRequest(Toolkit.Routes.GET_TAXONOMY_FROM_SEQUENCE + '?sequenceId=' + hoveredLeave.id,
+                        'GET', undefined, undefined, (taxonomy) => setTaxonomy(taxonomy.name), 
+                        () => setShowLeaveTooltip(true));
         }else{
             setTaxonomy(undefined);
             setShowLeaveTooltip(false);
@@ -63,9 +46,7 @@ function TaskTableHomologySearch() {
     }
 
     useEffect(() => {
-        fetch(Toolkit.Routes.GET_TAXONOMY_SEARCH_RECORDS)
-        .then(res => res.json())
-        .then(data => setTaxonomySearchAnalysesResponse(data));
+        makeRequest(Toolkit.Routes.GET_TAXONOMY_SEARCH_RECORDS, 'GET', undefined, undefined, data => setTaxonomySearchAnalysesResponse(data));
     }, []);
 
     return (

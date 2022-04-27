@@ -1,34 +1,30 @@
 import React from 'react';
 import '../../../../static/css/Loading.css';
 
-function Loading(props) {
-    const freezeScreen = props.freezeScreen;
-    return (
-        <>
-        {freezeScreen &&
-        <div className="loading">
-            <div className="container-fluid">
-                <div className="row">
-                    <div className="col s12 center">
-                        <br/>
-                        <div className="preloader-wrapper big active">
-                            <div className="spinner-layer spinner-green-only">
-                                <div className="circle-clipper left">
-                                    <div className="circle"></div>
-                                </div><div className="gap-patch">
-                                    <div className="circle"></div>
-                                </div><div className="circle-clipper right">
-                                    <div className="circle"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+function Loading({ show }) {
+    return <>
+        {show && 
+            <div className="Loading">
+                <div className="wrapper">
+                    <div id="dot1"></div>
+                    <div id="dot2"></div>
+                    <div id="dot3"></div>
+                    <div id="dot4"></div>
+                    <div id="dot5"></div>
+                    <div id="dot6"></div>
+                    <div id="dot7"></div>
+                    <div id="dot8"></div>
+                    <div id="dot9"></div>
+                    <div id="dot10"></div>
+                    <div id="base1"></div>
+                    <div id="base2"></div>
+                    <div id="base3"></div>
+                    <div id="base4"></div>
+                    <div id="base5"></div>
                 </div>
             </div>
-        </div>
         }
-        </>
-    )
+    </>
 }
 
 export default Loading;

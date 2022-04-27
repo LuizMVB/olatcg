@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import { useSelector } from "react-redux";
 import Nav from '../../page-elements/nav/Nav';
 import Footer from '../../page-elements/footer/Footer';
 import Home from '../home/Home';
@@ -11,10 +12,24 @@ import LocalAlignment from '../alignment/LocalAlignment';
 import PhylogeneticTree from '../phylogenetic-tree/PhylogeneticTree';
 import TaskTable from '../task-table/TaskTable';
 import '../../../../static/css/App.css';
+import Loading from '../../page-elements/loading/Loading';
 
 function App(){
-  return(
+
+  const pendingRequestsCount = useSelector(state => state.pendingRequestsCounter)
+  const [isLoading, showLoading] = useState(true);
+
+  useEffect(() => {
+    if(pendingRequestsCount > 0){
+      showLoading(true);
+    }else{
+      showLoading(false);
+    }
+  }, [pendingRequestsCount]);
+
+  return (
     <div className="app">
+      <Loading show={isLoading}></Loading>
       <Router>
         <Nav />
         <div className="global-row"> 

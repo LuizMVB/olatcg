@@ -2,10 +2,12 @@ import React, {useState, useEffect} from 'react';
 import Loading from '../../page-elements/loading/Loading';
 import '../../../../static/css/TaskTable.css'
 import Toolkit from '../../../infra/Toolkit';
+import useRequest from '../../../hooks/useRequest';
 
 function TaskTableAlign() {
 
     const msg = Toolkit.Messages.getMessages;
+    const [makeRequest] = useRequest();
 
     const [alignData, setAlignData] = useState(undefined);
     const [itemSelected, setItemSelected] = useState(undefined);
@@ -14,14 +16,12 @@ function TaskTableAlign() {
     const tableBodyBase1 = [];
     const tableBodyBase2 = [];
 
+    const onSuccessSearchAlignments = (searchResponse) => {
+        setAlignData(searchResponse);
+    };
+
     useEffect(() => { 
-        fetch(Toolkit.Routes.SEARCH_ALIGNMENTS)
-        .then({
-            method: 'GET',
-            headers: {'Content-Type': 'application/json'}
-        })
-        .then(res => res.json())
-        .then(data => setAlignData(data));   
+        makeRequest(Toolkit.Routes.SEARCH_ALIGNMENTS, 'GET', undefined, undefined, onSuccessSearchAlignments)  
       }, []);
 
     const createJSXTableBodyAlignData = (alignData) => {

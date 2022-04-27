@@ -29,11 +29,7 @@
     z-index: 1;
 }
 
-.GlobalAlignment .tooltip .tooltiptext {
-    left: 37px;
-}
-
-.LocalAlignment .tooltip .tooltiptext {
+.Alignment .tooltip .tooltiptext {
     left: 37px;
 }
 

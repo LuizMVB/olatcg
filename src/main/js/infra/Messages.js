@@ -19,6 +19,8 @@ var data = {
     'common.subtitle.notFound'                  : 'Realize alguma operação disponível em "Ferramentas" para que algum resultado' +
                                                     ' seja exibido.',
     'common.exemplo'                            : 'Exemplo ',
+    'common.sucesso'                            : 'Operação realizada com sucesso!',
+    'common.erroGeral'                          : 'Ocorreu um erro',
 
     // DEFAULT MODAL MESSAGES
     'dialog.default.processamento.title'                                 : 'Processamento Iniciado',
@@ -84,23 +86,23 @@ var data = {
 
     //GLOBAL ALIGNMENT
     'alignment.global.pageTitle'                    : 'Alinhamento Global',
-    'alignment.global.description'                  : 'Utilize as sequências que você deseja alinhar nas caixas de texto a seguir. ' +
+    'alignment.description'                  : 'Utilize as sequências que você deseja alinhar nas caixas de texto a seguir. ' +
                                                       'Aproveite para fazer alterações manuais e ver o quanto os resultados podem ' +
                                                       'mudam. Além disso, você pode selecionar o algoritmo que deseja utilizar para ' +
                                                       'realizar o alinhamento e as penalidades de abertura e extesão no alinhamento. ' +
                                                       'Divirta-se!',
-    'alignment.global.label.sequeanciaA'            : 'Sequência A',
-    'alignment.global.label.sequenciaB'             : 'Sequência B',
-    'alignment.global.tooltip.message.text'         : 'Verifique se as sequências estão com os caracteres corretos antes de enviá-las.',
-    'alignment.global.tooltip.message.example'      : 'Ex.: A, T, C ou G caso DNA',
-    'alignment.global.label.selectBase'             : 'O que você quer alinhar?',
-    'alignment.global.select.option.escolhaOpcao'   : 'Escolha sua opção',
-    'alignment.global.select.option.dna'            : 'DNA',
-    'alignment.global.select.option.rna'            : 'RNA',
-    'alignment.global.select.option.proteina'       : 'Proteína',
-    'alignment.global.button.submmit.alinhar'       : 'Alinhar',
-    'alignment.global.dialog.text'                  : 'Seu alinhamento está sendo realizado, seu id será exibido na tela',
-    'alignment.global.dialog.ultimoId'              : 'Último ID: {}',
+    'alignment.label.sequeanciaA'            : 'Sequência A',
+    'alignment.label.sequenciaB'             : 'Sequência B',
+    'alignment.tooltip.message.text'         : 'Verifique se as sequências estão com os caracteres corretos antes de enviá-las.',
+    'alignment.tooltip.message.example'      : 'Ex.: A, T, C ou G caso DNA',
+    'alignment.label.selectBase'             : 'O que você quer alinhar?',
+    'alignment.select.option.escolhaOpcao'   : 'Escolha sua opção',
+    'alignment.select.option.dna'            : 'DNA',
+    'alignment.select.option.rna'            : 'RNA',
+    'alignment.select.option.proteina'       : 'Proteína',
+    'alignment.button.submmit.alinhar'       : 'Alinhar',
+    'alignment.dialog.text'                  : 'Seu alinhamento está sendo realizado, seu id será exibido na tela',
+    'alignment.dialog.ultimoId'              : 'Último ID: {}',
 
     //ALIGNMENT
     'alignment.dialog.validacaoFalhou.title'          : 'Verifique Suas Sequências',
