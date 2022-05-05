@@ -44,7 +44,7 @@ function HomologySearch(){
                         readerDataUrl.readAsDataURL(input);
                         readerDataUrl.onload = function(evt){
                             if(evt.target.readyState == FileReader.DONE){
-                                uploadSeqsFile(input.name, 'description', evt.target.result);
+                                uploadSeqFile(input.name, 'description', evt.target.result);
                             }
                         }
                     } else {
@@ -91,7 +91,7 @@ function HomologySearch(){
         }
     }
 
-    const uploadSeqsFile = (name, description, encodedFile) => {
+    const uploadSeqFile = (name, description, encodedFile) => {
         let uploadRequest = {
             name: name,
             description: description,
@@ -107,7 +107,7 @@ function HomologySearch(){
                 <div className="row">
                     <h3 className="header center grey-text text-darken-3">{msg('common.name.tools.buscaHomologa')}</h3>
                     <div className="col s12 center">
-                        <p className="grey-text text-darken-3">{msg('homologySearch.label.upload')}</p>
+                        <p className="grey-text text-darken-3">{msg('common.seqFile.label.upload')}</p>
                         <div className="tooltip">
                             <button className="btn-floating amber"><i className="material-icons grey-text text-darken-3">help_outline</i></button>
                             <span className="tooltiptext">{msg('homologySearch.tooltip.upload.message')}

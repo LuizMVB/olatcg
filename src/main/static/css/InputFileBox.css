@@ -1,0 +1,8 @@
+.InputFileBox .tooltip {
+    bottom: 40px;
+    left: 390px;
+}
+
+.InputFileBox .dialog-message {
+    padding: 10px;
+}

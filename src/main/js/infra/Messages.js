@@ -8,7 +8,7 @@ var data = {
     'common.name.tools.alinhamentoLocal'        : 'Alinhamento Local',
     'common.name.tools.alinhamentoGlobal'       : 'Alinhamento Global',
     'common.name.tools.buscaHomologa'           : 'Busca Homóloga',
-    'common.name.tools.arvoreFilogenetica'      : 'Árvore Filogenética',
+    'common.name.tools.blast'                   : 'Blast',
     'common.confirmar'                          : 'Confirmar',
     'common.cancelar'                           : 'Cancelar',
     'common.ok'                                 : 'Ok',
@@ -81,8 +81,8 @@ var data = {
     'tools.card.text.buscaHomologa'             : 'Submeta uma lista de sequências contra um banco de dados filogeneticamente ' +
                                                   'anotado e receba uma análise comparativa das combinações com maior similaridade ' +
                                                   'referente ao alinhamento dessas sequências',
-    'tools.card.text.arvoreFilogenetica'        : 'Utilize seus arquivos de sequências filogeneticamente anotados gerados na ferramenta ' + 
-                                                  '"Busca Homóloga" para gerar uma Árvore Filogenética',
+    'tools.card.text.blast'                     : 'Utilize a ferramenta Blastn. Submeta uma lista de nucleotídeos e veja quais são os ' +
+                                                  'resultados encontrados.',
 
     //GLOBAL ALIGNMENT
     'alignment.global.pageTitle'                    : 'Alinhamento Global',
@@ -117,7 +117,7 @@ var data = {
     'homologySearch.dialog.validacaoFalhou.formatoArquivoInvalido.text'         : 'O formato do arquivo de entrada precisa ser .txt',
     'homologySearch.dialog.error.validacaoFalhou.conteudoArquivoInvalido.text' : 'O arquivo contém caracteres inválidos',
 
-    'homologySearch.label.upload'                                               : 'Faça upload do arquivo de sequências aqui: ',
+    'common.seqFile.label.upload'                                               : 'Faça upload do arquivo de sequências aqui: ',
     'homologySearch.tooltip.upload.message'                                     : 'Aqui você deve usar como entrada um arquivo .txt, ' +
                                                                                    'cada linha deve representar uma sequência VÁLIDA (sem ' +
                                                                                    'caracteres que não fazem parte dela (Ex.: somente "A", ' + 

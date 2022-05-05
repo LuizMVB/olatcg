@@ -13,6 +13,7 @@ import PhylogeneticTree from '../phylogenetic-tree/PhylogeneticTree';
 import TaskTable from '../task-table/TaskTable';
 import '../../../../static/css/App.css';
 import Loading from '../../page-elements/loading/Loading';
+import Blast from '../blast/Blast';
 
 function App(){
 
@@ -40,11 +41,10 @@ function App(){
             <Route path="/homology-search" component={HomologySearch} />
             <Route path="/global-alignment" component={GlobalAlignment} />
             <Route path="/local-alignment" component={LocalAlignment} />
-            <Route path="/phylogenetic-tree" component={PhylogeneticTree} />
+            <Route path="/blast" component={Blast} />
             <Route path="/task-table" exact component={TaskTable} />
             <Route path="/task-table/align" component={TaskTable} />
             <Route path="/task-table/homology-search" component={TaskTable} />
-            <Route path="/task-table/phylogenetic-tree" component={TaskTable} />
           </Switch>
         </div>
         <Footer />
