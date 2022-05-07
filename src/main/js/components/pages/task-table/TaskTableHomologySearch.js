@@ -13,7 +13,6 @@ function TaskTableHomologySearch() {
     const [alignData, setAlignData] = useState(undefined);
     const [idAnalysis, setIdAanalysis] = useState(undefined);
     const [showTree, setShowTree] = useState(undefined);
-    const [leaves, setLeaves] = useState(undefined);
     const [leaveTooltip, setShowLeaveTooltip] = useState(undefined);
     const [taxonomy, setTaxonomy] = useState(undefined);
 
@@ -30,20 +29,22 @@ function TaskTableHomologySearch() {
         phyloTree.setTextSize(30);
         phyloTree.setTreeType("rectangular");
         phyloTree.lineWidth = 2;
-        setLeaves(phyloTree.leaves);
+        phyloTree.shiftKeyDrag = true;
+        console.log(phyloTree);
+        console.log(phyloTree);
+        phyloTree.on('updated', ({ property, nodeIds }) => {
+            if (property === 'selected' && phyloTree.branches[nodeIds]) {
+                if(phyloTree.branches[nodeIds].selected){
+                    makeRequest(Toolkit.Routes.GET_TAXONOMY_FROM_SEQUENCE + '?sequenceId=' + nodeIds,
+                                'GET', undefined, undefined, (taxonomy) => setTaxonomy(taxonomy.name), 
+                                () => setShowLeaveTooltip(true));
+                }else{
+                    setTaxonomy('');
+                    setShowLeaveTooltip(false);
+                }
+            }
+        });
     };
-
-    const onMouseMoveTree = (tree, evt) => {
-        let hoveredLeave = tree.filter((leave) => leave.hovered === true)[0];
-        if(hoveredLeave){
-            makeRequest(Toolkit.Routes.GET_TAXONOMY_FROM_SEQUENCE + '?sequenceId=' + hoveredLeave.id,
-                        'GET', undefined, undefined, (taxonomy) => setTaxonomy(taxonomy.name), 
-                        () => setShowLeaveTooltip(true));
-        }else{
-            setTaxonomy(undefined);
-            setShowLeaveTooltip(false);
-        }
-    }
 
     useEffect(() => {
         makeRequest(Toolkit.Routes.GET_TAXONOMY_SEARCH_RECORDS, 'GET', undefined, undefined, data => setTaxonomySearchAnalysesResponse(data));
@@ -138,7 +139,7 @@ function TaskTableHomologySearch() {
                 {showTree &&
                 <div className="row">
                     <div className="col s8">
-                        <div onMouseMove={event => onMouseMoveTree(leaves, event)} id="phylocanvas">
+                        <div id="phylocanvas">
                         </div>
                     </div>
                     <div className="col s4">

@@ -3,11 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 const useRequest = () => {
     const dispatch = useDispatch();
     const pendingRequestsCount = useSelector(state => state.pendingRequestsCounter);
-    const makeRequest = (action, method, body, onResponse, onSuccess, onFinally) => {
-        dispatch({
-            type: 'ADD_PENDING_REQUEST',
-            payload: pendingRequestsCount,
-        });
+    const makeRequest = (action, method, body, onResponse, onSuccess, onFinally, withLoading=true) => {
+        if(withLoading){
+            dispatch({
+                type: 'ADD_PENDING_REQUEST',
+                payload: pendingRequestsCount,
+            });
+        }
+
         let headers = {
             "Content-Type": "application/json"        
         };
@@ -26,10 +29,12 @@ const useRequest = () => {
             })
             .finally((data) => {
                 onFinally?.(data);
-                dispatch({
-                    type: 'REMOVE_PENDING_REQUEST',
-                    payload: pendingRequestsCount + 1, //async correction
-                });
+                if(withLoading){
+                    dispatch({
+                        type: 'REMOVE_PENDING_REQUEST',
+                        payload: pendingRequestsCount + 1, //async correction
+                    });
+                }
             });
     };
 

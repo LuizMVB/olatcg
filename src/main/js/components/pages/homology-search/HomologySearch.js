@@ -4,6 +4,7 @@ import Toolkit from '../../../infra/Toolkit';
 import Dialog from '../../page-elements/dialog/Dialog';
 import '../../../../static/css/HomologySearch.css';
 import useRequest from '../../../hooks/useRequest';
+import ValidationService from '../../../services/ValitationService';
 
 function HomologySearch(){
 
@@ -39,7 +40,7 @@ function HomologySearch(){
             readerBinaryString.readAsBinaryString(input);
             readerBinaryString.onload = function (evt) {
                 if(evt.target.readyState == FileReader.DONE){
-                    if(validateTextFileContent(evt.target.result)){
+                    if(ValidationService.validateSeqFileContent(evt.target.result)){
                         let readerDataUrl = new FileReader();
                         readerDataUrl.readAsDataURL(input);
                         readerDataUrl.onload = function(evt){
@@ -61,19 +62,10 @@ function HomologySearch(){
         }
     }
 
-    const validateTextFileContent = (strContent) => {
-        let re1 = new RegExp('\n', 'g');
-        let re2 = new RegExp('[atcgATCG]', 'g');
-        if(strContent.replaceAll(re1, '').replaceAll(re2, '').trim().length === 0) {
-            return true;
-        }
-        return false;
-    }
-
     const onSuccessUpload = (responseData) => {
-        if(responseData.errorCode){
+        if(responseData.error){
             setDialogTitle(msg('homologySearch.dialog.validacaoFalhou.title'));
-            setDialogContent(<h5>{msg('homologySearch.dialog.validacaoFalhou.formatoArquivoInvalido.text')}</h5>);
+            setDialogContent(<h5>{responseData.errorDescription ? responseData.errorDescription : msg('common.erroGeral')}</h5>);
             openDialog(true);
         }else{
             setDialogTitle(msg('dialog.default.processamento.title'));
@@ -97,7 +89,6 @@ function HomologySearch(){
             description: description,
             encodedFile: encodedFile
           };
-
         makeRequest(Toolkit.Routes.GET_TAXONOMY_FROM_SEQUENCES, 'POST', uploadRequest, undefined, onSuccessUpload);
     };
 
@@ -105,7 +96,7 @@ function HomologySearch(){
         <div className="HomologySearch">
             <div className="container-fluid">
                 <div className="row">
-                    <h3 className="header center grey-text text-darken-3">{msg('common.name.tools.buscaHomologa')}</h3>
+                    <h3 className="header center grey-text text-darken-3">{msg('common.name.tools.buscaTaxonomia')}</h3>
                     <div className="col s12 center">
                         <p className="grey-text text-darken-3">{msg('common.seqFile.label.upload')}</p>
                         <div className="tooltip">

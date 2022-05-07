@@ -5,9 +5,11 @@ var data = {
     'common.button.value.vamosLa'               : 'Vamos lá!',
     'common.button.value.voltar'                : 'Voltar',
     'common.simbol.separate'                    : '|',
+    'common.alinhamento'                        : 'Alinhamento',
+    'common.taxonomia'                          : 'Taxonomia',
     'common.name.tools.alinhamentoLocal'        : 'Alinhamento Local',
     'common.name.tools.alinhamentoGlobal'       : 'Alinhamento Global',
-    'common.name.tools.buscaHomologa'           : 'Busca Homóloga',
+    'common.name.tools.buscaTaxonomia'          : 'Busca Por Taxonomia',
     'common.name.tools.blast'                   : 'Blast',
     'common.confirmar'                          : 'Confirmar',
     'common.cancelar'                           : 'Cancelar',
@@ -24,7 +26,7 @@ var data = {
 
     // DEFAULT MODAL MESSAGES
     'dialog.default.processamento.title'                                 : 'Processamento Iniciado',
-    'dialog.default.homologySearch.processamento.text1'                  : 'A busca homóloga está sendo realizada. As sequências serão comparadas com ' +
+    'dialog.default.homologySearch.processamento.text1'                  : 'A busca por taxonomia está sendo realizada. As sequências serão comparadas com ' +
                                                                                   'um banco de sequências filogeneticamente anotadas e retornarão sua filogenia ' +
                                                                                   'mais provável baseando-se nessa comparação',
     'dialog.default.alignment.processamento.text1'                       : 'Seu alinhamento está sendo realizado, seu id será exibido na tela.',                                                                             
@@ -140,7 +142,7 @@ var data = {
     //PHYLOGENETIC TREE
     'phylogeneticTree.textLabel.upload'                                         : 'Faça upload do arquivo de um arquivo .fasta',
     'phylogeneticTree.tooltip.text'                                             : 'Caso você não tenha um arquivo .fasta para gerar a Árvore Filogenética realize os processos necessários utilizando ' + 
-                                                                                'a ferramenta "Busca Homóloga" e faça o download do arquivo gerado na tabela de processamento.',
+                                                                                'a ferramenta "busca por taxonomia" e faça o download do arquivo gerado na tabela de processamento.',
     'phylogeneticTree.button.gerarArvore'                                       : 'Gerar Árvore',
     
     'phylogeneticTree.dialog.validacaoFalhou.caracteresInvalidos.title'         : 'Verifique suas sequências',

@@ -16,12 +16,12 @@ function TaskTable() {
             <div className="row">
             <Router>
                 <TaskTableSelection />
-                    <Switch>
-                        <Route path="/task-table/align" component={TaskTableAlign} />
-                        <Route path="/task-table/homology-search" component={TaskTableHomologySearch} />
-                        <Route path="/task-table/phylogenetic-tree" component={TaskTablePhylogeneticTree} /> 
-                    </Switch>
-                </Router>
+                <Switch>
+                    <Route path="/task-table/align" component={TaskTableAlign} />
+                    <Route path="/task-table/homology-search" component={TaskTableHomologySearch} />
+                    {false && <Route path="/task-table/phylogenetic-tree" component={TaskTablePhylogeneticTree} />} 
+                </Switch>
+            </Router>
             </div>
         </div>
     );

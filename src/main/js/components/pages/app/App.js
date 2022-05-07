@@ -9,7 +9,6 @@ import Tools from '../tools/Tools';
 import HomologySearch from '../homology-search/HomologySearch';
 import GlobalAlignment from '../alignment/GlobalAlignment';
 import LocalAlignment from '../alignment/LocalAlignment';
-import PhylogeneticTree from '../phylogenetic-tree/PhylogeneticTree';
 import TaskTable from '../task-table/TaskTable';
 import '../../../../static/css/App.css';
 import Loading from '../../page-elements/loading/Loading';
@@ -41,7 +40,7 @@ function App(){
             <Route path="/homology-search" component={HomologySearch} />
             <Route path="/global-alignment" component={GlobalAlignment} />
             <Route path="/local-alignment" component={LocalAlignment} />
-            <Route path="/blast" component={Blast} />
+            {false && <Route path="/blast" component={Blast} />}
             <Route path="/task-table" exact component={TaskTable} />
             <Route path="/task-table/align" component={TaskTable} />
             <Route path="/task-table/homology-search" component={TaskTable} />

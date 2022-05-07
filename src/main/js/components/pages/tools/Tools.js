@@ -23,14 +23,14 @@ function Tools() {
                             description={msg('tools.card.text.alinhamentoGlobal')} path="/global-alignment" />
                     </div>
                     <div className="col s4">
-                        <SimpleCard img={HomologySearch} title={msg('common.name.tools.buscaHomologa')}
+                        <SimpleCard img={HomologySearch} title={msg('common.name.tools.buscaTaxonomia')}
                             description={msg('tools.card.text.buscaHomologa')} path="/homology-search" />
                     </div>
-                    <div className="col s4">
+                    {false && <div className="col s4">
                         <SimpleCard img={Blast} title={msg('common.name.tools.blast')} 
                             description={msg('tools.card.text.blast')} 
                             path="/blast"/>
-                    </div>
+                    </div>}
                 </div>
             </div>
         </div>

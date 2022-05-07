@@ -25,13 +25,15 @@ function TaskTableAlign() {
       }, []);
 
     const createJSXTableBodyAlignData = (alignData) => {
-        alignData.sequenceAlignmentAnalyses.forEach((analysis, index) => {
-            tableBodyAlignData.push(<tr key={index}>
-                <td>{analysis.idAnalysis}</td>
-                <td>{analysis.type}</td>
-                <td><button className="waves-effect waves-light btn" onClick={() => {setItemSelected(analysis)}}>Veja o Resultado</button></td>
-            </tr>)
-        });
+        if(alignData.length > 0){
+            alignData.sequenceAlignmentAnalyses.forEach((analysis, index) => {
+                tableBodyAlignData.push(<tr key={index}>
+                    <td>{analysis.idAnalysis}</td>
+                    <td>{analysis.type}</td>
+                    <td><button className="waves-effect waves-light btn" onClick={() => {setItemSelected(analysis)}}>Veja o Resultado</button></td>
+                </tr>)
+            });
+        }
     }
 
     const createJSXTableOfBases = (aln1, aln2) => {
@@ -80,9 +82,6 @@ function TaskTableAlign() {
             <div className="container-fluid">
                 <div className="row">
                     <div className="col s10 offset-s1">
-                        {!alignData &&
-                            <Loading />
-                        }
                         {!itemSelected && alignData && 
                         <table className="centered highlight purple lighten-5">
                             <thead>
