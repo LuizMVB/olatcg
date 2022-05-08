@@ -29,7 +29,7 @@ function GlobalAlignment() {
 
     const validateForm = (inputSeq1, inputSeq2) => {
         let re;
-        if(selectSequenceType.toUppercase() === 'DNA') {
+        if(selectSequenceType === 'dna') {
             re = new RegExp('[atcgATCG]', 'g');
         } else if(selectSequenceType === 'rna') {
             re = new RegExp('[aucgAUCG]', 'g');
@@ -43,7 +43,7 @@ function GlobalAlignment() {
     };
 
     const onSuccessAlign = (responseData) => {
-        if(!responseData.errorCode){
+        if(!responseData.error){
             setProcessId(responseData.idAnalysis);
             setDialogTitle(msg('dialog.default.processamento.title'));
             setDialogContent(<div className="center">
@@ -57,9 +57,7 @@ function GlobalAlignment() {
                             </div>);
         }else{
             setDialogTitle(msg('common.erroGeral'))
-            setDialogContent(<div className="center">
-                                <h5>{responseData.errorDescription}</h5>
-                            </div>);
+            setDialogContent(<h5>{responseData.errorDescription ? responseData.errorDescription : msg('common.erroGeral')}</h5>);
         }
         openDialog(true);
     };

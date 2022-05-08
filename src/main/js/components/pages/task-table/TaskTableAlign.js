@@ -25,7 +25,7 @@ function TaskTableAlign() {
       }, []);
 
     const createJSXTableBodyAlignData = (alignData) => {
-        if(alignData.length > 0){
+        if(alignData.sequenceAlignmentAnalyses.length > 0){
             alignData.sequenceAlignmentAnalyses.forEach((analysis, index) => {
                 tableBodyAlignData.push(<tr key={index}>
                     <td>{analysis.idAnalysis}</td>

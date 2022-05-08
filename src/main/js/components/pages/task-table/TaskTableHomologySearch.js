@@ -30,8 +30,6 @@ function TaskTableHomologySearch() {
         phyloTree.setTreeType("rectangular");
         phyloTree.lineWidth = 2;
         phyloTree.shiftKeyDrag = true;
-        console.log(phyloTree);
-        console.log(phyloTree);
         phyloTree.on('updated', ({ property, nodeIds }) => {
             if (property === 'selected' && phyloTree.branches[nodeIds]) {
                 if(phyloTree.branches[nodeIds].selected){

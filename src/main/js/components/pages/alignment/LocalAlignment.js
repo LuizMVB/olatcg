@@ -57,9 +57,7 @@ function LocalAlignment() {
                             </div>);
         }else{
             setDialogTitle(msg('common.erroGeral'))
-            setDialogContent(<div className="center">
-                                <h5>{responseData.errorDescription}</h5>
-                            </div>);
+            setDialogContent(<h5>{responseData.errorDescription ? responseData.errorDescription : msg('common.erroGeral')}</h5>);
         }
         openDialog(true);
     };
@@ -84,7 +82,7 @@ function LocalAlignment() {
             <div className="container">
                 <div className="row">
                     <div className="col s12">
-                        <h3 className="header center grey-text text-darken-5">{msg('alignment.local.pageTitle')}</h3>
+                        <h3 className="header center grey-text text-darken-5">{msg('common.name.tools.alinhamentoLocal')}</h3>
                         <br/>
                         <div className="red lighten-5 grey-text text-darken-5">
                             <h6>
