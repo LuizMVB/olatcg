@@ -31,8 +31,8 @@ const Blast = () => {
 
     const onSuccessUpload = (responseData) => {
         if(responseData.errorCode){
-            setDialogTitle(msg('homologySearch.dialog.validacaoFalhou.title'));
-            setDialogContent(<h5>{msg('homologySearch.dialog.validacaoFalhou.formatoArquivoInvalido.text')}</h5>);
+            setDialogTitle(msg('common.erroGeral'));
+            setDialogContent(<h5>{responseData.errorDescription ? responseData.errorDescription : msg('common.erroGeral')}</h5>);
             openDialog(true);
         }else{
             setDialogTitle(msg('dialog.default.processamento.title'));
