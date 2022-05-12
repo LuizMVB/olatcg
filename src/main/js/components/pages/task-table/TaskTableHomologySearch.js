@@ -3,6 +3,7 @@ import Toolkit from '../../../infra/Toolkit';
 import Loading from '../../page-elements/loading/Loading';
 import Phylocanvas from 'phylocanvas';
 import useRequest from '../../../hooks/useRequest';
+import SystemConstants from '../../../infra/SystemConstants';
 
 function TaskTableHomologySearch() {
 
@@ -45,7 +46,8 @@ function TaskTableHomologySearch() {
     };
 
     useEffect(() => {
-        makeRequest(Toolkit.Routes.GET_TAXONOMY_SEARCH_RECORDS, 'GET', undefined, undefined, data => setTaxonomySearchAnalysesResponse(data));
+        makeRequest(Toolkit.Routes.GET_TAXONOMY_SEARCH_RECORDS, 'GET', undefined, undefined, data => setTaxonomySearchAnalysesResponse(data))
+        setInterval(() => makeRequest(Toolkit.Routes.GET_TAXONOMY_SEARCH_RECORDS, 'GET', undefined, undefined, data => setTaxonomySearchAnalysesResponse(data), undefined, false), 5000);
     }, []);
 
     return (
@@ -64,12 +66,44 @@ function TaskTableHomologySearch() {
                     </thead>    
                     <tbody>
                         {taxonomySearchAnalysesResponse.
-                            taxonomySearchRecords.map((record, indexRecord) => (
-                                <tr key={indexRecord}>
-                                    <td>{record.idAnalysis}</td>
-                                    <td>{<button className="waves-effect waves-light btn" onClick={() => {setAlignData(record.alignments); setIdAanalysis(record.idAnalysis)}}>Veja o Resultado</button>}</td>
-                                </tr>
-                            ))}
+                            taxonomySearchRecords.map((record, indexRecord) => 
+                                {
+                                    let statusMsg = '';
+                                    let statusColor = '';
+                                    let isOpenResultsButtonDisabled = true;
+                                    if(record.status === SystemConstants.STATUS_CARREGAMENTO.STARTED){
+                                        statusMsg = msg('common.carregando');
+                                        isOpenResultsButtonDisabled = true;
+                                    }else if(record.status === SystemConstants.STATUS_CARREGAMENTO.FAILED){
+                                        statusMsg = msg('common.erro');
+                                        statusColor = '#fce4ec';
+                                        isOpenResultsButtonDisabled = true;
+                                    }else{
+                                        statusMsg = msg('common.concluido');
+                                        statusColor = "#c8e6c8"
+                                        isOpenResultsButtonDisabled = false;
+                                    }
+
+                                    return (
+                                        <tr key={indexRecord} style={{backgroundColor: statusColor}}>
+                                            <td>{record.idAnalysis}</td>
+                                            <td>
+                                                {<button 
+                                                    className="waves-effect waves-light btn" 
+                                                    disabled={isOpenResultsButtonDisabled} 
+                                                    onClick={() => {
+                                                                        setAlignData(record.alignments); 
+                                                                        setIdAanalysis(record.idAnalysis)
+                                                                    }}
+                                                >
+                                                    Veja o Resultado
+                                                </button>}
+                                            </td>
+                                            <td>{statusMsg}</td>
+                                        </tr>
+                                    )
+                                }
+                            )}
                     </tbody>
                 </table>}
                 {!showTree && alignData &&

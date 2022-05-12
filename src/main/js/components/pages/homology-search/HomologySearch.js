@@ -64,13 +64,14 @@ function HomologySearch(){
 
     const onSuccessUpload = (responseData) => {
         if(responseData.error){
-            setDialogTitle(msg('homologySearch.dialog.validacaoFalhou.title'));
+            setDialogTitle(msg('common.erroGeral'));
             setDialogContent(<h5>{responseData.errorDescription ? responseData.errorDescription : msg('common.erroGeral')}</h5>);
             openDialog(true);
         }else{
             setDialogTitle(msg('dialog.default.processamento.title'));
             setDialogContent(<div className="center">
                                 <h5>{msg('dialog.default.homologySearch.processamento.text1')}</h5>
+                                <span>{responseData.description ? responseData.description : ''}</span>
                                 <Link to="task-table/homology-search">
                                     <div className="dialog-message red lighten-5 hoverable">
                                         <h5>{msg('dialog.default.processamento.text2')}</h5>

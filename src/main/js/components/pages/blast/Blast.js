@@ -96,7 +96,7 @@ const Blast = () => {
                         <h3 className="header center grey-text text-darken-3">{msg('common.name.tools.blast')}</h3>
                         <div className="col s12 center">
                             <InputFileBox label={msg('common.seqFile.label.upload')} tooltipMsg={msg('seqFile.tooltip.upload.message')}
-                                exampleFileContent={SystemConstants.exampleSeqFile} setInputFile={setInputSeqFile} />
+                                exampleFileContent={SystemConstants.EXAMPLE_SEQ_FILE} setInputFile={setInputSeqFile} />
                             <br/><br/>
                             <div className="col s12 center">
                                 <br/>

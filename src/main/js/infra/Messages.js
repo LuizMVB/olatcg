@@ -23,13 +23,16 @@ var data = {
     'common.exemplo'                            : 'Exemplo ',
     'common.sucesso'                            : 'Operação realizada com sucesso!',
     'common.erroGeral'                          : 'Ocorreu um erro',
+    'common.erro'                               : 'Erro',
+    'common.concluido'                          : 'Concluído',
+    'common.carregando'                         : 'Carregando',
 
     // DEFAULT MODAL MESSAGES
     'dialog.default.processamento.title'                                 : 'Processamento Iniciado',
-    'dialog.default.homologySearch.processamento.text1'                  : 'A busca por taxonomia está sendo realizada. As sequências serão comparadas com ' +
-                                                                                  'um banco de sequências filogeneticamente anotadas e retornarão sua filogenia ' +
-                                                                                  'mais provável baseando-se nessa comparação',
-    'dialog.default.alignment.processamento.text1'                       : 'Seu alinhamento está sendo realizado, seu id será exibido na tela.',                                                                             
+    'dialog.default.homologySearch.processamento.text1'                  : 'Busca por taxonomia: As sequências serão comparadas com ' +
+                                                                            'um banco de sequências filogeneticamente anotadas e retornarão sua filogenia ' +
+                                                                            'mais provável baseando-se nessa comparação',
+    'dialog.default.alignment.processamento.text1'                       : 'Seu alinhamento está sendo realizado, o id será exibido na tela.',                                                                             
     'dialog.default.tree.processamento.text1'                            : 'A arvore filogenética está sendo montada. Por favor aguarde um instante',
     'dialog.default.processamento.text2'                                 : 'Acompanhe o resultado na fila de processamento',
     'dialog.default.processamento.text3.seuId'                           : 'Seu ID: {}',
@@ -37,6 +40,7 @@ var data = {
     'dialog.default.validacaoFalhou.caracteresInvalidos.text'            : 'As sequências presentes neste arquivo não estão de acordo com o padrão IUPAC. ' +
                                                                                   'Foi detectada a existência de caracteres inválidos. Por favor reavalie o conteúdo' + 
                                                                                   'do arquivo e tente novamente.',
+    'dialog.default.carregando.title'                                    : 'Ops, isso pode demorar um pouco!', 
 
     // NAV
     'nav.links.home'                : 'Home',
