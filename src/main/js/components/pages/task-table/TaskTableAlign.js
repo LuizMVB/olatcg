@@ -125,9 +125,11 @@ function TaskTableAlign() {
                             <table className="metadata-table">
                                 <thead>
                                     <th>{msg('taskTable.align.columns.metadata.score')}</th>
+                                    <th>{msg('taskTable.similaridade')}</th>
                                 </thead>
                                 <tbody>
                                     <td>{itemSelected.score}</td>
+                                    <td>{itemSelected.similarity}</td>
                                 </tbody>
                             </table>
                         </div>

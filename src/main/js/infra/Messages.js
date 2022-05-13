@@ -130,18 +130,19 @@ var data = {
                                                                                    '"T", "C", "G" caso DNA)).',
 
     //TASK TABLE
-    'taskTable.homologySearch.column.id'            : 'id',
-    'taskTable.homologySearch.column.resultados'    : 'Resultados',
-    'taskTable.homologySearch.column.arquivoOrigem' : 'Arquivo de Origem',
-    'taskTable.homologySearch.column.arquivoGerado' : 'Arquivo Gerado',
+    'taskTable.homologySearch.column.id'                    : 'id',
+    'taskTable.homologySearch.column.resultados'            : 'Resultados',
+    'taskTable.homologySearch.column.arquivoOrigem'         : 'Arquivo de Origem',
+    'taskTable.homologySearch.column.arquivoGerado'         : 'Arquivo Gerado',
 
-    'taskTable.align.columns.metadata.similaridade'     : 'Similaridade',
-    'taskTable.align.columns.metadata.score'            : 'Score',
-    'taskTable.align.columns.metadata.filogenia'         : 'Filogenia',
+    'taskTable.align.columns.metadata.similaridade'         : 'Similaridade',
+    'taskTable.align.columns.metadata.score'                : 'Score',
+    'taskTable.align.columns.metadata.filogenia'            : 'Filogenia',
 
-    'taskTable.phylogeneticTree.columns.metadata.id'    : 'id',
-    'taskTable.phylogeneticTree.columns.metadata.Acoes' : 'Ações',
-    'taskTable.phylogeneticTree.title.idArvore'         : 'ID: {}',
+    'taskTable.phylogeneticTree.columns.metadata.id'        : 'id',
+    'taskTable.phylogeneticTree.columns.metadata.Acoes'     : 'Ações',
+    'taskTable.phylogeneticTree.title.idArvore'             : 'ID: {}',
+    'taskTable.similaridade'                                : 'Similaridade',
 
     //PHYLOGENETIC TREE
     'phylogeneticTree.textLabel.upload'                                         : 'Faça upload do arquivo de um arquivo .fasta',

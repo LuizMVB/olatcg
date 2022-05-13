@@ -119,6 +119,7 @@ function TaskTableHomologySearch() {
                                     <th>Alinhamento (Correspondente)</th>
                                     <th>Taxonomia</th>
                                     <th>Score</th>
+                                    <th>Similaridade</th>
                                     <th>País de Origem</th>
                                     <th>Link NCBI</th>
                                 </tr>
@@ -151,6 +152,7 @@ function TaskTableHomologySearch() {
                                     </td>
                                     <td>{alignment.taxonomy}</td>
                                     <td>{alignment.score}</td>
+                                    <td>{alignment.similarity}</td>
                                     <td>{alignment.matchSequence.countryOrigin}</td>
                                     <td>
                                         <a href={"https://www.ncbi.nlm.nih.gov/nuccore/" + alignment.matchSequence.externalDatabaseId}>
