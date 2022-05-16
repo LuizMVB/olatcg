@@ -4,6 +4,16 @@
     top: 30px;
 }
 
-.aboutTextSection {
-    padding: 40px;
+.aboutTextSection .row {
+    margin-bottom:0px !important
+}
+
+.aboutTextSection h6{
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+.aboutTextSection .subitem{
+    padding: 10px;
+    border-radius: 10px;
 }

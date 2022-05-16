@@ -9,7 +9,7 @@ var data = {
     'common.taxonomia'                          : 'Taxonomia',
     'common.name.tools.alinhamentoLocal'        : 'Alinhamento Local',
     'common.name.tools.alinhamentoGlobal'       : 'Alinhamento Global',
-    'common.name.tools.buscaTaxonomia'          : 'Busca Por Taxonomia',
+    'common.name.tools.buscaTaxonomia'          : 'Busca Homóloga',
     'common.name.tools.blast'                   : 'Blast',
     'common.confirmar'                          : 'Confirmar',
     'common.cancelar'                           : 'Cancelar',
@@ -29,7 +29,7 @@ var data = {
 
     // DEFAULT MODAL MESSAGES
     'dialog.default.processamento.title'                                 : 'Processamento Iniciado',
-    'dialog.default.homologySearch.processamento.text1'                  : 'Busca por taxonomia: As sequências serão comparadas com ' +
+    'dialog.default.homologySearch.processamento.text1'                  : 'Busca homóloga: As sequências serão comparadas com ' +
                                                                             'um banco de sequências filogeneticamente anotadas e retornarão sua filogenia ' +
                                                                             'mais provável baseando-se nessa comparação',
     'dialog.default.alignment.processamento.text1'                       : 'Seu alinhamento está sendo realizado, o id será exibido na tela.',                                                                             
@@ -61,7 +61,7 @@ var data = {
     // HOME
     'home.presentation.title'                       : 'Bem vindo ao OLATCG',
     'home.presentation.text'                        : 'Uma plataforma onde você pode aprender resolvendo problemas e ' + 
-                                                      'começar a fazer suas primeiras análises através de uma interface interativa',
+                                                      'começar a fazer suas primeiras análises por meio de uma interface interativa',
 
     'home.descriptionOlatcg.title'                  : 'O que é OLATCG?',
     'home.descriptionOlatcg.text'                   : 'O OLATCG é uma plataforma didática que tem por objetivo apresentar ' +
@@ -70,11 +70,11 @@ var data = {
                                                       'transformador sobre o tema.',
 
     'home.pathOptions.title'                        : 'Escolha Seu Caminho',
-    'home.pathOptions.aprendaBioinfo.title'         : 'Aprenda Bioinformática',
+    'home.pathOptions.aprendaBioinfo.title'         : 'Noções de Bioinformática',
     'home.pathOptions.aprendaBioinfo.text'          : 'Aqui você pode acessar uma lista de conteúdos para aprender ' +
                                                       'os conceitos básicos por trás da Bioinformática.',
     'home.pathOptions.fazendoAnalises.title'        : 'Fazendo Análises',
-    'home.pathOptions.fazendoAnalises.text'         : 'Através de modelos, comece a fazer análises em Bioinformática ' +
+    'home.pathOptions.fazendoAnalises.text'         : 'Por meio de modelos, comece a fazer análises em Bioinformática ' +
                                                       'utilizando uma interface de fácil uso',
     'home.collaboration.title'                      : 'Colaboração',
 
@@ -147,12 +147,49 @@ var data = {
     //PHYLOGENETIC TREE
     'phylogeneticTree.textLabel.upload'                                         : 'Faça upload do arquivo de um arquivo .fasta',
     'phylogeneticTree.tooltip.text'                                             : 'Caso você não tenha um arquivo .fasta para gerar a Árvore Filogenética realize os processos necessários utilizando ' + 
-                                                                                'a ferramenta "busca por taxonomia" e faça o download do arquivo gerado na tabela de processamento.',
+                                                                                'a ferramenta "busca homóloga" e faça o download do arquivo gerado na tabela de processamento.',
     'phylogeneticTree.button.gerarArvore'                                       : 'Gerar Árvore',
     
     'phylogeneticTree.dialog.validacaoFalhou.caracteresInvalidos.title'         : 'Verifique suas sequências',
     'phylogeneticTree.dialog.validacaoFalhou.caracteresInvalidos.text'          : 'Sua sequência possui alguns caracteres irregulares. Verifique se ' +
                                                                                     'sua entrada está de acordo com o tipo de sequência selecionada',
+
+    //ABOUT
+    'about.text.title.olatcgParaVoce'                   : 'OLATCG: uma ferramenta para você',
+    'about.text.title.oQueE'                            : 'O que é?',
+    'about.text.content.oQueE.p1'                       : 'O aumento no número de pesquisas no desenvolvimento da' +
+                                                          ' área das Ciências e o advento de novas tecnologias, ' + 
+                                                          'assim como a consolidação da conexão existente entre ' + 
+                                                          'Ciência Tecnologia e Sociedade ocorridos na segunda metade ' + 
+                                                          'do século XX, aludiu ao aprimoramento de novas tecnologias ' + 
+                                                          'computacionais que começavam a ser usadas em diversas áreas ' + 
+                                                          'de conhecimento, contribuindo para mudanças sociais, tanto ' + 
+                                                          'no que tange ao coletivo como ao individual. Nesse contexto ' + 
+                                                          'desponta, na década de 1960, a Bioinformática, termo utilizado ' + 
+                                                          'para se referir à combinação entre Computação, Tecnologia e Biologia ' + 
+                                                          'Molecular (HAGEN, 2000). O campo tinha como objetivo romper ' + 
+                                                          'barreiras nas áreas científicas mediante o desenvolvimento de ' + 
+                                                          'novas abordagens que proporcionassem um novo método de realizar ' + 
+                                                          'análises e identificar dados biológicos (LESK, 2008).',
+    'about.text.content.oQueE.p2'                       : 'O OLATCG é uma plataforma criada com o intuito de apresentar ' + 
+                                                          'algumas ferramentas de Bioinformática e introduzir simulações ' + 
+                                                          'na educação Básica, principalmente no ensino de Biologia em ' + 
+                                                          'turmas de ensino médio.',
+    'about.text.title.definicaoBioinfo'                 : 'Mas qual seria a definição de Bioinformática?',
+    'about.text.content.definicaoBioinfo'               : 'A Bioinformática pode ser entendida como uma área de saber ' + 
+                                                          'interdisciplinar que visa investigar e desenvolver sistemas ' + 
+                                                          'que colaborem com a compreensão do fluxo de informações, ' + 
+                                                          'desde os genes até estruturas moleculares (Attwood et. al, ' + 
+                                                          '2019), e sua consequente influência nas enfermidades, saúde ' + 
+                                                          'e estudos ambientais (Perezleo SOLÓRZANO et al., 2003). É ' + 
+                                                          'uma área que engloba pesquisa, desenvolvimento e utilização ' + 
+                                                          'de ferramentas de computador para o conhecimento de sistemas ' + 
+                                                          'e processos biológicos, além de ser uma área emergente, pois ' + 
+                                                          'faz uso da Tecnologia da Informação para distribuir, organizar ' + 
+                                                          'e analisar informações biológicas. É uma tentativa de simplificar ' + 
+                                                          'e resolver problemas biológicos complexos que lança mão de ' + 
+                                                          'sistemas e ferramentas de computação (PRATTA, 2018).',
+
 };
 
 function getMessages (key, ...args) {
