@@ -37,7 +37,7 @@ function TaskTableAlign() {
     };
 
     const handleToSameLength = (aln1, aln2) => {
-        if(aln2.length > aln1.length){
+        if(aln2.length >= aln1.length){
             for (let index = aln1.length; index < aln2.length; index++) {
                 aln1 += " ";
             }
