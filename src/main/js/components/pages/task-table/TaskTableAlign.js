@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import '../../../../static/css/TaskTable.css'
 import Toolkit from '../../../infra/Toolkit';
 import useRequest from '../../../hooks/useRequest';
+import { FormattingService } from '../../../services/FormattingService';
 
 function TaskTableAlign() {
 
@@ -36,44 +37,37 @@ function TaskTableAlign() {
     }
 
     const createJSXTableOfBases = (aln1, aln2) => {
-        let maxLengthForBoth = aln1.length;
         let tableHeaderClassName;
         let tableDataBase1ClassName;
         let tableDataBase2ClassName;
-        for (let index = 0; index < maxLengthForBoth; index++) {
-            let base1 = aln1[index];
-            let base2 = aln2[index];
-            if (base1 === 'A') {
-                tableDataBase1ClassName = 'bg-color-red';
-            } else if (base1 === 'T') {
-                tableDataBase1ClassName = 'bg-color-green';
-            } else if (base1 === 'C') {
-                tableDataBase1ClassName = 'bg-color-blue';
-            } else if (base1 === 'G') {
-                tableDataBase1ClassName = 'bg-color-yellow';
-            } else if (base1 === '-') {
+        aln1.split('').forEach((base, index) => {
+            if(base.toUpperCase() === aln2[index].toUpperCase()){
+                if(base.toUpperCase() === 'A'){
+                    tableHeaderClassName = 'bg-color-red';
+                    tableDataBase1ClassName = 'bg-color-red';
+                    tableDataBase2ClassName = 'bg-color-red';
+                }else if(base.toUpperCase() === 'T'){
+                    tableHeaderClassName = 'bg-color-blue';
+                    tableDataBase1ClassName = 'bg-color-blue';
+                    tableDataBase2ClassName = 'bg-color-blue';
+                }else if(base.toUpperCase() === 'C'){
+                    tableHeaderClassName = 'bg-color-green';
+                    tableDataBase1ClassName = 'bg-color-green';
+                    tableDataBase2ClassName = 'bg-color-green';
+                }else if(base.toUpperCase() === 'G'){
+                    tableHeaderClassName = 'bg-color-yellow';
+                    tableDataBase1ClassName = 'bg-color-yellow';
+                    tableDataBase2ClassName = 'bg-color-yellow';
+                }
+            }else{
+                tableHeaderClassName = 'purple lighten-4';
                 tableDataBase1ClassName = 'purple lighten-4';
-            }
-            if (base2 === 'A') {
-                tableDataBase2ClassName = 'bg-color-red';
-            } else if (base2 === 'T') {
-                tableDataBase2ClassName = 'bg-color-green';
-            } else if (base2 === 'C') {
-                tableDataBase2ClassName = 'bg-color-blue';
-            } else if (base2 === 'G') {
-                tableDataBase2ClassName = 'bg-color-yellow';
-            } else if (base2 === '-') {
                 tableDataBase2ClassName = 'purple lighten-4';
             }
-            if (base1 === base2) {
-                tableHeaderClassName = tableDataBase1ClassName;
-            } else {
-                tableHeaderClassName = undefined;
-            }
             tableHeaderAsterisk.push(<th className={tableHeaderClassName}>*</th>);
-            tableBodyBase1.push(<td className={tableDataBase1ClassName}>{base1}</td>);
-            tableBodyBase2.push(<td className={tableDataBase2ClassName}>{base2}</td>);
-        }
+            tableBodyBase1.push(<td className={tableDataBase1ClassName}>{base}</td>);
+            tableBodyBase2.push(<td className={tableDataBase2ClassName}>{aln2[index]}</td>); 
+        });
     }
     
     return (
@@ -129,7 +123,7 @@ function TaskTableAlign() {
                                 </thead>
                                 <tbody>
                                     <td>{itemSelected.score}</td>
-                                    <td>{itemSelected.similarity}</td>
+                                    <td>{FormattingService.percentage(itemSelected.similarity)}</td>
                                 </tbody>
                             </table>
                         </div>

@@ -4,6 +4,7 @@ import Loading from '../../page-elements/loading/Loading';
 import Phylocanvas from 'phylocanvas';
 import useRequest from '../../../hooks/useRequest';
 import SystemConstants from '../../../infra/SystemConstants';
+import { FormattingService } from '../../../services/FormattingService';
 
 function TaskTableHomologySearch() {
 
@@ -152,7 +153,7 @@ function TaskTableHomologySearch() {
                                     </td>
                                     <td>{alignment.taxonomy}</td>
                                     <td>{alignment.score}</td>
-                                    <td>{alignment.similarity}</td>
+                                    <td>{FormattingService.percentage(alignment.similarity)}</td>
                                     <td>{alignment.matchSequence.countryOrigin}</td>
                                     <td>
                                         <a href={"https://www.ncbi.nlm.nih.gov/nuccore/" + alignment.matchSequence.externalDatabaseId}>
