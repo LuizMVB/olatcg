@@ -34,14 +34,36 @@ function TaskTableAlign() {
                 </tr>)
             });
         }
-    }
+    };
+
+    const handleToSameLength = (aln1, aln2) => {
+        if(aln2.length > aln1.length){
+            for (let index = aln1.length; index < aln2.length; index++) {
+                aln1 += " ";
+            }
+            return {
+                biggestAln: aln2,
+                smallestAln: aln1,
+            };
+        }else if(aln1.length > aln2.length){
+            for (let index = aln2.length; index < aln1.length; index++) {
+                aln2 += " ";
+            }
+            return {
+                biggestAln: aln1,
+                smallestAln: aln2,
+            };
+        }
+    };
 
     const createJSXTableOfBases = (aln1, aln2) => {
         let tableHeaderClassName;
         let tableDataBase1ClassName;
         let tableDataBase2ClassName;
-        aln1.split('').forEach((base, index) => {
-            if(base.toUpperCase() === aln2[index].toUpperCase()){
+
+        let alns = handleToSameLength(aln1, aln2);
+        alns.biggestAln.split('').forEach((base, index) => {
+            if(base.toUpperCase() === alns.smallestAln[index].toUpperCase()){
                 if(base.toUpperCase() === 'A'){
                     tableHeaderClassName = 'bg-color-red';
                     tableDataBase1ClassName = 'bg-color-red';
@@ -66,9 +88,9 @@ function TaskTableAlign() {
             }
             tableHeaderAsterisk.push(<th className={tableHeaderClassName}>*</th>);
             tableBodyBase1.push(<td className={tableDataBase1ClassName}>{base}</td>);
-            tableBodyBase2.push(<td className={tableDataBase2ClassName}>{aln2[index]}</td>); 
+            tableBodyBase2.push(<td className={tableDataBase2ClassName}>{alns.smallestAln[index]}</td>); 
         });
-    }
+    };
     
     return (
         <div className="task-table">
