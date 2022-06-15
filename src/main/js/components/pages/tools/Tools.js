@@ -26,11 +26,11 @@ function Tools() {
                         <SimpleCard img={HomologySearch} title={msg('common.name.tools.buscaTaxonomia')}
                             description={msg('tools.card.text.buscaHomologa')} path="/homology-search" />
                     </div>
-                    {false && <div className="col s4">
+                    <div className="col s4">
                         <SimpleCard img={Blast} title={msg('common.name.tools.blast')} 
                             description={msg('tools.card.text.blast')} 
                             path="/blast"/>
-                    </div>}
+                    </div>
                 </div>
             </div>
         </div>

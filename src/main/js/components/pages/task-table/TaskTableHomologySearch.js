@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import Toolkit from '../../../infra/Toolkit';
-import Loading from '../../page-elements/loading/Loading';
 import Phylocanvas from 'phylocanvas';
 import useRequest from '../../../hooks/useRequest';
 import SystemConstants from '../../../infra/SystemConstants';
@@ -54,15 +53,14 @@ function TaskTableHomologySearch() {
     return (
         <div className="task-table">
             <div className="col s10 offset-s1">
-                {!taxonomySearchAnalysesResponse && 
-                    <Loading />
-                }
                 {!alignData && !showTree && taxonomySearchAnalysesResponse && 
                 <table className="centered highlight purple lighten-5">
                     <thead>
                         <tr>
                             <th>{msg('taskTable.homologySearch.column.id')}</th>
                             <th>{msg('taskTable.homologySearch.column.resultados')}</th>
+                            <th>{msg('common.tipo')}</th>
+                            <th>{msg('common.status')}</th>
                         </tr>
                     </thead>    
                     <tbody>
@@ -84,7 +82,6 @@ function TaskTableHomologySearch() {
                                         statusColor = "#c8e6c8"
                                         isOpenResultsButtonDisabled = false;
                                     }
-
                                     return (
                                         <tr key={indexRecord} style={{backgroundColor: statusColor}}>
                                             <td>{record.idAnalysis}</td>
@@ -93,13 +90,17 @@ function TaskTableHomologySearch() {
                                                     className="waves-effect waves-light btn" 
                                                     disabled={isOpenResultsButtonDisabled} 
                                                     onClick={() => {
-                                                                        setAlignData(record.alignments); 
+                                                                        setAlignData({
+                                                                                        type: record.type,
+                                                                                        alignments: record.alignments
+                                                                                    }); 
                                                                         setIdAanalysis(record.idAnalysis)
                                                                     }}
                                                 >
                                                     Veja o Resultado
                                                 </button>}
                                             </td>
+                                            <td>{record.type}</td>
                                             <td>{statusMsg}</td>
                                         </tr>
                                     )
@@ -112,21 +113,29 @@ function TaskTableHomologySearch() {
                     <div className="overflow-table">
                         <table className="centered highlight purple lighten-5 homology-search-table">
                             <thead>
-                                <tr>
-                                    <th>Identificador Sequência de Entrada</th>
-                                    <th>Sequência de Entrada</th>
-                                    <th>Sequência Correspondente</th>
-                                    <th>Alinhamento (Entrada)</th>
-                                    <th>Alinhamento (Correspondente)</th>
-                                    <th>Taxonomia</th>
-                                    <th>Score</th>
-                                    <th>Similaridade</th>
-                                    <th>País de Origem</th>
-                                    <th>Link NCBI</th>
-                                </tr>
+                                {alignData.type === 'TAXONOMY' &&
+                                    <tr>
+                                        <th>Identificador Sequência de Entrada</th>
+                                        <th>Sequência de Entrada</th>
+                                        <th>Sequência Correspondente</th>
+                                        <th>Alinhamento (Entrada)</th>
+                                        <th>Alinhamento (Correspondente)</th>
+                                        <th>Taxonomia</th>
+                                        <th>Score</th>
+                                        <th>Similaridade</th>
+                                        <th>País de Origem</th>
+                                        <th>Link NCBI</th>
+                                    </tr>}
+                                {alignData.type === 'TAXONOMY_BLAST' &&
+                                    <tr>
+                                        <th>Alinhamento (Entrada)</th>
+                                        <th>Alinhamento (Correspondente)</th>
+                                        <th>Descrição da Taxonomia</th>
+                                    </tr>}
                             </thead>    
                             <tbody>
-                            {alignData.map((alignment, index) => (
+                            {alignData.type === 'TAXONOMY' && 
+                            alignData.alignments.map((alignment, index) => (
                                 <tr key={index}>
                                     <td>
                                         {alignment.inputSequenceId}
@@ -162,13 +171,29 @@ function TaskTableHomologySearch() {
                                     </td>
                                 </tr>
                             ))}
+                            {alignData.type === 'TAXONOMY_BLAST' && 
+                            alignData.alignments.map((alignment, index) => (
+                                <tr key={index}>
+                                    <td>
+                                        <div className="aln-column">
+                                            {alignment.inputAlignment}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div className="aln-column">
+                                            {alignment.matchAlignment}
+                                        </div>
+                                    </td>
+                                    <td>{alignment.taxonomyDescription}</td>
+                                </tr>
+                            ))}
                             </tbody>
                         </table>
                     </div>
                     <br />
                     <div className="col s7 push-s9">
+                        {alignData.type === 'TAXONOMY' && <button className="waves-effect waves-light btn green" onClick={() => {generateTree(idAnalysis)}}>Gerar Árvore</button>}
                         <button className="waves-effect waves-light btn red" onClick={() => {setAlignData(undefined); setIdAanalysis(undefined)}}>Voltar</button>
-                        <button className="waves-effect waves-light btn green" onClick={() => {generateTree(idAnalysis)}}>Gerar Árvore</button>
                     </div>
                 </div>}
                 {showTree &&

@@ -10,7 +10,7 @@ var data = {
     'common.name.tools.alinhamentoLocal'        : 'Alinhamento Local',
     'common.name.tools.alinhamentoGlobal'       : 'Alinhamento Global',
     'common.name.tools.buscaTaxonomia'          : 'Busca Homóloga',
-    'common.name.tools.blast'                   : 'Blast',
+    'common.name.tools.blast'                   : 'NCBI Blast',
     'common.confirmar'                          : 'Confirmar',
     'common.cancelar'                           : 'Cancelar',
     'common.ok'                                 : 'Ok',
@@ -26,6 +26,8 @@ var data = {
     'common.erro'                               : 'Erro',
     'common.concluido'                          : 'Concluído',
     'common.carregando'                         : 'Carregando',
+    'common.tipo'                               : 'Tipo',
+    'common.status'                             : 'Status',
 
     // DEFAULT MODAL MESSAGES
     'dialog.default.processamento.title'                                 : 'Processamento Iniciado',
@@ -189,7 +191,12 @@ var data = {
                                                           'e analisar informações biológicas. É uma tentativa de simplificar ' + 
                                                           'e resolver problemas biológicos complexos que lança mão de ' + 
                                                           'sistemas e ferramentas de computação (PRATTA, 2018).',
-
+                            
+    // BLAST
+    'blast.pageTitle'                                   : 'NCBI Blast',
+    'blast.button.submmit'                              : 'Enviar Dados',
+    'blast.description'                                 : 'A sequência de DNA que você utilizar aqui será comparada utiizando o ' +
+                                                          'Blastn, no NCBI, contra o banco de dados de nucleotídeo NCBI-NT'
 };
 
 function getMessages (key, ...args) {

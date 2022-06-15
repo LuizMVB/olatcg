@@ -19,12 +19,14 @@ function TaskTablePhylogeneticTree() {
         for (const key in phyloTreeData) {
             if (Object.hasOwnProperty.call(phyloTreeData, key)) {
                 const element = phyloTreeData[key];
-                phylogeneticTreeTableBody.push(<tr key={key}>
-                                                    <td>{key}</td>
-                                                    <td>
-                                                    <button className="waves-effect waves-light btn" onClick={() => displayTree(key, element.nwkFormat)}>{msg('common.button.vejaOResultado')}</button>
-                                                    </td>
-                                                </tr>);
+                phylogeneticTreeTableBody.push(
+                    <tr key={key}>
+                        <td>{key}</td>
+                        <td>
+                        <button className="waves-effect waves-light btn" onClick={() => displayTree(key, element.nwkFormat)}>{msg('common.button.vejaOResultado')}</button>
+                        </td>
+                    </tr>
+                );
             }
         }
         return phylogeneticTreeTableBody.reverse();
