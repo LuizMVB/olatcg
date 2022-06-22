@@ -40,7 +40,7 @@ function App(){
             <Route path="/homology-search" component={HomologySearch} />
             <Route path="/global-alignment" component={GlobalAlignment} />
             <Route path="/local-alignment" component={LocalAlignment} />
-            <Route path="/blast" component={Blast} />
+            {false && <Route path="/blast" component={Blast} />}
             <Route path="/task-table" exact component={TaskTable} />
             <Route path="/task-table/align" component={TaskTable} />
             <Route path="/task-table/homology-search" component={TaskTable} />
