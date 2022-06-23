@@ -184,7 +184,7 @@ function About() {
                             Tutorial de Utilização
                         </h3>
                         <div class="video-container">
-                            <iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?list=PLiaBUvB6LWK1qhDKcL5blT0RffLBB7kmX" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?list=PLYZ-khu9ceVeSuoB7_HS82pZmQwRdlI9p" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         </div>
                     </div>
                 </div>
