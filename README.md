@@ -1,1 +1,1 @@
-Deployed in: https://olatcg.herokuapp.com
+Link to view website: https://olatcg.herokuapp.com
