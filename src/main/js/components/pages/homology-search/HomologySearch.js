@@ -63,7 +63,8 @@ function HomologySearch(){
     }
 
     const onSuccessUpload = (responseData) => {
-        if(responseData.error){
+        console.log(responseData);
+        if(responseData.error && responseData.errorDescription){
             setDialogTitle(msg('common.erroGeral'));
             setDialogContent(<h5>{responseData.errorDescription ? responseData.errorDescription : msg('common.erroGeral')}</h5>);
             openDialog(true);
