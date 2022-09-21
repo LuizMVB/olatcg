@@ -86,10 +86,15 @@ function HomologySearch(){
 
     const uploadSeqFile = (name, description, encodedFile) => {
         let uploadRequest = {
+          databaseType: 'OLATCGDB',
+          matchScore: 6,
+          mismatchScore: 8,
+          sequenceFile: {
             name: name,
             description: description,
             encodedFile: encodedFile
-          };
+          }
+        };
         makeRequest(Toolkit.Routes.GET_TAXONOMY_FROM_SEQUENCES, 'POST', uploadRequest, undefined, onSuccessUpload);
     };
 
