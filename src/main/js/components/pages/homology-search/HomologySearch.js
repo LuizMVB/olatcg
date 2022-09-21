@@ -86,12 +86,12 @@ function HomologySearch(){
 
     const uploadSeqFile = (name, description, encodedFile) => {
         let uploadRequest = {
-          databaseType: 'OLATCGDB',
+          databaseType: "OLATCGDB",
           matchScore: 6,
           mismatchScore: 8,
           sequenceFile: {
             name: name,
-            description: description,
+            description: 'sequence file',
             encodedFile: encodedFile
           }
         };
